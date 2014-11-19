@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head >
+		<title>AutoCompletion</title>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.5.1.min.js"></script>
+		<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.ui/1.8.10/jquery-ui.js"></script>
+		<script type="text/javascript">
+			var cache = {};
+			$(function ()
+			{
+				$("#cc, #nc, #ac").autocomplete({
+					source: function (request, response)
+					{
+						//Si la réponse est dans le cache
+						if ((request.term) in cache)
+						{
+							response($.map(cache[request.term], function (item)
+							{
+
+								return {
+									label: item.CodeClient + ", " + item.NomClient,
+									value: function ()
+									{
+										if ($(this).attr('id') == 'cc')
+										{
+											$('#nc').val(item.NomClient);
+											$('#ac').val(item.AdresseClient)
+											return item.CodeClient;
+										}
+									}
+								}
+							}));
+						}
+						//Sinon -> Requete Ajax
+						else
+						{
+							var objData = {};
+							if ($(this.element).attr('id') == 'cc')
+							{
+								objData = { codeClient: request.term, maxRows: 10 };
+							}
+
+							$.ajax({
+								url: "AutoCompletion.php",
+								dataType: "json",
+								data: objData,
+								type: 'POST',
+								success: function (data)
+								{
+									//Ajout de reponse dans le cache
+									cache[(request.term)] = data;
+									response($.map(data, function (item)
+									{
+
+										return {
+											label: item.CodeClient + ", " + item.NomClient,
+											value: function ()
+											{
+												if ($(this).attr('id') == 'cc')
+												{
+													$('#nc').val(item.NomClient);
+													$('#ac').val(item.AdresseClient)
+													return item.CodeClient;
+												}
+											}
+										}
+									}));
+								}
+							});
+						}
+					},
+					minLength: 1,
+					delay: 100
+				});
+			});
+		</script>
+		<link rel="Stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" />
+	</head>
+	<body>
+		RECHERCHE INTELLIGENTE - AUTOCOMPLETION DE FORMULAIRE<br><br>
+		# Taper un code de référence, cliquer sur les choix proposés si le client existe. <br>
+		# Code de référence existant : A00001 A00002 A00003 B00001 <br><br>
+		<hr>
+		<br>
+		<form action="#">
+			Code Client :<input type="text" id="cc" size="6"/>
+			Nom Client : <input type="text" id="nc" />
+			Adresse Client : <input type="text" id="ac" />
+		</form>
+	</body>
+</html>
