@@ -20,7 +20,7 @@ if (isset($_POST["codeClient"]))
 {
     $strQuery .= "client.code LIKE :codeClient AND client.code = adr_livraison.code ";
 }
-$strQuery.= "ORDER BY  client.code ASC ";
+
 //Limite
 if (isset($_POST["maxRows"]))
 {
