@@ -221,19 +221,36 @@ tinymce.init({
 			<br/><br/>
 			
 			<fieldset>
-				<legend>Contact</legend>
-				<label for="code_contact">Code: </label><input type="text" name="code_contact" required="required" /><br/><br/>
-				<label for="civilite" required="required" >Nom: </label>
-					<select name="civilite" required="required" onchange="change_manga(this.value)"><option value="c1">M.</option>
-						<option value="c2">Mrs.</option>
-						<option value="c3">MMe.</option>	
-					</select>
-				<label for="nom_contact"></label><input type="text" name="nom_contact" required="required" /><br/><br/>
-				<label for="fonction">Fonction: </label><input type="text" name="fonction" required="required" /><br/><br/>
-				<label for="tel_bur">Téléphone de bureau: </label><input type="text" name="tel_bur" required="required" /><br/><br/>
-				<label for="tel_mob">Téléphone mobile: </label><input type="text" name="tel_mob" required="required" /><br/><br/>
-				<label for="fax">Fax: </label><input type="text" name="fax" required="required" /><br/><br/>
-				
+				<legend>Contact</legend>				
+				<p> 
+					<input type="button" value="Ajouter contact" onClick="addRowContact('dataTableContact')" /> 
+					<input type="button" value="Supprimer contact " onClick="deleteRow('dataTableContact')"  /> 
+					<p>(Les actions ne s'appliqueront uniquement aux adresses dont les cases sont cochées.)</p>
+				</p>
+				<table id="dataTableContact" class="form" border="1">
+                  <tbody>
+                    <tr>
+                      <p>
+						<br/>
+						<td><input type="checkbox" required="required" name="chk3[]" checked="checked" /></td>
+						<td>
+							<label for="code_contact">Code: </label><input type="text" name="code_contact[]" required="required" /><br/><br/>
+							<label for="civilite" required="required" >Nom: </label>
+							<select name="civilite[]" required="required" onchange="change_manga(this.value)">
+								<option value="c1">M.</option>
+								<option value="c2">Mrs.</option>
+								<option value="c3">MMe.</option>	
+							</select>
+							<label for="nom_contact"></label><input type="text" name="nom_contact[]" required="required" /><br/><br/>
+							<label for="fonction">Fonction: </label><input type="text" name="fonction[]" required="required" /><br/><br/>
+							<label for="tel_bur">Téléphone de bureau: </label><input type="text" name="tel_bur[]" required="required" /><br/><br/>
+							<label for="tel_mob">Téléphone mobile: </label><input type="text" name="tel_mob[]" required="required" /><br/><br/>
+							<label for="fax">Fax: </label><input type="text" name="fax[]" required="required" /><br/><br/><hr><br />
+					     </td>							 
+							</p>
+                    </tr>
+                    </tbody>
+                </table>							
 			</fieldset>
 			<br/><br/>
 

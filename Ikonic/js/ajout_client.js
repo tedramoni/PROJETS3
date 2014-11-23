@@ -30,6 +30,22 @@ function addRowFacturation(tableID) {
 	}
 }
 
+function addRowContact(tableID) {
+	var table = document.getElementById(tableID);
+	var rowCount = table.rows.length;
+	if(rowCount < 5){							// limit the user from creating fields more than your limits
+		var row = table.insertRow(rowCount);
+		var colCount = table.rows[0].cells.length;
+		for(var i=0; i<colCount; i++) {
+			var newcell = row.insertCell(i);
+			newcell.innerHTML = table.rows[0].cells[i].innerHTML;
+		}
+	}else{
+		 alert("Vous ne pouvez avoir plus de 5 contacts");
+			   
+	}
+}
+
 function deleteRow(tableID) {
 	var table = document.getElementById(tableID);
 	var rowCount = table.rows.length;

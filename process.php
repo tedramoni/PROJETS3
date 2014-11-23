@@ -37,6 +37,7 @@
 				$jour = $_POST['jour'];
 				$fdm = $_POST['fdm'];
 				$jour = $_POST['jour'];
+				
 				$code_contact = $_POST['code_contact'];
 				$civilite = $_POST['civilite'];
 				$nom_contact = $_POST['nom_contact'];
@@ -44,48 +45,71 @@
 				$tel_bur = $_POST['tel_bur'];
 				$tel_mob = $_POST['tel_mob'];
 				$fax = $_POST['fax'];
+				
 				$contenu = $_POST['contenu'];	
 
-				echo $commercial.'<br/>';
-				echo $code.'<br/>' ;
-				echo $forme_juridique .'<br/>';
-				echo $raison_sociale.'<br/><br/>';
+				echo "Nom Commercial : ".$commercial.'<br/>';
+				echo "Code Client : ".$code.'<br/>' ;
+				echo "Forme Juridique : ".$forme_juridique .'<br/>';
+				echo "Raison Sociale : ".$raison_sociale.'<br/><br/>';
 				
-				print_r($BX_code);echo '<br/>';
-				print_r($BX_adr1);echo '<br/>';
-				print_r($BX_adr2);echo '<br/>';
-				print_r($BX_adr3);echo '<br/>';
-				print_r($BX_cp);echo '<br/>';
-				print_r($BX_ville);echo '<br/>';
-				print_r($BX_pays);echo '<br/>';
-				print_r($BX_tel_bur);echo '<br/>';
-				print_r($BX_email);echo '<br/>';
-				print_r($BX_site_web);echo '<br/>';
-				print_r($BX_type);echo '<br/>';
+				for( $i= 0 ; $i < sizeof($BX_code); $i++ )
+				{
+					echo "Adresse de livraison ".$i."<br/><br/>";
+					echo $BX_code[$i].'<br/>';
+					echo $BX_adr1[$i].'<br/>';
+					echo $BX_adr2[$i].'<br/>';
+					echo $BX_adr3[$i]. '<br/>';
+					echo $BX_cp[$i]. '<br/>';
+					echo $BX_ville[$i]. '<br/>';
+					echo $BX_pays[$i]. '<br/>';
+					echo $BX_tel_bur[$i]. '<br/>';
+					echo $BX_email[$i]. '<br/>';
+					echo $BX_site_web[$i]. '<br/>';
+					echo $BX_type[$i]. '<br/><br/>';
+				}
 				
-				print_r($BX_code2);echo '<br/>';
-				print_r($BX_adr1_2);echo '<br/>';
-				print_r($BX_adr2_2);echo '<br/>';
-				print_r($BX_adr3_2);echo '<br/>';
-				print_r($BX_cp2);echo '<br/>';
-				print_r($BX_ville2);echo '<br/>';
-				print_r($BX_pays2);echo '<br/>';
-				print_r($BX_tel_bur2);echo '<br/>';
-				print_r($BX_email2);echo '<br/>';
-				print_r($BX_site_web2);echo '<br/>';
-				print_r($BX_type2);echo '<br/>';
+				echo '<br/><br/>';
 				
-				echo $mode_paiement.'<br/>';
-				echo $remise.'<br/>' ;
-				echo $jour.'<br/>';
-				echo $fdm.'<br/>';
-				echo $jour.'<br/>';
-				echo $code_contact.'<br/>';
-				echo $civilite.'<br/>';
-				echo $nom_contact.'<br/>';
-				echo $fonction.'<br/>';
-				echo $tel_bur.'<br/>';
-				echo $tel_mob.'<br/>';
-				echo $fax.'<br/>';
-				echo $contenu.'<br/>';	
+				for( $i= 0 ; $i < sizeof($BX_code2); $i++ )
+				{
+					echo "Adresse de facturation ".$i."<br/><br/>";
+					echo $BX_code2[$i].'<br/>';
+					echo $BX_adr1_2[$i].'<br/>';
+					echo $BX_adr2_2[$i].'<br/>';
+					echo $BX_adr3_2[$i]. '<br/>';
+					echo $BX_cp2[$i]. '<br/>';
+					echo $BX_ville2[$i]. '<br/>';
+					echo $BX_pays2[$i]. '<br/>';
+					echo $BX_tel_bur2[$i]. '<br/>';
+					echo $BX_email2[$i]. '<br/>';
+					echo $BX_site_web2[$i]. '<br/>';
+					echo $BX_type2[$i]. '<br/><br/>';
+				}
+				
+				echo '<br/><br/>';	
+				
+				echo "Mode de paiement : ".$mode_paiement.'<br/>';
+				echo "Remise : ".$remise.'<br/>' ;
+				echo "Jour : ".$jour.'<br/>';
+				echo "Fin de mois : ".$fdm.'<br/>';
+				echo "le : ".$jour.'<br/><br/>';
+
+				for( $i= 0 ; $i < sizeof($code_contact); $i++ )
+				{
+					echo "Contact ".$i."<br/><br/>";
+					echo $code_contact[$i].'<br/>';
+					echo $civilite[$i].'<br/>';
+					echo $nom_contact[$i].'<br/>';
+					echo $fonction[$i]. '<br/>';
+					echo $tel_bur[$i]. '<br/>';
+					echo $tel_mob[$i]. '<br/>';
+					echo $BX_pays2[$i]. '<br/>';
+					echo $BX_tel_bur2[$i]. '<br/>';
+					echo $fax[$i].'<br/><br/>';
+				}				
+				
+				echo '<br/><br/>';	
+				
+				echo "Infos complémentaires : ".$contenu.'<br/>';	
 ?>
