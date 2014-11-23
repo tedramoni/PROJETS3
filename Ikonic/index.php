@@ -9,7 +9,6 @@ if (isset($_SESSION['pseudo'])) {
 <html lang="fr">
 
 <head>
-	<link rel="stylesheet" type="text/css" href="style/style_test.css" />
 	<link rel="stylesheet" type="text/css" href="style/feuille_de_style.css" />
 	<link rel="alternate stylesheet" media="screen" type="text/css" title="couleur" href="style/couleur1.css" />
 	<link rel="alternate stylesheet" media="screen" type="text/css" title="couleur2" href="style/couleur2.css" />
