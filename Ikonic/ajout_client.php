@@ -29,7 +29,6 @@ tinymce.init({
         "emoticons template paste textcolor colorpicker textpattern"
     ],
     toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-    toolbar2: "print preview media | forecolor backcolor emoticons",
     image_advtab: true,
     templates: [
         {title: 'Test template 1', content: 'Test 1'},
@@ -83,14 +82,14 @@ tinymce.init({
 	</div>
 	
 	<h1 style="padding-bottom: 15px; text-align:center;">Ajout d'un client</h1>
-
+<div id="formu_contact">
 	<form method="post" action="process.php" name="form_contact">
 		
 			<label for="commercial"><u>Commercial :</u> </label><input type="text" name="commercial" required="required" />
-			<br/><br/>
+			<br/>
 			<fieldset>
 				<legend>Coordonnée du client</legend>
-					<label for="code">Code: </label><input type="text" name="code" required="required" /><br/><br/>
+					<label for="code">Code: </label><input type="text" name="code" required="required" /><br/>
 					<label for="forme_juridique">Forme juridique: </label>
 					<select name="forme_juridique" onchange="change_manga(this.value)"><option value="sa">S.A</option>
 						<option value="sarl">S.A.R.L</option>
@@ -105,8 +104,8 @@ tinymce.init({
 				<legend>Adresse Livraison</legend>
 				<!---------------------TEST------------------------------------------------>
 				<p> 
-					<input type="button" value="Ajouter adresse de livraison" onClick="addRowLivraison('dataTableAdresseLivraison')" /> 
-					<input type="button" value="Supprimer adresse de livraison " onClick="deleteRow('dataTableAdresseLivraison')"  /> 
+				<button class="button-success pure-button" onClick="addRowContact('dataTableAdresseLivraison')">Ajouter contact</button>
+				<button class="button-error pure-button" onClick="deleteRow('dataTableAdresseLivraison')">Supprimer contact</button>
 					<p>(Les actions ne s'appliqueront uniquement aux adresses dont les cases sont cochées.)</p>
 				</p>
 				<table id="dataTableAdresseLivraison" class="form" border="1">
@@ -117,34 +116,34 @@ tinymce.init({
 						<td><input type="checkbox" required="required" name="chk[]" checked="checked" /></td>
 						<td>
 							<label>Code Client</label>
-							<input type="text" required="required" name="BX_code[]"><br/><br />
+							<input type="text" required="required" name="BX_code[]"><br/>
 							
-							<label for="BX_adr1">Adresse 1</label>
-							<input type="text" required="required" class="small"  name="BX_adr1[]"><br/>
+							<label for="BX_adr1">Adresse 1: </label>
+							<input type="text" required="required" class="small"  name="BX_adr1[]"/><br/>
 							
-							<label for="BX_adr2">Adresse 2</label>
-							<input type="text" required="required" class="small"  name="BX_adr2[]"><br/>
+							<label for="BX_adr2">Adresse 2: </label>
+							<input type="text" required="required" class="small"  name="BX_adr2[]"/><br/>
 					
-							<label for="BX_adr3">Adresse 3</label>
-							<input type="text" required="required" class="small"  name="BX_adr3[]"><br/><br />
+							<label for="BX_adr3">Adresse 3: </label>
+							<input type="text" required="required" class="small"  name="BX_adr3[]"/><br/>
 
-							<label for="BX_cp">Code Postal</label>
-							<input type="text" required="required" class="small"  name="BX_cp[]"><br/><br />
+							<label for="BX_cp">Code Postal: </label>
+							<input type="text" required="required" class="small"  name="BX_cp[]"/><br/>
 
-							<label for="BX_ville">Ville</label>
-							<input type="text" required="required" class="small"  name="BX_ville[]"><br/><br />
+							<label for="BX_ville">Ville: </label>
+							<input type="text" required="required" class="small"  name="BX_ville[]"/><br/>
 
-							<label for="BX_pays">Pays</label>
-							<input type="text" required="required" class="small"  name="BX_pays[]"><br/><br />
+							<label for="BX_pays">Pays: </label>
+							<input type="text" required="required" class="small"  name="BX_pays[]"/><br/>
 
-							<label for="BX_tel_bur">Tel. Bureau</label>
-							<input type="text" required="required" class="small"  name="BX_tel_bur[]"><br/><br />
+							<label for="BX_tel_bur">Tel. Bureau: </label>
+							<input type="text" required="required" class="small"  name="BX_tel_bur[]"/><br/>
 
-							<label for="BX_email">Email</label>
-							<input type="text" required="required" class="small"  name="BX_email[]"><br/><br />
+							<label for="BX_email">Email: </label>
+							<input type="text" required="required" class="small"  name="BX_email[]"/><br/>
 
-							<label for="BX_site_web">Site Web</label>
-							<input type="text" required="required" class="small"  name="BX_site_web[]"><br/><br/><hr><br />
+							<label for="BX_site_web">Site Web: </label>
+							<input type="text" required="required" class="small"  name="BX_site_web[]"/><br/><hr>
 					     </td>									 
 							</p>
                     </tr>
@@ -156,8 +155,8 @@ tinymce.init({
 				<legend>Adresse Facturation</legend>
 				<!---------------------TEST------------------------------------------------>
 				<p> 
-					<input type="button" value="Ajouter adresse de facturation" onClick="addRowFacturation('dataTableAdresseFacturation')" /> 
-					<input type="button" value="Supprimer adresse de facturation " onClick="deleteRow('dataTableAdresseFacturation')"  /> 
+				<button class="button-success pure-button" onClick="addRowContact('dataTableAdresseFacturation')">Ajouter contact</button>
+				<button class="button-error pure-button" onClick="deleteRow('dataTableAdresseFacturation')">Supprimer contact</button>
 					<p>(Les actions ne s'appliqueront uniquement aux adresses dont les cases sont cochées.)</p>
 				</p>
 				<table id="dataTableAdresseFacturation" class="form" border="1">
@@ -167,38 +166,38 @@ tinymce.init({
 						<br/>
 						<td><input type="checkbox" required="required" name="chk2[]" checked="checked" /></td>
 						<td>
-							<label>Code Client</label>
-							<input type="text" required="required" name="BX_code2[]"><br /><br />
 
-							<label for="BX_adr1_2">Adresse 1</label>
-							<input type="text" required="required" class="small"  name="BX_adr1_2[]"><br />
+							<label>Code Client: </label>
+							<input type="text" required="required" name="BX_code2[]"/><br />
 
-							<label for="BX_adr2_2">Adresse 2</label>
-							<input type="text" required="required" class="small"  name="BX_adr2_2[]"><br />
+							<label for="BX_adr1_2">Adresse 1: </label>
+							<input type="text" required="required" class="small"  name="BX_adr1_2[]"/><br />
 
-							<label for="BX_adr3_2">Adresse 3</label>
-							<input type="text" required="required" class="small"  name="BX_adr3_2[]"><br /><br />
+							<label for="BX_adr2_2">Adresse 2: </label>
+							<input type="text" required="required" class="small"  name="BX_adr2_2[]"/><br />
 
-							<label for="BX_cp2">Code Postal</label>
-							<input type="text" required="required" class="small"  name="BX_cp2[]"><br /><br />
+							<label for="BX_adr3_2">Adresse 3: </label>
+							<input type="text" required="required" class="small"  name="BX_adr3_2[]"/><br />
 
-							<label for="BX_ville2">Ville</label>
-							<input type="text" required="required" class="small"  name="BX_ville2[]"><br /><br />
+							<label for="BX_cp2">Code Postal: </label>
+							<input type="text" required="required" class="small"  name="BX_cp2[]"/><br/>
 
-							<label for="BX_pays2">Pays</label>
-							<input type="text" required="required" class="small"  name="BX_pays2[]"><br /><br />
+							<label for="BX_ville2">Ville: </label>
+							<input type="text" required="required" class="small"  name="BX_ville2[]"/><br />
 
-							<label for="BX_tel_bur2">Tel. Bureau</label>
-							<input type="text" required="required" class="small"  name="BX_tel_bur2[]"><br /><br />
+							<label for="BX_pays2">Pays: </label>
+							<input type="text" required="required" class="small"  name="BX_pays2[]"/><br />
 
-							<label for="BX_email2">Email</label>
-							<input type="text" required="required" class="small"  name="BX_email2[]"><br /><br />
+							<label for="BX_tel_bur2">Tel. Bureau: </label>
+							<input type="text" required="required" class="small"  name="BX_tel_bur2[]"/><br />
 
-							<label for="BX_site_web2">Site Web</label>
-							<input type="text" required="required" class="small"  name="BX_site_web2[]"><br/><br/><hr><br />
-					     </td>							 
-							</p>
-                    </tr>
+							<label for="BX_email2">Email: </label>
+							<input type="text" required="required" class="small"  name="BX_email2[]"/><br/>
+
+							<label for="BX_site_web2">Site Web: </label>
+							<input type="text" required="required" class="small"  name="BX_site_web2[]"/><hr>
+					     </td>
+						</tr>
                     </tbody>
                 </table>			
 			</fieldset>
@@ -212,9 +211,9 @@ tinymce.init({
 						<option value="traite">Traite</option>
 						<option value="especes">Espèces</option>
 					</select><br/><br/>
-					<label for="remise">Remise: </label><input type="number"  name="remise" min="0" max="100" value="0" required="required" /> %<br/><br/>
-					<label for="jour">Echeance: à </label><input type="number"  name="jour" min="0" max="100" value="0" required="required" /> jours
-					<label for="fdm">F.D.M: </label><input type="checkbox" name="fdm" />
+					<label for="remise">Remise: </label><input type="number"  name="remise" min="0" max="100" value="0" required="required" /> %<br/>
+					<label for="jour">Echeance: à </label><input type="number"  name="jour" min="0" max="100" value="0" required="required" /> jours.<br/>
+					<label for="fdm">F.D.M: </label><input type="checkbox" name="fdm" /><br/>
 					<label for="jour2">le:  </label><input type="number"  name="jour" min="0" max="31" value="0" required="required" />
 			</fieldset>
 			<br/><br/>
@@ -222,8 +221,8 @@ tinymce.init({
 			<fieldset>
 				<legend>Contact</legend>				
 				<p> 
-					<input type="button" value="Ajouter contact" onClick="addRowContact('dataTableContact')" /> 
-					<input type="button" value="Supprimer contact " onClick="deleteRow('dataTableContact')"  /> 
+				<button class="button-success pure-button" onClick="addRowContact('dataTableContact')">Ajouter contact</button>
+				<button class="button-error pure-button" onClick="deleteRow('dataTableContact')">Supprimer contact</button>
 					<p>(Les actions ne s'appliqueront uniquement aux adresses dont les cases sont cochées.)</p>
 				</p>
 				<table id="dataTableContact" class="form" border="1">
@@ -233,18 +232,18 @@ tinymce.init({
 						<br/>
 						<td><input type="checkbox" required="required" name="chk3[]" checked="checked" /></td>
 						<td>
-							<label for="code_contact">Code: </label><input type="text" name="code_contact[]" required="required" /><br/><br/>
-							<label for="civilite" required="required" >Nom: </label>
+							<label for="code_contact">Code: </label><input type="text" name="code_contact[]" required="required" /><br/>
+							<label for="civilite" required="required" >Civilité: </label>
 							<select name="civilite[]" required="required" onchange="change_manga(this.value)">
 								<option value="c1">M.</option>
 								<option value="c2">Mrs.</option>
 								<option value="c3">MMe.</option>	
-							</select>
-							<label for="nom_contact"></label><input type="text" name="nom_contact[]" required="required" /><br/><br/>
-							<label for="fonction">Fonction: </label><input type="text" name="fonction[]" required="required" /><br/><br/>
-							<label for="tel_bur">Téléphone de bureau: </label><input type="text" name="tel_bur[]" required="required" /><br/><br/>
-							<label for="tel_mob">Téléphone mobile: </label><input type="text" name="tel_mob[]" required="required" /><br/><br/>
-							<label for="fax">Fax: </label><input type="text" name="fax[]" required="required" /><br/><br/><hr><br />
+							</select><br/><br/>
+							<label for="nom_contact">Nom: </label><input type="text" name="nom_contact[]" required="required" /><br/>
+							<label for="fonction">Fonction: </label><input type="text" name="fonction[]" required="required" /><br/>
+							<label for="tel_bur">Téléphone de bureau: </label><input type="text" name="tel_bur[]" required="required" /><br/>
+							<label for="tel_mob">Téléphone mobile: </label><input type="text" name="tel_mob[]" required="required" /><br/>
+							<label for="fax">Fax: </label><input type="text" name="fax[]" required="required" /><br/><hr>
 					     </td>							 
 							</p>
                     </tr>
@@ -255,13 +254,14 @@ tinymce.init({
 
 			<fieldset>
 				<legend>Informations complémentaires</legend>
+				<br/>
 				<textarea name="contenu" rows="17" cols="60"></textarea>
 			</fieldset>
 			<br/><br/>
 			<center><input type="submit" name="valider" /></center>
 				
 	</form>
-
+</div>
 	<?php
 	}
 	else
