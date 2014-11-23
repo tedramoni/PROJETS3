@@ -52,7 +52,7 @@ html
 
 body
 {
-   background-color: #7BD4CE;
+   background-image: url("../Images/diago.png");
    width: 1000px;
    margin: 0 auto;
    border-left: 1px solid #E3E3E3;
@@ -257,6 +257,96 @@ article p
 padding-bottom: 4px;
 opacity:0.8;
 }
+/*----------------FORMULAIRE AJOUT CONTACT-------------------------------*/
+#formu_contact label {
+/* positionnement marge et taille */
+float: left; 
+clear: left;
+margin: 10px 20px 0 0;
+width: 150px;
+/* styles de caractères */
+font:Verdana, Geneva, sans-serif;
+font-size: 14px;
+color: #445668;
+text-align: right; 
+}
+
+#formu_contact input {
+/* styles de caractères */
+font-size: 14px; 
+color: #4b4b4b; 
+/* marge et taille */
+width: auto; 
+height: 20px; 
+padding: 5px 10px 0px 10px; 
+margin: 0 0 20px 0;
+/* couleur de fond */
+background: #f1f2f4;
+/* bordures */
+border:1px solid #b6b7b9;
+border-radius: 5px;
+}
+#formu_contact legend {
+font-size:18px;
+color:#445668;
+background-color:#fff;
+border:1px solid;
+border-color:#000000;
+padding:5px 10px 5px 10px;
+border-radius: 5px;
+}
+#formu_contact fieldset {
+background-color:#fff;
+border: 1px solid ;
+border-radius: 5px;
+margin-bottom:10px;
+}
+#formu_contact input[type=submit] {
+/* position taille marges */
+cursor: pointer;
+width: 160px;
+height: 42px; 
+padding: 5px 10px; 
+margin: 0 40px 0 0;
+/* coins arrondies */
+border: 1px solid #275682;
+border-radius: 21px;
+/* fond */
+background-color: #0080FF;
+/* styles de texte */
+color:#effaff;
+font-weight:bold;
+}
+#formu_contact input[type=submit]:hover{
+opacity:0.5;
+}
+#formu_contact hr
+{
+border-bottom:1px dotted black;
+width:900px;
+}
+
+        .button-success,
+        .button-error{
+            color: white;
+            border-radius: 4px;
+			padding:4px;
+			font-size: 15px;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+        }
+		.button-success:hover,
+        .button-error:hover
+		{
+		opacity:0.5;
+		}
+
+        .button-success {
+            background: rgb(28,184,65); /* this is a green */
+        }
+
+        .button-error {
+            background: rgb(202,60,60); /* this is a maroon */
+        }
 /*****************MENU********************************/
 /* MENU STYLE */
 
