@@ -69,8 +69,8 @@ if(!isset($_SESSION['pseudo'])) {
 			{
 				if(!empty($_POST['titre']) && !empty($_POST['texte']))
 				{
-					$titre=mysql_real_escape_string(htmlentities($_POST['titre']));
-					$texte=mysql_real_escape_string(htmlspecialchars($_POST['texte']));
+					$titre=htmlentities($_POST['titre']);
+					$texte=htmlspecialchars($_POST['texte']);
 					//ON SE CONNECTE A LA BDD
 					connexion();
 					//INSERTION DU MESSAGE
