@@ -52,6 +52,7 @@ html
 
 body
 {
+   /*background-color: #EFF4F2; */
    background-color: #7BD4CE;
    width: 1000px;
    margin: 0 auto;
@@ -80,7 +81,15 @@ mark
 {
 	text-decoration: none;
 }
+#table_profil tr
+{
+	padding-left:10px;
+}
 
+#table_profil th
+{
+	font-weight: bold;
+}
 i
 {
 font-style: italic;
@@ -123,12 +132,27 @@ color: #fff;
 margin-top:15px;
 margin-bottom: 5px;
 }
-
 h1
 {
 font-family: KozGoPr6N-Bold;
 font-size: 40px;
 color: #000;
+}
+
+#news h2
+{
+font-family: Kenzo;
+font-size: 30px;
+font-weight: bold;
+border: 1px dotted black;
+color: white;
+text-align: center;
+background-color:#826969;
+
+}
+#news h2:hover
+{
+color:black;
 }
 
 #form input[type=text],#form input[type=password],#form input[type=email]
@@ -150,6 +174,78 @@ opacity: 0.5;
 color: red;
 }
 
+
+
+#barre_disconnect
+{
+display: inline-block;
+padding-top: 1px;
+padding-right: 5px;
+}
+
+#barre_disconnect a
+{
+display: block;	
+}
+
+
+#barre_disconnect ul li ul
+{
+position:absolute;
+display: none;
+height: 15px;
+line-height: 15px;
+font-family: 'Open Sans Condensed', sans-serif;
+font-weight: 0;
+font-size: 15px;
+text-transform: none;
+
+
+}
+
+#barre_disconnect ul li ul li
+{
+background-color: rgba(0, 0, 0, 0.8);
+width:100%;
+
+}
+#barre_disconnect li:hover a
+{
+	background: none; /* #C1CAC5 */
+	color: #fff;
+}
+
+#barre_disconnect li {
+ margin:auto;
+ padding:5px;
+ }
+
+#barre_disconnect ul li:hover ul {
+ display:block;
+ }
+#barre_disconnect li:hover ul li {
+ float:none;
+ }
+ 
+ #barre_disconnect ul li ul li a:hover
+ {
+background-color: #9ed44b;
+border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+ }
+
+ .tab_article_couleur
+ {
+ opacity:0.6;
+ background-color:red;
+ color:white;
+ }
+ 
+ #tab_article th
+ {
+ padding-left:50px;
+ padding-right:50px;
+ }
  
  #menu_c
  {
@@ -179,7 +275,7 @@ background-color: #308FED;
 }
 
 
-/*----------------------------------En tÃªte-------------------------------------*/
+/*----------------------------------En tête-------------------------------------*/
 header
 {
    width: 998px;
@@ -251,78 +347,70 @@ article
 height: 200%;
 padding-bottom: 80px;
 }
-
+/*article a:link
+{
+border-bottom: 1px dotted red;
+}*/
 article p
 {
 padding-bottom: 4px;
 opacity:0.8;
 }
-/*****************MENU********************************/
-/* MENU STYLE */
 
-#formulaire input
-{
-margin-bottom: 20px;
+/* TEST POUR RUBAN ************************************************************/
+
+#fond {
+position: relative;
+margin: 0px auto;
+width: 1000px;
+background: #fff;
+border-radius: 5px;
+box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
+z-index: 10;
+height:110px;
+
 }
-#formulaire table
-{
-text-align: justify;
-margin: auto;
+ 
+.ruban {
+background: #303A62;
+height: 50px;
+width: 1030px;
+position: relative;
+left:-15px;
+top: 30px;
+float: left;
+box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
+z-index: 100;
 }
-
-
-
-
-#menu
-{
-	margin-top: 0px;
-	top: 0;
-	left: 0;
-	background: rgba(255,255,255,0.95);
-	width: 100%;
-	height: 55px;
-	line-height: 55px;
-	text-align: center;
-	font-family: 'Open Sans Condensed', sans-serif;
-	font-weight: 700;
-	text-transform: uppercase;
-	background-color: rgba(0, 0, 0, 0.8);
-	border-bottom-right-radius: 5px;
-	border-bottom-left-radius: 5px;
+ 
+.ruban h2 {
+font-size: 25px;
+color: #fff;
+text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+text-align: center;
+margin:10px;
 }
-
-#menu ul
-{
-	position: relative;
+ 
+.ruban_gauche {
+border-color: transparent #303A62 transparent transparent;
+border-style:solid;
+border-width:15px;
+height:0px;
+width:0px;
+position: relative;
+left: -30px;
+top: 65px;
+z-index: -1;  /*s'affichera sous le rectangle  */
 }
-	
-#menu li
-{
-	display: inline-block;
-	margin: 0 0.5em 0 0.5em;
-	top: 0;
-	position: relative;
-}
-
-#menu li a
-{
-	position: relative;
-	display: block;
-	text-decoration: none;
-	color: white;
-	padding: 3px 1.5em 0.25em 1.5em;
-	border-bottom-left-radius: 6px;
-	border-bottom-right-radius: 6px;
-}
-
-#menu li:hover a
-{
-	background: #303A62; /* #C1CAC5 */
-	color: #fff;
-}
-
-#menu li.current_page_item a
-{
-	background: #303A62;  /* #e3daa8 */
-	color: #fff;
+ 
+.ruban_droit {
+border-color: transparent transparent transparent #303A62;
+border-style:solid;
+border-width:15px;
+height:0px;
+width:0px;
+position: relative;
+left: 1000px;
+top: 35px;
+z-index: -1;
 }
