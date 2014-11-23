@@ -84,7 +84,7 @@ tinymce.init({
 	
 	<h1 style="padding-bottom: 15px; text-align:center;">Ajout d'un client</h1>
 
-	<form method="post" action="" name="form_contact">
+	<form method="post" action="process.php" name="form_contact">
 		
 			<label for="commercial"><u>Commercial :</u> </label><input type="text" name="commercial" required="required" />
 			<br/><br/>
@@ -214,25 +214,42 @@ tinymce.init({
 					</select><br/><br/>
 					<label for="remise">Remise: </label><input type="number"  name="remise" min="0" max="100" value="0" required="required" /> %<br/><br/>
 					<label for="jour">Echeance: à </label><input type="number"  name="jour" min="0" max="100" value="0" required="required" /> jours
-					<label for="fdm">F.D.M: </label><input type="checkbox" name="fdm" required="required" />
+					<label for="fdm">F.D.M: </label><input type="checkbox" name="fdm" />
 					<label for="jour2">le:  </label><input type="number"  name="jour" min="0" max="31" value="0" required="required" />
 			</fieldset>
 			<br/><br/>
 			
 			<fieldset>
-				<legend>Contact</legend>
-				<label for="code_contact">Code: </label><input type="text" name="code_contact" required="required" /><br/><br/>
-				<label for="civilite" required="required" >Nom: </label>
-					<select name="civilite" required="required" onchange="change_manga(this.value)"><option value="c1">M.</option>
-						<option value="c2">Mrs.</option>
-						<option value="c3">MMe.</option>	
-					</select>
-				<label for="nom_contact"></label><input type="text" name="nom_contact" required="required" /><br/><br/>
-				<label for="fonction">Fonction: </label><input type="text" name="fonction" required="required" /><br/><br/>
-				<label for="tel_bur">Téléphone de bureau: </label><input type="text" name="tel_bur" required="required" /><br/><br/>
-				<label for="tel_mob">Téléphone mobile: </label><input type="text" name="tel_mob" required="required" /><br/><br/>
-				<label for="fax">Fax: </label><input type="text" name="fax" required="required" /><br/><br/>
-				
+				<legend>Contact</legend>				
+				<p> 
+					<input type="button" value="Ajouter contact" onClick="addRowContact('dataTableContact')" /> 
+					<input type="button" value="Supprimer contact " onClick="deleteRow('dataTableContact')"  /> 
+					<p>(Les actions ne s'appliqueront uniquement aux adresses dont les cases sont cochées.)</p>
+				</p>
+				<table id="dataTableContact" class="form" border="1">
+                  <tbody>
+                    <tr>
+                      <p>
+						<br/>
+						<td><input type="checkbox" required="required" name="chk3[]" checked="checked" /></td>
+						<td>
+							<label for="code_contact">Code: </label><input type="text" name="code_contact[]" required="required" /><br/><br/>
+							<label for="civilite" required="required" >Nom: </label>
+							<select name="civilite[]" required="required" onchange="change_manga(this.value)">
+								<option value="c1">M.</option>
+								<option value="c2">Mrs.</option>
+								<option value="c3">MMe.</option>	
+							</select>
+							<label for="nom_contact"></label><input type="text" name="nom_contact[]" required="required" /><br/><br/>
+							<label for="fonction">Fonction: </label><input type="text" name="fonction[]" required="required" /><br/><br/>
+							<label for="tel_bur">Téléphone de bureau: </label><input type="text" name="tel_bur[]" required="required" /><br/><br/>
+							<label for="tel_mob">Téléphone mobile: </label><input type="text" name="tel_mob[]" required="required" /><br/><br/>
+							<label for="fax">Fax: </label><input type="text" name="fax[]" required="required" /><br/><br/><hr><br />
+					     </td>							 
+							</p>
+                    </tr>
+                    </tbody>
+                </table>							
 			</fieldset>
 			<br/><br/>
 
