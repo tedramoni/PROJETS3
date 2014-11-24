@@ -44,7 +44,7 @@ tinymce.init({
 <body>
 <?php include("Inclusion/header.php"); include("Inclusion/gestion.php");?>
 <nav id="menu">
-	<ul>
+	<ul> 
 		<li><a href="discussion.php">Accueil</a></li>
 		<li><a href="info.php">Info'</a></li>
 		<li><a href="lien.php">Liens</a></li>
