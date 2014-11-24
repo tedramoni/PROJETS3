@@ -129,7 +129,7 @@ tinymce.init({
 							<input type="text" required="required" class="small"  name="BX_cp[]"/><br/>
 						
 							<label for="BX_ville">Ville: </label>
-							<input type="text" required="required" class="small"  name="BX_ville[]"/><br/>
+							<input type="text" required="required" class="small"  name="BX_ville[]"/><br/><hr>
 						</td>
 						<td>
 							<label for="BX_pays">Pays: </label>
