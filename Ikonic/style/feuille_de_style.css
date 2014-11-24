@@ -52,7 +52,8 @@ html
 
 body
 {
-   background-image: url("http://iuted.bugs3.com/projet/Ikonic2/Images/diago.PNG");
+   background-color: #EFF4F2;
+   background-image: url("http://iuted.bugs3.com/projet/Ikonic2/Images/bg.jpg");
    width: 1000px;
    margin: 0 auto;
    border-left: 1px solid #E3E3E3;
@@ -317,13 +318,17 @@ background-color: #0080FF;
 color:#effaff;
 font-weight:bold;
 }
+#formu_contact input[type=number] {
+width:40px;
+}
 #formu_contact input[type=submit]:hover{
 opacity:0.5;
 }
 #formu_contact hr
 {
 border-bottom:1px dotted black;
-width:900px;
+width:100%;
+margin-bottom: 15px;
 }
 
         .button-success,
