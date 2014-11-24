@@ -127,10 +127,11 @@ tinymce.init({
 
 							<label for="BX_cp">Code Postal: </label>
 							<input type="text" required="required" class="small"  name="BX_cp[]"/><br/>
-
+						
 							<label for="BX_ville">Ville: </label>
 							<input type="text" required="required" class="small"  name="BX_ville[]"/><br/>
-
+						</td>
+						<td>
 							<label for="BX_pays">Pays: </label>
 							<input type="text" required="required" class="small"  name="BX_pays[]"/><br/>
 
@@ -141,8 +142,8 @@ tinymce.init({
 							<input type="text" required="required" class="small"  name="BX_email[]"/><br/>
 
 							<label for="BX_site_web">Site Web: </label>
-							<input type="text" required="required" class="small"  name="BX_site_web[]"/><br/><hr>
-					     </td>									 
+							<input type="text" required="required" class="small"  name="BX_site_web[]"/><br/><br/>
+					     </td>
 							</p>
                     </tr>
                     </tbody>
@@ -178,7 +179,9 @@ tinymce.init({
 
 							<label for="BX_ville2">Ville: </label>
 							<input type="text" required="required" class="small"  name="BX_ville2[]"/><br />
-
+							<hr>
+						</td>
+						<td>
 							<label for="BX_pays2">Pays: </label>
 							<input type="text" required="required" class="small"  name="BX_pays2[]"/><br />
 
@@ -189,11 +192,13 @@ tinymce.init({
 							<input type="text" required="required" class="small"  name="BX_email2[]"/><br/>
 
 							<label for="BX_site_web2">Site Web: </label>
-							<input type="text" required="required" class="small"  name="BX_site_web2[]"/><hr>
+							<input type="text" required="required" class="small"  name="BX_site_web2[]"/><br/>
+							
 					     </td>
 						</tr>
                     </tbody>
-                </table>			
+                </table>
+				
 			</fieldset>
 			<br/><br/>
 			<fieldset>
@@ -233,11 +238,14 @@ tinymce.init({
 								<option value="c2">Mrs.</option>
 								<option value="c3">MMe.</option>	
 							</select><br/><br/>
-							<label for="nom_contact">Nom: </label><input type="text" name="nom_contact[]" required="required" /><br/>
-							<label for="fonction">Fonction: </label><input type="text" name="fonction[]" required="required" /><br/>
-							<label for="tel_bur">Téléphone de bureau: </label><input type="text" name="tel_bur[]" required="required" /><br/>
 							<label for="tel_mob">Téléphone mobile: </label><input type="text" name="tel_mob[]" required="required" /><br/>
 							<label for="fax">Fax: </label><input type="text" name="fax[]" required="required" /><br/><hr>
+
+						</td>
+						<td>
+							<label for="fonction">Fonction: </label><input type="text" name="fonction[]" required="required" /><br/>
+							<label for="nom_contact">Nom: </label><input type="text" name="nom_contact[]" required="required" /><br/>
+							<label for="tel_bur">Téléphone de bureau: </label><input type="text" name="tel_bur[]" required="required" /><br/>
 					     </td>							 
 							</p>
                     </tr>
