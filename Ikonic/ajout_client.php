@@ -104,8 +104,8 @@ tinymce.init({
 				<legend>Adresse Livraison</legend>
 				<!---------------------TEST------------------------------------------------>
 				<p> 
-				<button class="button-success pure-button" onClick="addRowContact('dataTableAdresseLivraison')">Ajouter contact</button>
-				<button class="button-error pure-button" onClick="deleteRow('dataTableAdresseLivraison')">Supprimer contact</button>
+				<button class="button-success pure-button" type="button" onClick="addRowContact('dataTableAdresseLivraison')">Ajouter contact</button>
+				<button class="button-error pure-button" type="button" onClick="deleteRow('dataTableAdresseLivraison')">Supprimer contact</button>
 					<p>(Les actions ne s'appliqueront uniquement aux adresses dont les cases sont cochées.)</p>
 				</p>
 				<table id="dataTableAdresseLivraison" class="form" border="1">
@@ -113,7 +113,7 @@ tinymce.init({
                     <tr>
                       <p>
 						<br/>
-						<td><input type="checkbox" required="required" name="chk[]" checked="checked" /></td>
+						<td><input type="checkbox" required="required" name="chk[]" /></td>
 						<td>
 							<label>Code Client</label>
 							<input type="text" required="required" name="BX_code[]"><br/>
@@ -155,8 +155,8 @@ tinymce.init({
 				<legend>Adresse Facturation</legend>
 				<!---------------------TEST------------------------------------------------>
 				<p> 
-				<button class="button-success pure-button" onClick="addRowContact('dataTableAdresseFacturation')">Ajouter contact</button>
-				<button class="button-error pure-button" onClick="deleteRow('dataTableAdresseFacturation')">Supprimer contact</button>
+				<button class="button-success pure-button" type="button" onClick="addRowContact('dataTableAdresseFacturation')">Ajouter contact</button>
+				<button class="button-error pure-button" type="button" onClick="deleteRow('dataTableAdresseFacturation')">Supprimer contact</button>
 					<p>(Les actions ne s'appliqueront uniquement aux adresses dont les cases sont cochées.)</p>
 				</p>
 				<table id="dataTableAdresseFacturation" class="form" border="1">
@@ -164,7 +164,7 @@ tinymce.init({
                     <tr>
                       <p>
 						<br/>
-						<td><input type="checkbox" required="required" name="chk2[]" checked="checked" /></td>
+						<td><input type="checkbox" required="required" name="chk2[]" /></td>
 						<td>
 
 							<label>Code Client: </label>
@@ -221,8 +221,8 @@ tinymce.init({
 			<fieldset>
 				<legend>Contact</legend>				
 				<p> 
-				<button class="button-success pure-button" onClick="addRowContact('dataTableContact')">Ajouter contact</button>
-				<button class="button-error pure-button" onClick="deleteRow('dataTableContact')">Supprimer contact</button>
+				<button class="button-success pure-button" type="button" onClick="addRowContact('dataTableContact')">Ajouter contact</button>
+				<button class="button-error pure-button" type="button" onClick="deleteRow('dataTableContact')">Supprimer contact</button>
 					<p>(Les actions ne s'appliqueront uniquement aux adresses dont les cases sont cochées.)</p>
 				</p>
 				<table id="dataTableContact" class="form" border="1">
@@ -230,7 +230,7 @@ tinymce.init({
                     <tr>
                       <p>
 						<br/>
-						<td><input type="checkbox" required="required" name="chk3[]" checked="checked" /></td>
+						<td><input type="checkbox" required="required" name="chk3[]" /></td>
 						<td>
 							<label for="code_contact">Code: </label><input type="text" name="code_contact[]" required="required" /><br/>
 							<label for="civilite" required="required" >Civilité: </label>
