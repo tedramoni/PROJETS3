@@ -44,7 +44,7 @@ tinymce.init({
 <body>
 <?php include("Inclusion/header.php"); include("Inclusion/gestion.php");?>
 <nav id="menu">
-	<ul> 
+	<ul>
 		<li><a href="discussion.php">Accueil</a></li>
 		<li><a href="info.php">Info'</a></li>
 		<li><a href="lien.php">Liens</a></li>
@@ -115,9 +115,7 @@ tinymce.init({
 						<br/>
 						<td><input type="checkbox" required="required" name="chk[]" /></td>
 						<td>
-							<label>Code Client</label>
-							<input type="text" required="required" name="BX_code[]"><br/>
-							
+					
 							<label for="BX_adr1">Adresse 1: </label>
 							<input type="text" required="required" class="small"  name="BX_adr1[]"/><br/>
 							
@@ -166,10 +164,6 @@ tinymce.init({
 						<br/>
 						<td><input type="checkbox" required="required" name="chk2[]" /></td>
 						<td>
-
-							<label>Code Client: </label>
-							<input type="text" required="required" name="BX_code2[]"/><br />
-
 							<label for="BX_adr1_2">Adresse 1: </label>
 							<input type="text" required="required" class="small"  name="BX_adr1_2[]"/><br />
 
