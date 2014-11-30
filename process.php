@@ -47,21 +47,7 @@
 				$fax = $_POST['fax'];
 				
 				$contenu = $_POST['contenu'];	
-				
-				/* BLOC MYSQL POUR INSERTION */
-				
-				$connexion=mysqli_connect("mysql.serversfree.com", "u157965635_root", "ramoni");
-				
-				$db = "u157965635_ikc";
-				mysqli_select_db($connexion, $db);
-				
-				$req1 = "INSERT INTO client
-					values ($code, $forme_juridique, $raison_sociale, $commercial, $mode_paiement, 10, $remise, $contenu)";
-				$action = mysqli_query($connexion, $requete);
-				
-				/* FIN BLOC MYSQL */
-				
-				
+
 				echo "Nom Commercial : ".$commercial.'<br/>';
 				echo "Code Client : ".$code.'<br/>' ;
 				echo "Forme Juridique : ".$forme_juridique .'<br/>';
