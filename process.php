@@ -68,7 +68,7 @@
 					$req2.= " values ('$code', '$BX_adr1[$i]', '$BX_adr2[$i]', '$BX_adr3[$i]', '$BX_cp[$i]', '$BX_ville[$i]', '$BX_pays[$i]',
 									'$BX_tel_bur[$i]', '$BX_email[$i]', '$BX_site_web[$i]', 'L')";
 					
-					$action2 = mysqli_query($connexion, $req2)
+					$action2 = mysqli_query($connexion, $req2);
 				}
 				
 					//Insertion adresses de facturation (table adresse)
@@ -78,7 +78,7 @@
 					$req3.= " values ('$code', '$BX_adr1_2[$i]', '$BX_adr2_2[$i]', '$BX_adr3_2[$i]', '$BX_cp2[$i]', '$BX_ville2[$i]', '$BX_pays2[$i]',
 									'$BX_tel_bur2[$i]', '$BX_email2[$i]', '$BX_site_web2[$i]', 'F')";
 					
-					$action3 = mysqli_query($connexion, $req3)
+					$action3 = mysqli_query($connexion, $req3);
 				}
 				
 					//Insertion contacts (table contact)
