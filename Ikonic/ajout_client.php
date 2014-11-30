@@ -234,9 +234,9 @@ tinymce.init({
 							<label for="code_contact">Code: </label><input type="text" name="code_contact[]" required="required" /><br/>
 							<label for="civilite" required="required" >Civilité: </label>
 							<select name="civilite[]" required="required" onchange="change_manga(this.value)">
-								<option value="c1">M.</option>
-								<option value="c2">Mrs.</option>
-								<option value="c3">MMe.</option>	
+								<option value="M">M.</option>
+								<option value="Mlle">Mlle.</option>
+								<option value="MMe">MMe.</option>	
 							</select><br/><br/>
 							<label for="tel_mob">Téléphone mobile: </label><input type="text" name="tel_mob[]" required="required" /><br/>
 							<label for="fax">Fax: </label><input type="text" name="fax[]" required="required" /><br/><hr>
