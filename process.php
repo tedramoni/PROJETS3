@@ -85,8 +85,8 @@
 				for( $i= 0 ; $i < sizeof($code_contact); $i++ )
 				{
 					$req4 = "INSERT INTO contact (code, nom, civilite, fonction, tel_bur, tel_mob, fax, email, code_client)"
-					$req4.= " values ('$code_contact[$i]', '$nom_contact[$i]', '$civilite[$i]', '$fonction[$i]', $tel_bur[$i], 
-								$tel_mob[$i], $fax[$i], tasoublie@lechamp.email, $code)";
+					$req4.= " values ('$code_contact[$i]', '$nom_contact[$i]', '$civilite[$i]', '$fonction[$i]', '$tel_bur[$i]', 
+								'$tel_mob[$i]', '$fax[$i]', 'tasoublie@lechamp.email', '$code')";
 							
 					$action4 = mysqli_query($connexion, $req4);
 				}
