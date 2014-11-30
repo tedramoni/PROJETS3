@@ -78,7 +78,7 @@ if(!isset($_SESSION['pseudo'])) {
 			<tr>
 				<th><a href="ajout_client.php"><img id="imageArticle" src="Images/ajout.png" alt="" /><p>Ajouter un client</p></a></th>
 				<th><a href="#.php" onclick="window.alert('Cette rubrique est en construction.')"><img id="imageArticle" src="Images/update.png" alt="" /><p>Modifier un client</p></a></th>
-								<th><a href="#.php" onclick="window.alert('Cette rubrique est en construction.')"><img id="imageArticle" src="Images/consult.png" alt="" /><p>Consulter un client</p></a></th>
+								<th><a href="search/"><img id="imageArticle" src="Images/consult.png" alt="" /><p>Consulter un client</p></a></th>
 			</tr>
 		</table>
 	</center>

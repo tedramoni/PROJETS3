@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("Inclusion/gestion.php");
+include("../Inclusion/gestion.php");
 if(isset($_SESSION['pseudo']))
 {
 		connexion();
@@ -8,18 +8,6 @@ if(isset($_SESSION['pseudo']))
 		$sql='SELECT email FROM membre WHERE pseudo="'.$user.'"';
 		$email_user=mysql_query("$sql") or die('Erreur au niveau du mail'.mysql_error());
 		$data=mysql_fetch_array($email_user);
-		
-		$connexion=mysqli_connect('mysql.serversfree.com', 'u157965635_root', 'ramoni') or die ("Connexion Impossible");
-		$bd="u157965635_ikc";
-		mysqli_select_db($connexion, $bd) or die ("Erreur l.16");
-		$query='SELECT * from client';
-		$query2='SELECT * FROM adresse WHERE type = "L"';
-		$query3='SELECT * FROM adresse WHERE type = "F"';
-		$result=mysqli_query($connexion,$query) or die ("Erreur l.19");
-		$result2=mysqli_query($connexion,$query2) or die ("Erreur l.20");
-		$result3=mysqli_query($connexion,$query3) or die ("Erreur l.20");
-
-		$colum_result = mysqli_query($connexion,"SHOW COLUMNS FROM client");
 }
 
 ?>
@@ -28,13 +16,13 @@ if(isset($_SESSION['pseudo']))
 <html lang="fr">
 
 <head>
-	<link rel="stylesheet" type="text/css" href="style/feuille_de_style.css" />
-	<link rel="stylesheet" type="text/css" href="style/TableCSSCode.css" />
-	<link rel="alternate stylesheet" media="screen" type="text/css" title="couleur" href="style/couleur1.css" />
-	<link rel="alternate stylesheet" media="screen" type="text/css" title="couleur2" href="style/couleur2.css" />
-	<link rel="alternate stylesheet" media="screen" type="text/css" title="couleur3" href="style/couleur3.css" />
-	<script type="text/javascript" src="Inclusion/styleswitcher.js"></script>
-	<link rel="icon" type="image/ico" href="Images/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="../style/feuille_de_style.css" />
+	<link rel="stylesheet" type="text/css" href="../style/TableCSSCode.css" />
+	<link rel="alternate stylesheet" media="screen" type="text/css" title="couleur" href="../style/couleur1.css" />
+	<link rel="alternate stylesheet" media="screen" type="text/css" title="couleur2" href="../style/couleur2.css" />
+	<link rel="alternate stylesheet" media="screen" type="text/css" title="couleur3" href="../style/couleur3.css" />
+	<script type="text/javascript" src="../Inclusion/styleswitcher.js"></script>
+	<link rel="icon" type="image/ico" href="../Images/favicon.ico" />
 	<meta charset="utf-8"/>
 	<title>Ikonic: Contact</title>
 </head>
@@ -42,26 +30,27 @@ if(isset($_SESSION['pseudo']))
 
 <body>
 
-<?php include("Inclusion/header.php");?>
+<?php include("../Inclusion/header.php");?>
 <nav id="menu">
 	<ul>
-		<li><a href="discussion.php">Accueil</a></li>
-		<li><a href="info.php">Info'</a></li>
-		<li><a href="lien.php">Liens</a></li>
+		<li><a href="../discussion.php">Accueil</a></li>
+		<li><a href="../info.php">Info'</a></li>
+		<li><a href="../lien.php">Liens</a></li>
+		<!-- C DUR -------------------------------!-->
 		<?php
 			if(!isset($_SESSION['pseudo']))
 			{
 		?>
-				<li><a href="index.php">Se Connecter</a></li>
+				<li><a href="../index.php">Se Connecter</a></li>
 		<?php
 			}
 			else
 			{
 		?>
-				<li><a href="configuration.php">Mon compte</a></li>
+				<li class="current_page_item"><a href="#.php">Mon compte</a></li>
 			<?php }?>
 		
-		<li class="current_page_item"><a href="contact.php">Contact</a></li>
+		<li><a href="../contact.php">Contact</a></li>
 	</ul>
 </nav>
 
@@ -76,11 +65,31 @@ if(isset($_SESSION['pseudo']))
 		<li><?php echo $_SESSION['pseudo'];?></li>
 		<li>Administrateur</li>
 		<li><?php echo $_SERVER["REMOTE_ADDR"]; ?></li>
-		<li><a href="deconnexion.php">Vous déconnectez</a></li>
+		<li><a href="../deconnexion.php">Vous déconnectez</a></li>
 		</center>
 	</div>
 <?php
 }
+
+// AFFICHAGE DU CLIENT APRES ENVOIE DU CODE
+
+if(isset($_POST['envoie']))
+{
+	if(isset($_POST['cc']))
+	{
+		$code_client=$_POST['cc'];
+		$connexion=mysqli_connect('mysql.serversfree.com', 'u157965635_root', 'ramoni') or die ("Connexion Impossible");
+		$bd="u157965635_ikc";
+		mysqli_select_db($connexion, $bd) or die ("Erreur l.16");
+		$query='SELECT * from client where code = "'.$code_client.'"';
+		$query2='SELECT * FROM adresse WHERE type = "L" AND code_client = "'.$code_client.'"';
+		$query3='SELECT * FROM adresse WHERE type = "F" AND code_client = "'.$code_client.'"';
+		$result=mysqli_query($connexion,$query) or die ("Erreur l.19");
+		$result2=mysqli_query($connexion,$query2) or die ("Erreur l.20");
+		$result3=mysqli_query($connexion,$query3) or die ("Erreur l.20");
+
+		$colum_result = mysqli_query($connexion,"SHOW COLUMNS FROM client");
+	}
 ?>
 <!-- INFOS CLIENTS -->
 <br /><br /><br />
@@ -129,14 +138,16 @@ if(isset($_SESSION['pseudo']))
 			echo '<th>Site web</th>';
 			echo '<th> </th>';			
 		?></tr> 
-		<tr><?php
+		    <?php
+			$j=1;
 			while($ligne=mysqli_fetch_row($result2))
 			{
+				echo '<tr>';
 				for($i=0;$i<10;$i++)
 				{
 					if ($i==0) 
 					{
-						echo '<td>Adresse '.$i.'</td>';
+						echo '<td>Adresse '.$j.'</td>';
 						echo '<td>'.$ligne[$i].'</td>';
 					}
 					else
@@ -147,7 +158,9 @@ if(isset($_SESSION['pseudo']))
 					 echo "<td style='text-align:center'>
 								<a onclick='return window.confirm('Etes-vous sûr ?')' title='Supprimer' href=''>
 								<img title='supprimer' alt='supprimer' src='http://iuted.bugs3.com/projet/Ikonic2/Images/pictoPoubelle.gif' /></a>
-							</td>";				
+							</td>";	
+				echo '</tr>	';		
+				$j=$j+1;
 			}
 		?></tr>
 	</tbody>
@@ -172,15 +185,19 @@ if(isset($_SESSION['pseudo']))
 			echo '<th>Email</th>';
 			echo '<th>Site web</th>';
 			echo '<th> </th>';			
-		?></tr> 
-		<tr><?php
+		?></tr>
+		<?php
+		
 			while($ligne=mysqli_fetch_row($result3))
 			{
+				$j=1;
+				echo '<tr>';
 				for($i=0;$i<10;$i++)
 				{
 					if ($i==0) 
 					{
-						echo '<td>Adresse '.$i.'</td>';
+						$j=$i+1;
+						echo '<td>Adresse '.$j.'</td>';
 						echo '<td>'.$ligne[$i].'</td>';
 					}
 					else
@@ -191,14 +208,18 @@ if(isset($_SESSION['pseudo']))
 					 echo "<td style='text-align:center'>
 								<a onclick='return window.confirm('Etes-vous sûr ?')' title='Supprimer' href=''>
 								<img title='supprimer' alt='supprimer' src='http://iuted.bugs3.com/projet/Ikonic2/Images/pictoPoubelle.gif' /></a>
-							</td>";				
+							</td>";		
+				echo '</tr>';	
+				$j=$j+1;
 			}
-		?></tr>
+		?>
 	</tbody>
 </table></center></div>
 <p style="margin-top:10px">&raquo;&nbsp;<a href="">Ajouter une adresse</a></p>
 </section>
-<?php include("Inclusion/bottom.php"); ?>
+<?php
+}
+include("../Inclusion/bottom.php"); ?>
 
 </body>
 </html>

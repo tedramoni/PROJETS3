@@ -15,12 +15,12 @@ catch (Exception $ex)
 }
 
 //Construction de la requete
-$strQuery = "SELECT client.code CodeClient, nom NomClient WHERE ";
+$strQuery = "SELECT code CodeClient, forme_juridique NomClient FROM client WHERE ";
 if (isset($_POST["codeClient"]))
 {
-    $strQuery .= "client.code LIKE :codeClient";
+    $strQuery .= "code LIKE :codeClient ";
 }
-$strQuery.= "ORDER BY  client.code ASC ";
+$strQuery.= "ORDER BY  code ASC ";
 //Limite
 if (isset($_POST["maxRows"]))
 {
