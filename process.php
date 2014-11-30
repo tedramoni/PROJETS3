@@ -81,7 +81,7 @@
 				}
 				
 					//Insertion contacts (table contact)
-				for( $i= 0 ; $i < sizeof($code_contact); $i++ )
+				for($i=0;$i<sizeof($code_contact);$i++)
 				{
 					$req4 = "INSERT INTO contact ";
 					$req4.= " values('$code_contact[$i]', '$nom_contact[$i]', '$civilite[$i]', '$fonction[$i]', '$tel_bur[$i]', '$tel_mob[$i]',
