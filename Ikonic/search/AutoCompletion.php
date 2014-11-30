@@ -15,7 +15,7 @@ catch (Exception $ex)
 }
 
 //Construction de la requete
-$strQuery = "SELECT code CodeClient, forme_juridique NomClient FROM client WHERE ";
+$strQuery = "SELECT code CodeClient, raison_sociale NomClient FROM client WHERE ";
 if (isset($_POST["codeClient"]))
 {
     $strQuery .= "code LIKE :codeClient ";
