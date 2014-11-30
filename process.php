@@ -58,13 +58,12 @@
 					// Insertion client (table client)
 				$req1 = "INSERT INTO client";
 				$req1 .=" values ('$code', '$forme_juridique', '$raison_sociale', '$commercial', '$mode_paiement', 10, $remise, '$contenu')";
-				echo $req1;
 				$action1 = mysqli_query($connexion, $req1);
 				
 					//Insertion adresses de livraison (table adresse)
 				for($i=0;$i<=sizeof($BX_adr1);$i++)
 				{
-					$req2 = "INSERT INTO adresse (code_client, adr1, adr2, adr3, cp, ville, pays, tel_bur, email, site_web, type";
+					$req2 = "INSERT INTO adresse (code_client, adr1, adr2, adr3, cp, ville, pays, tel_bur, email, site_web, type)";
 					$req2.= " values ('$code', '$BX_adr1[$i]', '$BX_adr2[$i]', '$BX_adr3[$i]', '$BX_cp[$i]', '$BX_ville[$i]', '$BX_pays[$i]',
 									'$BX_tel_bur[$i]', '$BX_email[$i]', '$BX_site_web[$i]', 'L')";
 					
@@ -74,7 +73,7 @@
 					//Insertion adresses de facturation (table adresse)
 				for($i=0;$i<=sizeof($BX_adr1_2);$i++)
 				{
-					$req3 = "INSERT INTO adresse (code_client, adr1, adr2, adr3, cp, ville, pays, tel_bur, email, site_web, type";
+					$req3 = "INSERT INTO adresse (code_client, adr1, adr2, adr3, cp, ville, pays, tel_bur, email, site_web, type)";
 					$req3.= " values ('$code', '$BX_adr1_2[$i]', '$BX_adr2_2[$i]', '$BX_adr3_2[$i]', '$BX_cp2[$i]', '$BX_ville2[$i]', '$BX_pays2[$i]',
 									'$BX_tel_bur2[$i]', '$BX_email2[$i]', '$BX_site_web2[$i]', 'F')";
 					
