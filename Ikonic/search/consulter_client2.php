@@ -87,8 +87,6 @@ if(isset($_POST['envoie']))
 		$result=mysqli_query($connexion,$query) or die ("Erreur l.19");
 		$result2=mysqli_query($connexion,$query2) or die ("Erreur l.20");
 		$result3=mysqli_query($connexion,$query3) or die ("Erreur l.20");
-
-		$colum_result = mysqli_query($connexion,"SHOW COLUMNS FROM client");
 	}
 ?>
 <!-- INFOS CLIENTS -->
@@ -143,7 +141,7 @@ if(isset($_POST['envoie']))
 			while($ligne=mysqli_fetch_row($result2))
 			{
 				echo '<tr>';
-				for($i=0;$i<10;$i++)
+				for($i=0;$i<11;$i++)
 				{
 					if ($i==0) 
 					{
@@ -152,20 +150,23 @@ if(isset($_POST['envoie']))
 					}
 					else
 					{
-						echo '<td>'.$ligne[$i].'</td>';
+						if($i==10)
+						{				
+							echo "<td style='text-align:center'>";
+								echo "<a title='Supprimer' href='delete.php?id=".$ligne[11]."'>";
+								echo "<img title='supprimer' alt='supprimer' src='http://iuted.bugs3.com/projet/Ikonic2/Images/pictoPoubelle.gif' /></a>";	
+							echo "</td>";							
+						}
+						else { echo '<td>'.$ligne[$i].'</td>'; }
 					}
 				}
-					 echo "<td style='text-align:center'>
-								<a onclick='return window.confirm('Etes-vous sûr ?')' title='Supprimer' href=''>
-								<img title='supprimer' alt='supprimer' src='http://iuted.bugs3.com/projet/Ikonic2/Images/pictoPoubelle.gif' /></a>
-							</td>";	
 				echo '</tr>	';		
 				$j=$j+1;
 			}
 		?></tr>
 	</tbody>
 </table></center></div>
-<p style="margin-top:10px">&raquo;&nbsp;<a href="">Ajouter une adresse</a></p>
+
 <!-- ADRESSE DE FACTURATION -->
 <br /><br /><br />
 <h2> Adresse de Facturation </h2>
@@ -192,7 +193,7 @@ if(isset($_POST['envoie']))
 			{
 				$j=1;
 				echo '<tr>';
-				for($i=0;$i<10;$i++)
+				for($i=0;$i<11;$i++)
 				{
 					if ($i==0) 
 					{
@@ -202,20 +203,24 @@ if(isset($_POST['envoie']))
 					}
 					else
 					{
-						echo '<td>'.$ligne[$i].'</td>';
+						if($i==10)
+						{				
+							echo "<td style='text-align:center'>";
+								echo "<a title='Supprimer' href='delete.php?id=".$ligne[11]."'>";
+								echo "<img title='supprimer' alt='supprimer' src='http://iuted.bugs3.com/projet/Ikonic2/Images/pictoPoubelle.gif' /></a>";	
+							echo "</td>";							
+						}
+						else { echo '<td>'.$ligne[$i].'</td>'; }
 					}
-				}
-					 echo "<td style='text-align:center'>
-								<a onclick='return window.confirm('Etes-vous sûr ?')' title='Supprimer' href=''>
-								<img title='supprimer' alt='supprimer' src='http://iuted.bugs3.com/projet/Ikonic2/Images/pictoPoubelle.gif' /></a>
-							</td>";		
+					
+				}		
 				echo '</tr>';	
 				$j=$j+1;
 			}
 		?>
 	</tbody>
-</table></center></div>
-<p style="margin-top:10px">&raquo;&nbsp;<a href="">Ajouter une adresse</a></p>
+</table></center></div><br /><br />
+<center><p style="margin-top:20px">&raquo;&nbsp;<a href="">Modifier le client</a></p></center>
 </section>
 <?php
 }
