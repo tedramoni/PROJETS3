@@ -104,8 +104,8 @@ tinymce.init({
 				<legend>Adresse Livraison</legend>
 				<!---------------------TEST------------------------------------------------>
 				<p> 
-				<button class="button-success pure-button" type="button" onClick="addRowLivraison('dataTableAdresseLivraison')">Ajouter adresse</button>
-				<button class="button-error pure-button" type="button" onClick="deleteRow('dataTableAdresseLivraison')">Supprimer adresse</button>
+				<button class="button-success pure-button" type="button" onClick="addRowContact('dataTableAdresseLivraison')">Ajouter contact</button>
+				<button class="button-error pure-button" type="button" onClick="deleteRow('dataTableAdresseLivraison')">Supprimer contact</button>
 					<p>(Les actions ne s'appliqueront uniquement aux adresses dont les cases sont cochées.)</p>
 				</p>
 				<table id="dataTableAdresseLivraison" class="form" border="1">
@@ -154,8 +154,8 @@ tinymce.init({
 				<legend>Adresse Facturation</legend>
 				<!---------------------TEST------------------------------------------------>
 				<p> 
-				<button class="button-success pure-button" type="button" onClick="addRowFacturation('dataTableAdresseFacturation')">Ajouter adresse</button>
-				<button class="button-error pure-button" type="button" onClick="deleteRow('dataTableAdresseFacturation')">Supprimer adresse</button>
+				<button class="button-success pure-button" type="button" onClick="addRowContact('dataTableAdresseFacturation')">Ajouter contact</button>
+				<button class="button-error pure-button" type="button" onClick="deleteRow('dataTableAdresseFacturation')">Supprimer contact</button>
 					<p>(Les actions ne s'appliqueront uniquement aux adresses dont les cases sont cochées.)</p>
 				</p>
 				<table id="dataTableAdresseFacturation" class="form" border="1">
