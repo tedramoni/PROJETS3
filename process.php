@@ -56,7 +56,7 @@
 				mysqli_select_db($connexion, $db);
 				
 				$req1 = "INSERT INTO client";
-				$req1 .=" values ($code, $forme_juridique, $raison_sociale, $commercial, $mode_paiement, 10, $remise, $contenu)";
+				$req1 .=" values ('$code', '$forme_juridique', '$raison_sociale', '$commercial', '$mode_paiement', 10, $remise, '$contenu')";
 				echo $req1;
 				$action = mysqli_query($connexion, $req1);
 				
