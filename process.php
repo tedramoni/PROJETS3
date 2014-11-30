@@ -55,10 +55,43 @@
 				$db = "u157965635_ikc";
 				mysqli_select_db($connexion, $db);
 				
+					// Insertion client (table client)
 				$req1 = "INSERT INTO client";
 				$req1 .=" values ('$code', '$forme_juridique', '$raison_sociale', '$commercial', '$mode_paiement', 10, $remise, '$contenu')";
 				echo $req1;
-				$action = mysqli_query($connexion, $req1);
+				$action1 = mysqli_query($connexion, $req1);
+				
+					//Insertion adresses de livraison (table adresse)
+				for($i=0;$i<=sizeof($BX_adr1);$i++)
+				{
+					$req2 = "INSERT INTO adresse (code_client, adr1, adr2, adr3, cp, ville, pays, tel_bur, email, site_web, type";
+					$req2.= " values ('$code', '$BX_adr1[$i]', '$BX_adr2[$i]', '$BX_adr3[$i]', '$BX_cp[$i]', '$BX_ville[$i]', '$BX_pays[$i]',
+									'$BX_tel_bur[$i]', '$BX_email[$i]', '$BX_site_web[$i]', 'L')";
+					
+					$action2 = mysqli_query($connexion, $req2)
+				}
+				
+					//Insertion adresses de facturation (table adresse)
+				for($i=0;$i<=sizeof($BX_adr1_2);$i++)
+				{
+					$req3 = "INSERT INTO adresse (code_client, adr1, adr2, adr3, cp, ville, pays, tel_bur, email, site_web, type";
+					$req3.= " values ('$code', '$BX_adr1_2[$i]', '$BX_adr2_2[$i]', '$BX_adr3_2[$i]', '$BX_cp2[$i]', '$BX_ville2[$i]', '$BX_pays2[$i]',
+									'$BX_tel_bur2[$i]', '$BX_email2[$i]', '$BX_site_web2[$i]', 'F')";
+					
+					$action3 = mysqli_query($connexion, $req3)
+				}
+				
+					//Insertion contacts (table contact)
+				for( $i= 0 ; $i < sizeof($code_contact); $i++ )
+				{
+					$req4 = "INSERT INTO contact (code, nom, civilite, fonction, tel_bur, tel_mob, fax, email, code_client)"
+					$req4.= " values ('$code_contact[$i]', '$nom_contact[$i]', '$civilite[$i]', '$fonction[$i]', $tel_bur[$i], 
+								$tel_mob[$i], $fax[$i], tasoublie@lechamp.email, $code)";
+							
+					$action4 = mysqli_query($connexion, $req4);
+				}
+				
+				
 				
 				/* FIN BLOC MYSQL */
 				
