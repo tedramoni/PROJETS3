@@ -84,9 +84,11 @@ if(isset($_POST['envoie']))
 		$query='SELECT * from client where code = "'.$code_client.'"';
 		$query2='SELECT * FROM adresse WHERE type = "L" AND code_client = "'.$code_client.'"';
 		$query3='SELECT * FROM adresse WHERE type = "F" AND code_client = "'.$code_client.'"';
+		$query4='SELECT * FROM contact WHERE code_client = "'.$code_client.'"';
 		$result=mysqli_query($connexion,$query) or die ("Erreur l.19");
 		$result2=mysqli_query($connexion,$query2) or die ("Erreur l.20");
 		$result3=mysqli_query($connexion,$query3) or die ("Erreur l.20");
+		$result4=mysqli_query($connexion,$query4) or die ("Erreur l.21");
 	}
 ?>
 <!-- INFOS CLIENTS -->
@@ -220,6 +222,38 @@ if(isset($_POST['envoie']))
 		?>
 	</tbody>
 </table></center></div><br /><br />
+
+<!-- CONTACTS -->
+<br /><br /><br />
+<h2> Contact </h2>
+<br />
+<center><div class="CSSTableGenerator" > <table>
+	<tbody>
+		<tr><?php
+			echo '<th>Code</th>';
+			echo '<th>Nom</th>';
+			echo '<th>Civilite</th>';
+			echo '<th>Fonction</th>';
+			echo '<th>Téléphone Bureau</th>';
+			echo '<th>Téléphone Mobile</th>';
+			echo '<th>Fax</th>';
+			echo '<th>Email</th>';		
+		?></tr>
+		<?php
+		
+			while($ligne=mysqli_fetch_row($result4))
+			{
+				echo '<tr>';
+				for($i=0;$i<8;$i++)
+				{
+					echo '<td>'.$ligne[$i].'</td>';	
+				}
+				echo '</tr>';	
+			}
+		?>
+	</tbody>
+</table></center></div><br /><br />
+
 <center><p style="margin-top:20px">&raquo;&nbsp;<a href="">Modifier le client</a></p></center>
 </section>
 <?php
