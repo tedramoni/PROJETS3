@@ -77,7 +77,7 @@ tinymce.init({
 		<li><?php echo $_SESSION['pseudo'];?></li>
 		<li>Administrateur</li>
 		<li><?php echo $_SERVER["REMOTE_ADDR"]; ?></li>
-		<li><a href="deconnexion.php">Vous déconnectez</a></li>
+		<li><a href="deconnexion.php">Vous déconnecter</a></li>
 		</center>
 	</div>
 	
@@ -211,9 +211,9 @@ tinymce.init({
 						<option value="especes">Espèces</option>
 					</select><br/><br/>
 					<label for="remise">Remise: </label><input type="number"  name="remise" min="0" max="100" value="0" required="required" /> %<br/>
-					<label for="jour">Echeance: à </label><input type="number"  name="jour" min="0" max="100" value="0" required="required" /> jours.<br/>
+					<label for="echeance">Echeance: à </label><input type="number"  name="echeance" min="0" max="100" value="0" required="required" /> jours.<br/>
 					<label for="fdm">F.D.M: </label><input type="checkbox" name="fdm" /><br/>
-					<label for="jour2">le:  </label><input type="number"  name="jour" min="0" max="31" value="0" required="required" />
+					<label for="jour">le:  </label><input type="number"  name="jour" min="0" max="31" value="0" required="required" />
 			</fieldset>
 			<br/><br/>
 			
@@ -246,6 +246,7 @@ tinymce.init({
 							<label for="fonction">Fonction: </label><input type="text" name="fonction[]" required="required" /><br/>
 							<label for="nom_contact">Nom: </label><input type="text" name="nom_contact[]" required="required" /><br/>
 							<label for="tel_bur">Téléphone de bureau: </label><input type="text" name="tel_bur[]" required="required" /><br/>
+							<label for="email_contact">Email: </label><input type="text" name="email_contact[]" required="required" /><br/>
 					     </td>							 
 							</p>
                     </tr>

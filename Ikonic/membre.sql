@@ -49,7 +49,9 @@ CREATE TABLE IF NOT EXISTS `client` (
   `raison_sociale` varchar(100) NOT NULL,
   `nom_commercial` varchar(100) NOT NULL,
   `mode_reglement` varchar(50) NOT NULL,
-  `echeance_fdm` tinyint(1) NOT NULL,
+  `echeance` int(11) NOT NULL,
+  `fdm` tinyint(1) NOT NULL,
+  `jour` int(1) NOT NULL,
   `remise` int(11) NOT NULL,
   `info_comp` varchar(500) NOT NULL,
   PRIMARY KEY (`code`)

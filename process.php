@@ -32,12 +32,14 @@
 				$BX_site_web2 = $_POST['BX_site_web2'];
 				$BX_type2 = $_POST['BX_type2'];
 				
+				// Paiements
 				$mode_paiement = $_POST['mode_paiement'];
 				$remise = $_POST['remise'];
-				$jour = $_POST['jour'];
+				$echeance = $_POST['echeance'];
 				$fdm = $_POST['fdm'];
 				$jour = $_POST['jour'];
 				
+				// Contacts
 				$code_contact = $_POST['code_contact'];
 				$civilite = $_POST['civilite'];
 				$nom_contact = $_POST['nom_contact'];
@@ -45,7 +47,9 @@
 				$tel_bur = $_POST['tel_bur'];
 				$tel_mob = $_POST['tel_mob'];
 				$fax = $_POST['fax'];
+				$email_contact = $_POST['email_contact'];
 				
+				// Commentaires
 				$contenu = $_POST['contenu'];	
 				
 				/* BLOC MYSQL POUR INSERTION */
@@ -57,7 +61,7 @@
 				
 					// Insertion client (table client)
 				$req1 = "INSERT INTO client";
-				$req1 .=" values ('$code', '$forme_juridique', '$raison_sociale', '$commercial', '$mode_paiement', 10, $remise, '$contenu')";
+				$req1 .=" values ('$code', '$forme_juridique', '$raison_sociale', '$commercial', '$mode_paiement', $echeance, $fdm, $jour, $remise, '$contenu')";
 				$action1 = mysqli_query($connexion, $req1);
 				
 					//Insertion adresses de livraison (table adresse)
@@ -85,7 +89,7 @@
 				{
 					$req4 = "INSERT INTO contact ";
 					$req4.= " values('$code_contact[$i]', '$nom_contact[$i]', '$civilite[$i]', '$fonction[$i]', '$tel_bur[$i]', '$tel_mob[$i]',
-								'$fax[$i]', 'tasoublie@lechamp.email', '$code')";
+								'$fax[$i]', '$email_contact[$i]', '$code')";
 							
 					$action4 = mysqli_query($connexion, $req4);
 				}
