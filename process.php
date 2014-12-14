@@ -37,6 +37,14 @@
 				$remise = $_POST['remise'];
 				$echeance = $_POST['echeance'];
 				$fdm = $_POST['fdm'];
+				if ($fdm == 'on')
+				{
+					$bool_fdm = true;
+				}
+				else
+				{
+					$bool_fdm = false;
+				}
 				$jour = $_POST['jour'];
 				
 				// Contacts
@@ -61,7 +69,7 @@
 				
 					// Insertion client (table client)
 				$req1 = "INSERT INTO client";
-				$req1 .=" values ('$code', '$forme_juridique', '$raison_sociale', '$commercial', '$mode_paiement', $echeance, $fdm, $jour, $remise, '$contenu')";
+				$req1 .=" values ('$code', '$forme_juridique', '$raison_sociale', '$commercial', '$mode_paiement', $echeance, $bool_fdm, $jour, $remise, '$contenu')";
 				$action1 = mysqli_query($connexion, $req1);
 				
 					//Insertion adresses de livraison (table adresse)
