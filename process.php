@@ -37,13 +37,10 @@
 				$remise = $_POST['remise'];
 				$echeance = $_POST['echeance'];
 				$fdm = $_POST['fdm'];
+				$bool_fdm = false;
 				if ($fdm == 'on')
 				{
 					$bool_fdm = true;
-				}
-				else
-				{
-					$bool_fdm = false;
 				}
 				$jour = $_POST['jour'];
 				
