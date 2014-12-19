@@ -120,10 +120,10 @@ tinymce.init({
 							<input type="text" required="required" class="small"  name="BX_adr1[]"/><br/>
 							
 							<label for="BX_adr2">Adresse 2: </label>
-							<input type="text" required="required" class="small"  name="BX_adr2[]"/><br/>
+							<input type="text" class="small"  name="BX_adr2[]"/><br/>
 					
 							<label for="BX_adr3">Adresse 3: </label>
-							<input type="text" required="required" class="small"  name="BX_adr3[]"/><br/>
+							<input type="text" class="small"  name="BX_adr3[]"/><br/>
 
 							<label for="BX_cp">Code Postal: </label>
 							<input type="text" required="required" class="small"  name="BX_cp[]"/><br/>
@@ -142,7 +142,7 @@ tinymce.init({
 							<input type="text" required="required" class="small"  name="BX_email[]"/><br/>
 
 							<label for="BX_site_web">Site Web: </label>
-							<input type="text" required="required" class="small"  name="BX_site_web[]"/><br/><br/>
+							<input type="text" class="small"  name="BX_site_web[]"/><br/><br/>
 					     </td>
 							</p>
                     </tr>
@@ -169,10 +169,10 @@ tinymce.init({
 							<input type="text" required="required" class="small"  name="BX_adr1_2[]"/><br />
 
 							<label for="BX_adr2_2">Adresse 2: </label>
-							<input type="text" required="required" class="small"  name="BX_adr2_2[]"/><br />
+							<input type="text" class="small"  name="BX_adr2_2[]"/><br />
 
 							<label for="BX_adr3_2">Adresse 3: </label>
-							<input type="text" required="required" class="small"  name="BX_adr3_2[]"/><br />
+							<input type="text" class="small"  name="BX_adr3_2[]"/><br />
 
 							<label for="BX_cp2">Code Postal: </label>
 							<input type="text" required="required" class="small"  name="BX_cp2[]"/><br/>
@@ -192,7 +192,7 @@ tinymce.init({
 							<input type="text" required="required" class="small"  name="BX_email2[]"/><br/>
 
 							<label for="BX_site_web2">Site Web: </label>
-							<input type="text" required="required" class="small"  name="BX_site_web2[]"/><br/>
+							<input type="text" class="small"  name="BX_site_web2[]"/><br/>
 							
 					     </td>
 						</tr>
@@ -239,13 +239,13 @@ tinymce.init({
 								<option value="MMe">MMe.</option>	
 							</select><br/><br/>
 							<label for="tel_mob">Téléphone mobile: </label><input type="text" name="tel_mob[]" required="required" /><br/>
-							<label for="fax">Fax: </label><input type="text" name="fax[]" required="required" /><br/><hr>
+							<label for="fax">Fax: </label><input type="text" name="fax[]"  /><br/><hr>
 
 						</td>
 						<td>
 							<label for="fonction">Fonction: </label><input type="text" name="fonction[]" required="required" /><br/>
 							<label for="nom_contact">Nom: </label><input type="text" name="nom_contact[]" required="required" /><br/>
-							<label for="tel_bur">Téléphone de bureau: </label><input type="text" name="tel_bur[]" required="required" /><br/>
+							<label for="tel_bur">Téléphone de bureau: </label><input type="text" name="tel_bur[]" /><br/>
 							<label for="email_contact">Email: </label><input type="text" name="email_contact[]" required="required" /><br/>
 					     </td>							 
 							</p>

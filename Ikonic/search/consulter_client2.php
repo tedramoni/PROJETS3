@@ -91,38 +91,34 @@ if(isset($_POST['envoie']))
 		$result4=mysqli_query($connexion,$query4) or die ("Erreur l.21");
 	}
 ?>
+<center><h1>Consultation Client</h1></center>
 <!-- INFOS CLIENTS -->
-<br /><br /><br />
-<h2> Client </h2>
 <br />
-<center><div class="CSSTableGenerator" > <table>
-	<tbody>
-		<tr><?php
-			echo '<th>Code Client</th>';
-			echo '<th>Forme Juridique</th>';
-			echo '<th>Raison Sociale</th>';
-			echo '<th>Nom Commercial</th>';
-			echo '<th>Mode Réglement</th>';
-			echo '<th>Echéance</th>';
-			echo '<th>Remise</th>';
-			echo '<th>Infos Complémentaires</th>';	
-		?></tr> 
-		<tr><?php
+<br />
+<?php
 			while($ligne=mysqli_fetch_row($result))
-			{
-				for($i=0;$i<8;$i++)
-				{
-						echo '<td>'.$ligne[$i].'</td>';		
-				}
-			 }
-		?></tr>
-	</tbody>
-</table></center></div>
+			{?>
+				<fieldset>
+				<legend><strong>COORDONNÉES DU CLIENT</strong></legend>
+				<br />
+				<p><strong> Code Client :  </strong><?php echo $ligne[0]; ?></p><br />
+				<p><strong> Forme Juridique :  </strong><?php  echo $ligne[1]; ?></p><br />
+				<p><strong>  Raison Sociale :  </strong><?php  echo $ligne[2]; ?></p><br />
+				<p><strong>  Nom Commercial :  </strong><?php  echo $ligne[3];?></p><br />
+				<p><strong>  Mode Réglement :  </strong><?php  echo $ligne[4]; ?></p><br />
+				<p><strong>  Echance :  </strong><?php  echo $ligne[5];?><?php if($ligne[6]==1) echo ", fin de mois" ?>, le <?php  echo $ligne[7]; ?></p><br />
+				<p><strong>  Remise :  </strong><?php  echo $ligne[8]; ?></p><br />
+				<p><strong>  Infos complémentaires :  </strong><?php echo $ligne[9]; ?></p><br />
+				<br />
+			</fieldset>
+			<?php
+			}
+		?>
 <!-- ADRESSE DE LIVRAISON -->
 <br /><br /><br />
-<h2> Adresse de Livraison </h2>
-<br />
-<center><div class="CSSTableGenerator" > <table>
+<fieldset>
+<legend><strong>ADRESSE DE LIVRAISON </strong></legend><br /><br />
+<center><div class="CSSTableGenerator" > <table border="0">
 	<tbody>
 		<tr><?php
 			echo '<th>Numéro</th>';
@@ -167,13 +163,13 @@ if(isset($_POST['envoie']))
 			}
 		?></tr>
 	</tbody>
-</table></center></div>
+</table></center><br /><br /></fieldset></div>
 
 <!-- ADRESSE DE FACTURATION -->
 <br /><br /><br />
-<h2> Adresse de Facturation </h2>
-<br />
-<center><div class="CSSTableGenerator" > <table>
+<fieldset>
+<legend><strong> ADRESSE DE FACTURATION </strong></legend><br /><br />
+<center><div class="CSSTableGenerator" > <table border="0">
 	<tbody>
 		<tr><?php
 			echo '<th>Numéro</th>';
@@ -221,39 +217,31 @@ if(isset($_POST['envoie']))
 			}
 		?>
 	</tbody>
-</table></center></div><br /><br />
+</table></center><br /><br /></fieldset></div><br /><br />
 
-<!-- CONTACTS -->
-<br /><br /><br />
-<h2> Contact </h2>
+<!-- INFOS CONTACT -->
 <br />
-<center><div class="CSSTableGenerator" > <table>
-	<tbody>
-		<tr><?php
-			echo '<th>Code</th>';
-			echo '<th>Nom</th>';
-			echo '<th>Civilite</th>';
-			echo '<th>Fonction</th>';
-			echo '<th>Téléphone Bureau</th>';
-			echo '<th>Téléphone Mobile</th>';
-			echo '<th>Fax</th>';
-			echo '<th>Email</th>';		
-		?></tr>
-		<?php
-		
+<br />
+
+<?php
 			while($ligne=mysqli_fetch_row($result4))
-			{
-				echo '<tr>';
-				for($i=0;$i<8;$i++)
-				{
-					echo '<td>'.$ligne[$i].'</td>';	
-				}
-				echo '</tr>';	
+			{?>
+				<fieldset>
+				<legend><strong>CONTACT</strong></legend>
+				<br />
+				<p><strong> Code :  </strong><?php echo $ligne[0]; ?></p><br />
+				<p><strong> Nom :  </strong><?php  echo $ligne[1]; ?></p><br />
+				<p><strong>  Civilite :  </strong><?php  echo $ligne[2]; ?></p><br />
+				<p><strong>  Fonction :  </strong><?php  echo $ligne[3];?></p><br />
+				<p><strong>  Téléphone Bureau :  </strong><?php  echo $ligne[4]; ?></p><br />
+				<p><strong>  Téléphone Mobile :  </strong><?php  echo $ligne[5]; ?></p><br />
+				<p><strong>  Fax :  </strong><?php  echo $ligne[6]; ?></p><br />
+				<p><strong> Email :  </strong><?php echo $ligne[7]; ?></p><br />
+				<br />
+			</fieldset>
+			<?php
 			}
 		?>
-	</tbody>
-</table></center></div><br /><br />
-
 <center><p style="margin-top:20px">&raquo;&nbsp;<a href="">Modifier le client</a></p></center>
 </section>
 <?php

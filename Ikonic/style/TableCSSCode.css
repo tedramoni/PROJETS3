@@ -1,7 +1,7 @@
 .CSSTableGenerator {
 margin:0px;padding:0px;
 width:100%;
-border:1px solid #000000;
+border:0px solid #000000;
 
 -moz-border-radius-bottomleft:0px;
 -webkit-border-bottom-left-radius:0px;
@@ -48,7 +48,7 @@ border-bottom-left-radius:0px;
 vertical-align:middle;
 
 
-border:1px solid #000000;
+border:0px solid #000000;
 border-width:0px 1px 1px 0px;
 text-align:left;
 padding:7px;

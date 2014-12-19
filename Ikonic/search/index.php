@@ -6,6 +6,10 @@ if(isset($_SESSION['pseudo']))
 		connexion();
 		$user=$_SESSION['pseudo'];
 		$sql='SELECT email FROM membre WHERE pseudo="'.$user.'"';
+		
+		$sql2 = 'Select code,raison_sociale,cp,ville,nom_commercial from client,adresse where client.code = adresse.code_client group by code order by code ';
+		$result2=mysql_query($sql2) or die ("erreur");
+		
 		$email_user=mysql_query("$sql") or die('Erreur au niveau du mail'.mysql_error());
 		$data=mysql_fetch_array($email_user);
 }
@@ -20,6 +24,7 @@ if(isset($_SESSION['pseudo']))
 	<link rel="alternate stylesheet" media="screen" type="text/css" title="couleur" href="../style/couleur1.css" />
 	<link rel="alternate stylesheet" media="screen" type="text/css" title="couleur2" href="../style/couleur2.css" />
 	<link rel="alternate stylesheet" media="screen" type="text/css" title="couleur3" href="../style/couleur3.css" />
+	<link rel="stylesheet" type="text/css" href="../style/TableCSSCode.css" />
 	<script type="text/javascript" src="../Inclusion/styleswitcher.js"></script>
 
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.5.1.min.js"></script>
@@ -146,6 +151,32 @@ if(isset($_SESSION['pseudo']))
 	Entrer le CODE du CLIENT a consulter: <input type="text" name="cc" id="cc" size="6"/>	
 	<input type="submit" name="envoie" value="OK" /></tr>
 </form>
+<!-- CLIENT LIST -->
+<br /><br /><br />
+<h2> Liste des clients </h2>
+<br />
+<center><div class="CSSTableGenerator" > <table>
+	<tbody>
+		<tr><?php	
+			echo '<th>Code Client</th>';
+			echo '<th>Raison Sociale</th>';
+			echo '<th>Code Postal</th>';
+			echo '<th>Ville</th>';
+			echo '<th>Nom Commercial</th>';		
+		?></tr> 
+		    <?php
+			while($ligne=mysql_fetch_row($result2))
+			{
+				echo '<tr>';
+				for($i=0;$i<5;$i++)
+				{
+						echo '<td>'.$ligne[$i].'</td>';
+				}
+				echo '</tr>	';		
+			}
+		?></tr>
+	</tbody>
+</table>
 </center>
 </section>
 
