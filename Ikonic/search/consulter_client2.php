@@ -107,7 +107,7 @@ if(isset($_POST['envoie']))
 				<p><strong>  Nom Commercial :  </strong><?php  echo $ligne[3];?></p><br />
 				<p><strong>  Mode Réglement :  </strong><?php  echo $ligne[4]; ?></p><br />
 				<p><strong>  Echance :  </strong><?php  echo $ligne[5];?><?php if($ligne[6]==1) echo ", fin de mois" ?>, le <?php  echo $ligne[7]; ?></p><br />
-				<p><strong>  Remise :  </strong><?php  echo $ligne[8]; ?></p><br />
+				<p><strong>  Remise :  </strong><?php  echo $ligne[8]; ?>%</p><br />
 				<p><strong>  Infos complémentaires :  </strong><?php echo $ligne[9]; ?></p><br />
 				<br />
 			</fieldset>
