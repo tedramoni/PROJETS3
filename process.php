@@ -14,11 +14,10 @@
 				$test1 .= "where code = '$code'";
 				$actiontest1 = mysqli_query($connexion, $test1);
 				$resultattest1 = mysqli_fetch_row($actiontest1);
-				if ($code == $resultattest1)
+				if ($resultattest1 != null)
 				{
 					header('location: ajout_client.php?success=err1');
 				}
-				echo " code = ".$code." et resultattest1 = ".$resultattest1;
 				
 				// Fin test du code
 				
@@ -115,7 +114,7 @@
 					$action4 = mysqli_query($connexion, $req4);
 				}
 				
-				//header('location: ajout_client.php?success=ok');
+				header('location: ajout_client.php?success=ok');
 				
 				
 				/* FIN BLOC MYSQL */
