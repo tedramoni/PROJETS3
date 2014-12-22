@@ -18,7 +18,6 @@
 				{
 					header('location: ajout_client.php?success=err1');
 				}
-				echo "Test : code = (".$code."), resultattest1[0] = (".$resultattest1[0].")";
 				
 				// Fin test du code
 				
@@ -80,7 +79,6 @@
 				
 				/* BLOC MYSQL POUR INSERTION */
 				
-				/*
 					// Insertion client (table client)
 				$req1 = "INSERT INTO client";
 				$req1 .=" values ('$code', '$forme_juridique', '$raison_sociale', '$commercial', '$mode_paiement', $echeance, $bool_fdm, $jour, $remise, '$contenu')";
@@ -116,9 +114,7 @@
 					$action4 = mysqli_query($connexion, $req4);
 				}
 				
-				header('location: ajout_client.php?success=ok');
-				*/
-				
+				header('location: ajout_client.php?success=ok');				
 				
 				/* FIN BLOC MYSQL */
 				
