@@ -113,7 +113,7 @@ tinymce.init({
                     <tr>
                       <p>
 						<br/>
-						<td><input type="checkbox" required="required" name="chk[]" /></td>
+						<td><input type="checkbox" checked="checked" required="required" name="chk[]" /></td>
 						<td>
 					
 							<label for="BX_adr1">Adresse 1: </label>
@@ -163,7 +163,7 @@ tinymce.init({
                     <tr>
                       <p>
 						<br/>
-						<td><input type="checkbox" required="required" name="chk2[]" /></td>
+						<td><input type="checkbox" checked="checked" required="required" name="chk2[]" /></td>
 						<td>
 							<label for="BX_adr1_2">Adresse 1: </label>
 							<input type="text" required="required" class="small"  name="BX_adr1_2[]"/><br />
@@ -215,8 +215,7 @@ tinymce.init({
 					<label for="fdm">F.D.M: </label><input type="checkbox" name="fdm" /><br/>
 					<label for="jour">le:  </label><input type="number"  name="jour" min="0" max="31" value="0" required="required" />
 			</fieldset>
-			<br/><br/>
-			
+			<br/><br/>			
 			<fieldset>
 				<legend>Contact</legend>				
 				<p> 
@@ -229,7 +228,7 @@ tinymce.init({
                     <tr>
                       <p>
 						<br/>
-						<td><input type="checkbox" required="required" name="chk3[]" /></td>
+						<td><input type="checkbox" checked="checked" required="required" name="chk3[]" /></td>
 						<td>
 							<label for="code_contact">Code: </label><input type="text" name="code_contact[]" required="required" /><br/>
 							<label for="civilite" required="required" >Civilité: </label>

@@ -39,7 +39,7 @@ if(!isset($_SESSION['pseudo'])) {
 			else
 			{
 		?>
-				<li class="current_page_item"><a href="#.php">Mon compte</a></li>
+				<li class="current_page_item"><a href="configuration.php">Mon compte</a></li>
 			<?php }?>
 		
 		<li><a href="contact.php">Contact</a></li>

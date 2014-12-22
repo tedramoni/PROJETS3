@@ -33,7 +33,7 @@ function addRowFacturation(tableID) {
 function addRowContact(tableID) {
 	var table = document.getElementById(tableID);
 	var rowCount = table.rows.length;
-	if(rowCount < 5){							// limit the user from creating fields more than your limits
+	if(rowCount < 3){							// limit the user from creating fields more than your limits
 		var row = table.insertRow(rowCount);
 		var colCount = table.rows[0].cells.length;
 		for(var i=0; i<colCount; i++) {
@@ -41,7 +41,7 @@ function addRowContact(tableID) {
 			newcell.innerHTML = table.rows[0].cells[i].innerHTML;
 		}
 	}else{
-		 alert("Vous ne pouvez avoir plus de 5 contacts");
+		 alert("Vous ne pouvez avoir plus de 3 contacts");
 			   
 	}
 }

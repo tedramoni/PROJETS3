@@ -47,7 +47,7 @@ if(isset($_SESSION['pseudo']))
 			else
 			{
 		?>
-				<li class="current_page_item"><a href="#.php">Mon compte</a></li>
+				<li class="current_page_item"><a href="configuration.php">Mon compte</a></li>
 			<?php }?>
 		
 		<li><a href="../contact.php">Contact</a></li>
@@ -224,10 +224,12 @@ if(isset($_POST['envoie']))
 <br />
 
 <?php
+			$i=1;
 			while($ligne=mysqli_fetch_row($result4))
-			{?>
+			{
+				?>				
 				<fieldset>
-				<legend><strong>CONTACT</strong></legend>
+				<?php echo'<legend><strong>CONTACT '.$i.'</strong></legend>'; ?>
 				<br />
 				<p><strong> Code :  </strong><?php echo $ligne[0]; ?></p><br />
 				<p><strong> Nom :  </strong><?php  echo $ligne[1]; ?></p><br />
@@ -238,8 +240,8 @@ if(isset($_POST['envoie']))
 				<p><strong>  Fax :  </strong><?php  echo $ligne[6]; ?></p><br />
 				<p><strong> Email :  </strong><?php echo $ligne[7]; ?></p><br />
 				<br />
-			</fieldset>
-			<?php
+			</fieldset><br /><br />
+			<?php $i++;		
 			}
 		?>
 <center><p style="margin-top:20px">&raquo;&nbsp;<a href="">Modifier le client</a></p></center>
