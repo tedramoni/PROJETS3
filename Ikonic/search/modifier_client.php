@@ -177,7 +177,7 @@ if(isset($_POST['envoie']))
 			}
 		?>					
 			<br/>
-<center><p> Modifier une adresse de livraison existante ou en <?php echo "<a title='Ajout contact' href='add_infos.php?type=livraison&id=".$code_client."'><strong>ajouter une nouvelle </strong></a>(cliquer sur les mots en gras pour ouvrir un formulaire).";?></center> <br/><br/>			
+<center><p> Modifier une adresse de livraison existante ou en <a href="'<?php echo "add_infos.php?type=livraison&id=".$code_client?>" onclick="window.open('<?php echo "add_infos.php?type=livraison&id=".$code_client?>', 'newwindow', 'width=400, height=350, menubar=no, resizable=no, scrollbars=no, toolbar=no'); return false;"><strong>ajouter une nouvelle </strong></a>(cliquer sur les mots en gras pour ouvrir un formulaire).</center> <br/><br/>
 <?php
 			$i=1;
 			while($ligne=mysqli_fetch_row($result2))
@@ -219,7 +219,7 @@ if(isset($_POST['envoie']))
 			}
 		?>
 		<br />
-		<center><p> Modifier une adresse de facturation existante ou en <?php echo "<a title='Ajout contact' href='add_infos.php?type=facturation&id=".$code_client."'><strong>ajouter une nouvelle </strong></a>(cliquer sur les mots en gras pour ouvrir un formulaire).";?></center> <br/><br/>
+<center><p> Modifier une adresse de facturation existante ou en <a href="'<?php echo "add_infos.php?type=facturation&id=".$code_client?>" onclick="window.open('<?php echo "add_infos.php?type=facturation&id=".$code_client?>', 'newwindow', 'width=400, height=350, menubar=no, resizable=no, scrollbars=no, toolbar=no'); return false;"><strong>ajouter une nouvelle </strong></a>(cliquer sur les mots en gras pour ouvrir un formulaire).</center> <br/><br/>
 <?php
 			$j=1;
 			while($ligne=mysqli_fetch_row($result3))
