@@ -87,9 +87,9 @@ tinymce.init({
 	if (isset($_GET['success']))
 	{
 		if ($_GET['success']=="ok")
-			echo "<h1 style='text-align:center; color:green;'>Ajout effectué</h1>";
+			echo "<p style='text-align:center; color:green; font-size:16px;'>Ajout effectué</p>";
 		if ($_GET['success']=="err1")
-			echo "<h1 style='text-align:center; color:red;'>ERREUR : Code client existant !</h1>";
+			echo "<p style='text-align:center; color:red; font-size:16px;'>ERREUR : Code client existant !</p>";
 	}
 	?>
 <div id="formu_contact">
