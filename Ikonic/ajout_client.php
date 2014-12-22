@@ -87,9 +87,9 @@ tinymce.init({
 	if (isset($_GET['success']))
 	{
 		if ($_GET['success']=="ok")
-			echo "<h2 style='text-align:center; color:green;'>Ajout effectué</h2>";
+			echo "<h1 style='text-align:center; color:green;'>Ajout effectué</h1>";
 		if ($_GET['success']=="err1")
-			echo "<h2 style='text-align:center; color:red;'>ERREUR : Code client existant !</h2>";
+			echo "<h1 style='text-align:center; color:red;'>ERREUR : Code client existant !</h1>";
 	}
 	?>
 <div id="formu_contact">
@@ -224,7 +224,7 @@ tinymce.init({
 					<label for="remise">Remise: </label><input type="number"  name="remise" min="0" max="100" value="0" required="required" /> %<br/>
 					<label for="echeance">Echeance: à </label><input type="number"  name="echeance" min="0" max="100" value="0" required="required" /> jours.<br/>
 					<label for="fdm">F.D.M: </label><input type="checkbox" name="fdm" /><br/>
-					<label for="jour">le:  </label><input type="number"  name="jour" min="0" max="31" value="0" required="required" />
+					<label for="jour">le:  </label><input type="number"  name="jour" min="1" max="31" value="1" required="required" />
 			</fieldset>
 			<br/><br/>			
 			<fieldset>
