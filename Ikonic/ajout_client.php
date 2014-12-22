@@ -220,7 +220,7 @@ tinymce.init({
 				<legend>Contact</legend>				
 				<p> 
 				<button class="button-success pure-button" type="button" onClick="addRowContact('dataTableContact')">Ajouter contact</button>
-				<button class="button-error pure-button" type="button" onClick="deleteRow('dataTableContact')">Supprimer contact</button>
+				<button class="button-error pure-button" type="button" onClick="deleteRowContact('dataTableContact')">Supprimer contact</button>
 					<p>(Les actions ne s'appliqueront uniquement aux adresses dont les cases sont cochées.)</p>
 				</p>
 				<table id="dataTableContact" class="form" border="1">
