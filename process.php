@@ -1,7 +1,26 @@
 <?php if(isset($_POST)==true && empty($_POST)==false) 	
+				//Connexion à la base de données
+				
+				$connexion=mysqli_connect("mysql.serversfree.com", "u157965635_root", "ramoni");
+				
+				$db = "u157965635_ikc";
+				mysqli_select_db($connexion, $db);
+				
+				$code = $_POST['code'];
+				
+				// Test - Code existant ?
+				
+				$test1 = "Select code_client from client ";
+				$test1 .="where code_client = '$code'";
+				$actiontest1 = mysqli_query($connexion, $test1);
+				$resultattest1 = mysqli_fetch_row($actiontest1);
+				if ($code == $resultattest1)
+				{
+					header('location: ajout_client.php?success=err1');
+				}
+				// Fin test du code
 				
 				$commercial = $_POST['commercial']; 
-				$code = $_POST['code'];
 				$forme_juridique = $_POST['forme_juridique'];
 				$raison_sociale = $_POST['raison_sociale'];
 				$chk = $_POST['chk'];
@@ -58,11 +77,6 @@
 				$contenu = $_POST['contenu'];	
 				
 				/* BLOC MYSQL POUR INSERTION */
-				
-				$connexion=mysqli_connect("mysql.serversfree.com", "u157965635_root", "ramoni");
-				
-				$db = "u157965635_ikc";
-				mysqli_select_db($connexion, $db);
 				
 					// Insertion client (table client)
 				$req1 = "INSERT INTO client";
