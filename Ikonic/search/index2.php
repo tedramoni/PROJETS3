@@ -145,10 +145,10 @@ if(isset($_SESSION['pseudo']))
 <?php
 }
 ?>
-<h1 style="padding-bottom: 40px; text-align:center;">Consulter un client</h1>
+<h1 style="padding-bottom: 40px; text-align:center;">Modifier un client</h1>
 <center>
-<form method="post" action="consulter_client2.php" id="formulaire">
-	Entrer le CODE du CLIENT a consulter: <input type="text" name="cc" id="cc" size="6"/>	
+<form method="post" action="modifier_client.php" id="formulaire">
+	Entrer le CODE du CLIENT a modifier: <input type="text" name="cc" id="cc" size="6"/>	
 	<input type="submit" name="envoie" value="OK" /></tr>
 </form>
 <!-- CLIENT LIST -->
