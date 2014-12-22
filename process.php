@@ -99,73 +99,9 @@
 					$action4 = mysqli_query($connexion, $req4);
 				}
 				
+				header('location: ajout_client.php?success=ok');
 				
 				
 				/* FIN BLOC MYSQL */
 				
-				
-				echo "Nom Commercial : ".$commercial.'<br/>';
-				echo "Code Client : ".$code.'<br/>' ;
-				echo "Forme Juridique : ".$forme_juridique .'<br/>';
-				echo "Raison Sociale : ".$raison_sociale.'<br/><br/>';
-				
-				for( $i= 0 ; $i < sizeof($BX_code); $i++ )
-				{
-					echo "Adresse de livraison ".$i."<br/><br/>";
-					echo $BX_code[$i].'<br/>';
-					echo $BX_adr1[$i].'<br/>';
-					echo $BX_adr2[$i].'<br/>';
-					echo $BX_adr3[$i]. '<br/>';
-					echo $BX_cp[$i]. '<br/>';
-					echo $BX_ville[$i]. '<br/>';
-					echo $BX_pays[$i]. '<br/>';
-					echo $BX_tel_bur[$i]. '<br/>';
-					echo $BX_email[$i]. '<br/>';
-					echo $BX_site_web[$i]. '<br/>';
-					echo $BX_type[$i]. '<br/><br/>';
-				}
-				
-				echo '<br/><br/>';
-				
-				for( $i= 0 ; $i < sizeof($BX_code2); $i++ )
-				{
-					echo "Adresse de facturation ".$i."<br/><br/>";
-					echo $BX_code2[$i].'<br/>';
-					echo $BX_adr1_2[$i].'<br/>';
-					echo $BX_adr2_2[$i].'<br/>';
-					echo $BX_adr3_2[$i]. '<br/>';
-					echo $BX_cp2[$i]. '<br/>';
-					echo $BX_ville2[$i]. '<br/>';
-					echo $BX_pays2[$i]. '<br/>';
-					echo $BX_tel_bur2[$i]. '<br/>';
-					echo $BX_email2[$i]. '<br/>';
-					echo $BX_site_web2[$i]. '<br/>';
-					echo $BX_type2[$i]. '<br/><br/>';
-				}
-				
-				echo '<br/><br/>';	
-				
-				echo "Mode de paiement : ".$mode_paiement.'<br/>';
-				echo "Remise : ".$remise.'<br/>' ;
-				echo "Jour : ".$jour.'<br/>';
-				echo "Fin de mois : ".$fdm.'<br/>';
-				echo "le : ".$jour.'<br/><br/>';
-
-				for( $i= 0 ; $i < sizeof($code_contact); $i++ )
-				{
-					echo "Contact ".$i."<br/><br/>";
-					echo $code_contact[$i].'<br/>';
-					echo $civilite[$i].'<br/>';
-					echo $nom_contact[$i].'<br/>';
-					echo $fonction[$i]. '<br/>';
-					echo $tel_bur[$i]. '<br/>';
-					echo $tel_mob[$i]. '<br/>';
-					echo $BX_pays2[$i]. '<br/>';
-					echo $BX_tel_bur2[$i]. '<br/>';
-					echo $fax[$i].'<br/><br/>';
-				}				
-				
-				echo '<br/><br/>';	
-				
-				echo "Infos complémentaires : ".$contenu.'<br/>';	
 ?>

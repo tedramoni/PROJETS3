@@ -83,6 +83,13 @@ tinymce.init({
 	
 	<h1 style="padding-bottom: 15px; text-align:center;">Ajout d'un client</h1>
 <div id="formu_contact">
+
+	<?php 
+	if isset($_GET['success'])
+	{
+	echo "<p style='text-align:center; color:green;'>Ajout effectué</p>"; 
+	}
+	?>
 	<form method="post" action="process.php" name="form_contact">
 		
 			<label for="commercial"><u>Commercial :</u> </label><input type="text" name="commercial" required="required" />
