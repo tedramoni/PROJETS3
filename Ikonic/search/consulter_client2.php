@@ -106,7 +106,7 @@ if(isset($_POST['envoie']))
 				<p><strong>  Raison Sociale :  </strong><?php  echo $ligne[2]; ?></p><br />
 				<p><strong>  Nom Commercial :  </strong><?php  echo $ligne[3];?></p><br />
 				<p><strong>  Mode Réglement :  </strong><?php  echo $ligne[4]; ?></p><br />
-				<p><strong>  Echance :  </strong><?php  echo $ligne[5];?><?php if($ligne[6]==1) echo ", fin de mois" ?>, le <?php  echo $ligne[7]; ?></p><br />
+				<p><strong>  Echance :  </strong><?php  echo $ligne[5];?> jours <?php if($ligne[6]==1) { echo ", fin de mois" ?>, le <?php  echo $ligne[7];} ?></p><br />
 				<p><strong>  Remise :  </strong><?php  echo $ligne[8]; ?>%</p><br />
 				<p><strong>  Infos complémentaires :  </strong><?php echo $ligne[9]; ?></p><br />
 				<br />
@@ -151,7 +151,7 @@ if(isset($_POST['envoie']))
 						if($i==10)
 						{				
 							echo "<td style='text-align:center'>";
-								echo "<a title='Supprimer' href='delete.php?id=".$ligne[11]."'>";
+								echo "<a title='Supprimer' href='deladresse.php?id=".$ligne[11]."'>";
 								echo "<img title='supprimer' alt='supprimer' src='http://iuted.bugs3.com/projet/Ikonic2/Images/pictoPoubelle.gif' /></a>";	
 							echo "</td>";							
 						}
@@ -203,7 +203,7 @@ if(isset($_POST['envoie']))
 						if($i==10)
 						{				
 							echo "<td style='text-align:center'>";
-								echo "<a title='Supprimer' href='delete.php?id=".$ligne[11]."'>";
+								echo "<a title='Supprimer' href='deladresse.php?id=".$ligne[11]."'>";
 								echo "<img title='supprimer' alt='supprimer' src='http://iuted.bugs3.com/projet/Ikonic2/Images/pictoPoubelle.gif' /></a>";	
 							echo "</td>";							
 						}
@@ -243,7 +243,10 @@ if(isset($_POST['envoie']))
 			<?php $i++;		
 			}
 		?>
-<center><p style="margin-top:20px">&raquo;&nbsp;<a href="">Modifier le client</a></p></center>
+	<center><form method="post" action="modifier_client.php" id="formulaire">
+	<input type="hidden" name="cc" id="cc" size="6" value="<?php echo $code_client; ?>"/>	
+	<input type="submit" name="envoie" value="Modifier le client" /></tr>
+	</form></center>
 </section>
 <?php
 }

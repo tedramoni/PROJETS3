@@ -219,7 +219,7 @@ if(isset($_POST['envoie']))
 			}
 		?>
 		<br />
-<center><p> Modifier une adresse de facturation existante ou en <a href="'<?php echo "add_infos.php?type=facturation&id=".$code_client?>" onclick="window.open('<?php echo "add_infos.php?type=facturation&id=".$code_client?>', 'newwindow', 'width=400, height=350, menubar=no, resizable=no, scrollbars=no, toolbar=no'); return false;"><strong>ajouter une nouvelle </strong></a>(cliquer sur les mots en gras pour ouvrir un formulaire).</center> <br/><br/>
+<center><p> Modifier une adresse de facturation existante ou en <a href="'<?php echo "add_infos.php?type=facturation&id=".$code_client?>" onclick="window.open('<?php echo "add_infos.php?type=facturation&id=".$code_client?>', 'newwindow', 'width=450, height=400, menubar=no, resizable=no, scrollbars=no, toolbar=no'); return false;"><strong>ajouter une nouvelle </strong></a>(cliquer sur les mots en gras pour ouvrir un formulaire).</center> <br/><br/>
 <?php
 			$j=1;
 			while($ligne=mysqli_fetch_row($result3))
@@ -261,7 +261,7 @@ if(isset($_POST['envoie']))
 			}
 		?>		
 		
-			<center><input type="submit" name="update" value="Modifier" /> <strong> OU </strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a title="suppression" href="delete.php?id=<?php echo $code_client; ?>"><button class="button-error pure-button" type="button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supprimer contact&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button></a></center>			
+			<center><input type="submit" name="update" value="Modifier" /> <strong> OU </strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a title="suppression" href="delete.php?id=<?php echo $code_client; ?>"><button class="button-error pure-button" type="button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supprimer client&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button></a></center>			
 	</form>
 </div>
 <!-- FIN TEST FORMULAIRE -->
