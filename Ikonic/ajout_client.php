@@ -82,20 +82,24 @@ tinymce.init({
 	</div>
 	
 	<h1 style="padding-bottom: 15px; text-align:center;">Ajout d'un client</h1>
-<div id="formu_contact">
-
+	
 	<?php 
 	if (isset($_GET['success']))
 	{
-	echo "<p style='text-align:center; color:green;'>Ajout effectué</p>"; 
+		if ($_GET['success']=="ok")
+			echo "<h2 style='text-align:center; color:green;'>Ajout effectué</h2>";
+		if ($_GET['success']=="err1")
+			echo "<h2 style='text-align:center; color:red;'>ERREUR : Code client déjà existant !</h2>";
 	}
 	?>
+<div id="formu_contact">
+
 	<form method="post" action="process.php" name="form_contact">
 		
 			<label for="commercial"><u>Commercial :</u> </label><input type="text" name="commercial" required="required" />
 			<br/>
 			<fieldset>
-				<legend>Coordonnée du client</legend>
+				<legend>Coordonnées du client</legend>
 					<label for="code">Code: </label><input type="text" name="code" required="required" /><br/>
 					<label for="forme_juridique">Forme juridique: </label>
 					<select name="forme_juridique" onchange="change_manga(this.value)"><option value="sa">S.A</option>
