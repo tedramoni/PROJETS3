@@ -85,7 +85,7 @@ tinymce.init({
 <div id="formu_contact">
 
 	<?php 
-	if isset($_GET['success'])
+	if (isset($_GET['success']))
 	{
 	echo "<p style='text-align:center; color:green;'>Ajout effectué</p>"; 
 	}
