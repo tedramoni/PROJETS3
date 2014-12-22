@@ -10,8 +10,8 @@
 				
 				$code = $_POST['code'];
 				
-				$test1 = "Select code_client from client ";
-				$test1 .= "where code_client = '$code'";
+				$test1 = "Select code from client ";
+				$test1 .= "where code = '$code'";
 				$actiontest1 = mysqli_query($connexion, $test1);
 				$resultattest1 = mysqli_fetch_row($actiontest1);
 				if ($code == $resultattest1)
