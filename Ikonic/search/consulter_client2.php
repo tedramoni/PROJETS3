@@ -186,17 +186,16 @@ if(isset($_POST['envoie']))
 			echo '<th> </th>';			
 		?></tr>
 		<?php
-		
+			$x=1;
 			while($ligne=mysqli_fetch_row($result3))
 			{
-				$j=1;
 				echo '<tr>';
 				for($i=0;$i<11;$i++)
 				{
 					if ($i==0) 
 					{
 						$j=$i+1;
-						echo '<td>Adresse '.$j.'</td>';
+						echo '<td>Adresse '.$x.'</td>';
 						echo '<td>'.$ligne[$i].'</td>';
 					}
 					else
@@ -213,7 +212,7 @@ if(isset($_POST['envoie']))
 					
 				}		
 				echo '</tr>';	
-				$j=$j+1;
+				$x++;
 			}
 		?>
 	</tbody>

@@ -101,7 +101,7 @@ if(isset($_POST['envoie']))
 	<?php
 			while($ligne=mysqli_fetch_row($result))
 			{?>
-			<form method="post" action="process.php" name="form_contact">	
+			<form method="post" action="update.php" name="form_contact">	
 			<label for="commercial"><u>Commercial :</u> </label><input type="text" name="commercial" required="required" value="<?php echo $ligne[3];?>" />
 			<br/>
 			<fieldset>
@@ -147,8 +147,7 @@ if(isset($_POST['envoie']))
 
 <!-- INFOS CONTACT -->
 <br />
-<br />
-
+<center><p> Modifier un contact existant ou en <a href="'<?php echo "add_infos.php?type=contact&id=".$code_client?>" onclick="window.open('<?php echo "add_infos.php?type=contact&id=".$code_client?>', 'newwindow', 'width=400, height=350, menubar=no, resizable=no, scrollbars=no, toolbar=no'); return false;"><strong>ajouter un nouveau </strong></a>(cliquer sur les mots en gras pour ouvrir un formulaire).</center> <br/><br/>
 <?php
 			$i=1;
 			while($ligne=mysqli_fetch_row($result4))
@@ -177,7 +176,8 @@ if(isset($_POST['envoie']))
 			<?php $i++;		
 			}
 		?>					
-			<br/><br/>
+			<br/>
+<center><p> Modifier une adresse de livraison existante ou en <?php echo "<a title='Ajout contact' href='add_infos.php?type=livraison&id=".$code_client."'><strong>ajouter une nouvelle </strong></a>(cliquer sur les mots en gras pour ouvrir un formulaire).";?></center> <br/><br/>			
 <?php
 			$i=1;
 			while($ligne=mysqli_fetch_row($result2))
@@ -218,6 +218,8 @@ if(isset($_POST['envoie']))
 			<?php $i++;		
 			}
 		?>
+		<br />
+		<center><p> Modifier une adresse de facturation existante ou en <?php echo "<a title='Ajout contact' href='add_infos.php?type=facturation&id=".$code_client."'><strong>ajouter une nouvelle </strong></a>(cliquer sur les mots en gras pour ouvrir un formulaire).";?></center> <br/><br/>
 <?php
 			$j=1;
 			while($ligne=mysqli_fetch_row($result3))
@@ -259,7 +261,7 @@ if(isset($_POST['envoie']))
 			}
 		?>		
 		
-			<center><input type="submit" name="update" value="Modifier" /> <strong> OU </strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.google.fr"><button class="button-error pure-button" type="button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supprimer contact&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button></center>			
+			<center><input type="submit" name="update" value="Modifier" /> <strong> OU </strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a title="suppression" href="delete.php?id=<?php echo $code_client; ?>"><button class="button-error pure-button" type="button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supprimer contact&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button></a></center>			
 	</form>
 </div>
 <!-- FIN TEST FORMULAIRE -->
