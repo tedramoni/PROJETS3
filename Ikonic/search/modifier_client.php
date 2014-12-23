@@ -106,7 +106,7 @@ if(isset($_POST['envoie']))
 			<br/>
 			<fieldset>
 				<legend>Coordonnée du client</legend>
-					<label for="code">Code: </label><input type="text" name="code" required="required"  value="<?php echo $ligne[0]; ?>"/><br/>
+					<label for="code">Code: </label><input type="text" name="code" required="required"  value="<?php echo $ligne[0]; ?>" readonly/><br/>
 					<label for="forme_juridique">Forme juridique: </label>
 					<select name="forme_juridique" onchange="change_manga(this.value)">
 						<option value="<?php echo $ligne[1]; ?>"><?php echo $ligne[1]; ?></option>
@@ -156,7 +156,7 @@ if(isset($_POST['envoie']))
 				<fieldset>
 				<?php echo'<legend><strong>CONTACT '.$i.'</strong></legend>'; ?>
 				<br />
-				<label for="code_contact">Code: </label><input type="text" name="code_contact[]" required="required" value="<?php echo $ligne[0]; ?>" /><br/>
+				<label for="code_contact">Code: </label><input type="text" name="code_contact[]" required="required" value="<?php echo $ligne[0]; ?>" readonly/><br/>
 				<label for="nom_contact">Nom: </label><input type="text" name="nom_contact[]" required="required" value="<?php  echo $ligne[1]; ?>" /><br/>
 				<label for="civilite" required="required" >Civilité: </label>
 					<select name="civilite[]" required="required" onchange="change_manga(this.value)">
@@ -211,7 +211,9 @@ if(isset($_POST['envoie']))
 					<input type="text" required="required" class="small"  name="BX_email[]" value="<?php  echo $ligne[8]; ?>"/><br/>
 
 					<label for="BX_site_web">Site Web: </label>
-					<input type="text" class="small"  name="BX_site_web[]" value="<?php  echo $ligne[9]; ?>"/><br/><br/>							
+					<input type="text" class="small"  name="BX_site_web[]" value="<?php  echo $ligne[9]; ?>"/><br/><br/>
+
+					<input type="hidden" class="small"  name="index[]" value="<?php  echo $ligne[11]; ?>"/><br/><br/>					
 				<br />
 				<?php echo "<a title='Supprimer' href='deladresse.php?id=".$ligne[11]."'><strong>Supprimer adresse</strong></a>";?> <br/>	
 			</fieldset><br /><br />
@@ -253,7 +255,9 @@ if(isset($_POST['envoie']))
 					<input type="text" required="required" class="small"  name="BX_email2[]" value="<?php  echo $ligne[8]; ?>"/><br/>
 
 					<label for="BX_site_web">Site Web: </label>
-					<input type="text" class="small"  name="BX_site_web2[]" value="<?php  echo $ligne[9]; ?>"/><br/><br/>							
+					<input type="text" class="small"  name="BX_site_web2[]" value="<?php  echo $ligne[9]; ?>"/><br/><br/>	
+
+					<input type="hidden" class="small"  name="index2[]" value="<?php  echo $ligne[11]; ?>"/><br/><br/>					
 				<br />
 				<?php echo "<a title='Supprimer' href='deladresse.php?id=".$ligne[11]."'><strong>Supprimer adresse</strong></a>";?> <br/>				
 			</fieldset><br /><br />
