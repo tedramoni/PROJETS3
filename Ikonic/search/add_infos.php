@@ -133,7 +133,7 @@
 			$req4 = "INSERT INTO contact ";
 			$req4.= " values('$code_contact', '$nom_contact', '$civilite', '$fonction', '$tel_bur', '$tel_mob',
 					'$fax', '$email_contact', '$code_client')";								
-			$action4 = mysqli_query($connexion, $req4) or die("erreur dans l'ajout");
+			$action4 = mysqli_query($connexion, $req4) or die("erreur dans l'ajout :".mysqli_error($connexion));
 			
 			echo 'Ajout du contact réussi, vous pouvez maintenant fermer la page';
 		}
@@ -157,7 +157,7 @@
 			$req2 = "INSERT INTO adresse (code_client, adr1, adr2, adr3, cp, ville, pays, tel_bur, email, site_web, type)";
 			$req2.= " values ('$code_client', '$BX_adr1', '$BX_adr2', '$BX_adr3', '$BX_cp', '$BX_ville', '$BX_pays',
 					'$BX_tel_bur', '$BX_email', '$BX_site_web', 'L')";						
-			$action2 = mysqli_query($connexion, $req2);
+			$action2 = mysqli_query($connexion, $req2) or die("erreur dans l'ajout :".mysqli_error($connexion));
 			
 			echo 'Ajout de l\'adresse de livraison réussi, vous pouvez maintenant fermer la page';
 						
@@ -182,7 +182,7 @@
 			$req3 = "INSERT INTO adresse (code_client, adr1, adr2, adr3, cp, ville, pays, tel_bur, email, site_web, type)";
 			$req3.= " values ('$code_client', '$BX_adr1_2', '$BX_adr2_2', '$BX_adr3_2', '$BX_cp2', '$BX_ville2', '$BX_pays2',
 					'$BX_tel_bur2', '$BX_email2', '$BX_site_web2', 'F')";						
-			$action3 = mysqli_query($connexion, $req3);
+			$action3 = mysqli_query($connexion, $req3) or die("erreur dans l'ajout :".mysqli_error($connexion));
 			
 			echo '<br /> <strong>Ajout de l\'adresse de facturation réussi, vous pouvez maintenant fermer la page </strong>';
 		}
