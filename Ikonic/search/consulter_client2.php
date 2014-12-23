@@ -164,7 +164,7 @@ if(isset($_SESSION['pseudo']))
 													echo "<a title='Supprimer' href='deladresse.php?id=".$ligne[11]."'>";
 													echo "<img title='supprimer' alt='supprimer' src='http://iuted.bugs3.com/projet/Ikonic2/Images/pictoPoubelle.gif' /></a>";	
 												echo "</td>";
-											}
+											}					
 										}
 										else { echo '<td>'.$ligne[$i].'</td>'; }
 									}
@@ -219,7 +219,7 @@ if(isset($_SESSION['pseudo']))
 													echo "<a title='Supprimer' href='deladresse.php?id=".$ligne[11]."'>";
 													echo "<img title='supprimer' alt='supprimer' src='http://iuted.bugs3.com/projet/Ikonic2/Images/pictoPoubelle.gif' /></a>";	
 												echo "</td>";
-											}
+											}							
 										}
 										else { echo '<td>'.$ligne[$i].'</td>'; }
 									}
@@ -262,11 +262,12 @@ if(isset($_SESSION['pseudo']))
 					<input type="submit" name="envoie" value="Modifier le client" /></tr>
 					</form></center>
 <?php
-			}
+			}// fin du test (si le code client existe bien)
 			else
 			{
 				header( "refresh:5;url=index.php" ); 
-				echo "<center><p style='color:red;'>Le code client n'existe pas !<br>
+				echo "<br>
+						<center><p style='color:red;'>Le code client n'existe pas !<br>
 						Vous serez redirigé dans 5 secondes. Si cela ne marche pas, <a href='index.php'>cliquez ici</a>.</p></center>"; 
 			}
 			
@@ -274,7 +275,9 @@ if(isset($_SESSION['pseudo']))
 	}// Fin if (isset($_POST['envoie']))
 	else
 	{
-		echo "<center><p style=\"color:red;\">Page atteinte par erreur !</p></center>";
+		echo "<br>
+				<center><p style=\"color:red;\">Page atteinte par erreur !<br>
+				Vous serez redirigé dans 5 secondes. Si cela ne marche pas, <a href='index.php'>cliquez ici</a>.</p></center>";
 	}
 }
 else
