@@ -158,10 +158,13 @@ if(isset($_SESSION['pseudo']))
 									{
 										if($i==10)
 										{				
-											echo "<td style='text-align:center'>";
-												echo "<a title='Supprimer' href='deladresse.php?id=".$ligne[11]."'>";
-												echo "<img title='supprimer' alt='supprimer' src='http://iuted.bugs3.com/projet/Ikonic2/Images/pictoPoubelle.gif' /></a>";	
-											echo "</td>";							
+											if($j > 1) 
+											{
+												echo "<td style='text-align:center'>";
+													echo "<a title='Supprimer' href='deladresse.php?id=".$ligne[11]."'>";
+													echo "<img title='supprimer' alt='supprimer' src='http://iuted.bugs3.com/projet/Ikonic2/Images/pictoPoubelle.gif' /></a>";	
+												echo "</td>";
+											}
 										}
 										else { echo '<td>'.$ligne[$i].'</td>'; }
 									}
@@ -209,11 +212,14 @@ if(isset($_SESSION['pseudo']))
 									else
 									{
 										if($i==10)
-										{				
-											echo "<td style='text-align:center'>";
-												echo "<a title='Supprimer' href='deladresse.php?id=".$ligne[11]."'>";
-												echo "<img title='supprimer' alt='supprimer' src='http://iuted.bugs3.com/projet/Ikonic2/Images/pictoPoubelle.gif' /></a>";	
-											echo "</td>";							
+										{
+											if($x > 1) 
+											{										
+												echo "<td style='text-align:center'>";
+													echo "<a title='Supprimer' href='deladresse.php?id=".$ligne[11]."'>";
+													echo "<img title='supprimer' alt='supprimer' src='http://iuted.bugs3.com/projet/Ikonic2/Images/pictoPoubelle.gif' /></a>";	
+												echo "</td>";
+											}
 										}
 										else { echo '<td>'.$ligne[$i].'</td>'; }
 									}
