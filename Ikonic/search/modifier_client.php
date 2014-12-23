@@ -166,8 +166,8 @@ if(isset($_POST['envoie']))
 						<option value="MMe">MMe.</option>	
 				</select><br/><br/>
 				<label for="fonction">Fonction: </label><input type="text" name="fonction[]" required="required" value="<?php  echo $ligne[3];?>"/><br/>
-				<label for="tel_mob">Téléphone mobile: </label><input type="text" name="tel_mob[]" required="required" value="<?php  echo $ligne[4]; ?>"/><br/>
-				<label for="tel_bur">Téléphone de bureau: </label><input type="text" name="tel_bur[]" value="<?php  echo $ligne[5]; ?>"/><br/>
+				<label for="tel_mob">Téléphone mobile: </label><input type="text" name="tel_mob[]" required="required" value="<?php  echo $ligne[5]; ?>"/><br/>
+				<label for="tel_bur">Téléphone de bureau: </label><input type="text" name="tel_bur[]" value="<?php  echo $ligne[4]; ?>"/><br/>
 				<label for="fax">Fax: </label><input type="text" name="fax[]" value="<?php  echo $ligne[6]; ?>" /><br/>
 				<label for="email_contact">Email: </label><input type="text" name="email_contact[]" required="required" value="<?php echo $ligne[7]; ?>" /><br/>
 				<br />
