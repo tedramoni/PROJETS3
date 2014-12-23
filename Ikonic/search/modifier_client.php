@@ -171,7 +171,7 @@ if(isset($_POST['envoie']))
 				<label for="fax">Fax: </label><input type="text" name="fax[]" value="<?php  echo $ligne[6]; ?>" /><br/>
 				<label for="email_contact">Email: </label><input type="text" name="email_contact[]" required="required" value="<?php echo $ligne[7]; ?>" /><br/>
 				<br />
-				<?php echo "<a title='Supprimer' href='delcontact.php?id=".$ligne[0]."'><strong>Supprimer contact</strong></a>";?> <br/>		
+				<?php if($i != 1) echo "<a title='Supprimer' href='delcontact.php?id=".$ligne[0]."'><strong>Supprimer contact</strong></a>";?> <br/>		
 			</fieldset><br /><br />
 			<?php $i++;		
 			}
@@ -215,7 +215,7 @@ if(isset($_POST['envoie']))
 
 					<input type="hidden" class="small"  name="index[]" value="<?php  echo $ligne[11]; ?>"/><br/><br/>					
 				<br />
-				<?php echo "<a title='Supprimer' href='deladresse.php?id=".$ligne[11]."'><strong>Supprimer adresse</strong></a>";?> <br/>	
+				<?php if($i != 1) echo "<a title='Supprimer' href='deladresse.php?id=".$ligne[11]."'><strong>Supprimer adresse</strong></a>";?> <br/>	
 			</fieldset><br /><br />
 			<?php $i++;		
 			}
@@ -259,7 +259,7 @@ if(isset($_POST['envoie']))
 
 					<input type="hidden" class="small"  name="index2[]" value="<?php  echo $ligne[11]; ?>"/><br/><br/>					
 				<br />
-				<?php echo "<a title='Supprimer' href='deladresse.php?id=".$ligne[11]."'><strong>Supprimer adresse</strong></a>";?> <br/>				
+				<?php if($j != 1) echo "<a title='Supprimer' href='deladresse.php?id=".$ligne[11]."'><strong>Supprimer adresse</strong></a>";?> <br/>				
 			</fieldset><br /><br />
 			<?php $j++;		
 			}
