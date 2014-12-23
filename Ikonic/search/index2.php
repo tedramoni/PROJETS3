@@ -139,12 +139,9 @@ if(isset($_SESSION['pseudo']))
 		<li><?php echo $_SESSION['pseudo'];?></li>
 		<li>Administrateur</li>
 		<li><?php echo $_SERVER["REMOTE_ADDR"]; ?></li>
-		<li><a href="../deconnexion.php">Vous déconnectez</a></li>
+		<li><a href="../deconnexion.php">Vous déconnecter</a></li>
 		</center>
 	</div>
-<?php
-}
-?>
 <h1 style="padding-bottom: 40px; text-align:center;">Modifier un client</h1>
 <center>
 <form method="post" action="modifier_client.php" id="formulaire">
@@ -178,6 +175,13 @@ if(isset($_SESSION['pseudo']))
 	</tbody>
 </table>
 </center>
+<?php
+}
+else
+{
+	echo "<center><p style=\"color:red;\">Vous n'êtes pas connecté !</p></center>";
+}
+?>
 </section>
 
 <?php include("../Inclusion/bottom.php"); ?>
