@@ -89,7 +89,6 @@ if(isset($_SESSION['pseudo']))
 			$resultattest1 = mysqli_fetch_row($actiontest1);
 			if ($resultattest1[0] == $code_client)
 			{
-				header('location: index.php');
 				$query='SELECT * from client where code = "'.$code_client.'"';
 				$query2='SELECT * FROM adresse WHERE type = "L" AND code_client = "'.$code_client.'"';
 				$query3='SELECT * FROM adresse WHERE type = "F" AND code_client = "'.$code_client.'"';
