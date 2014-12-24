@@ -63,7 +63,7 @@ if(isset($_SESSION['pseudo']))
 		<li><?php echo $_SESSION['pseudo'];?></li>
 		<li>Administrateur</li>
 		<li><?php echo $_SERVER["REMOTE_ADDR"]; ?></li>
-		<li><a href="deconnexion.php">Vous déconnectez</a></li>
+		<li><a href="deconnexion.php">Vous déconnecter</a></li>
 		</center>
 	</div>
 <?php
