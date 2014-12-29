@@ -4,7 +4,7 @@ html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
+small, strike, strong, sub, tt, var,
 b, u, i, center,
 dl, dt, dd, ol, ul, li, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
@@ -179,6 +179,18 @@ background-color: #308FED;
 
 }
 
+ .tab_article_couleur
+ {
+ opacity:0.6;
+ background-color:red;
+ color:white;
+ }
+ 
+ #tab_article td
+ {
+ padding-left:50px;
+ padding-right:50px;
+ }
 
 /*----------------------------------En tête-------------------------------------*/
 header

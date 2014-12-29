@@ -17,7 +17,7 @@ if(!isset($_SESSION['pseudo'])) {
 	<link rel="icon" type="image/ico" href="Images/favicon.ico" />
 	<meta charset="utf-8" />
 
-<title>Ikonic: Configuration</title>
+<title>Ikonic: Gestion de stock</title>
 </head>
 
 
@@ -52,7 +52,7 @@ if(!isset($_SESSION['pseudo'])) {
 		if($form)
 		{
 	?>
-		<div id="menu_c">
+	<div id="menu_c">
 		<center>
 		<li><?php echo $_SESSION['pseudo'];?></li>
 		<li>Administrateur</li>
@@ -60,15 +60,16 @@ if(!isset($_SESSION['pseudo'])) {
 		<li><a href="deconnexion.php">Vous déconnectez</a></li>
 		</center>
 	</div>
-	
-	<h1 style="padding-bottom: 15px; text-align:center;">Configuration</h1>
+	<h1 style="padding-bottom: 15px; text-align:center;">Gestion de stock</h1>
 
 	<article>
-	<br/><br/>
+	<br/><p><a href="configuration.php">Configuration</a> >> Gestion de stock</p>
+	<br/>
 		<p>Vous pouvez :</p>
 		<ol style="padding-left:50px;">
-			<li>Gérer un stock</li>
-			<li>Gerer un client (ajout, modification, suppression)</li>
+			<li>Ajouter un article</li>
+			<li>Modifier un article</li>
+			<li>Consulter un article</li>
 		</ol>
 	<br/><br/>
 
@@ -76,8 +77,9 @@ if(!isset($_SESSION['pseudo'])) {
 	<div id="config_style">
 		<table>
 			<tr>
-				<th><a href="gestion_client.php"><img id="imageArticle" src="Images/clients.jpg" alt="" /><p>Gestion de client</p></a></th>
-				<th><a href="gestion_stock.php"><img id="imageArticle" src="Images/stock.jpg" alt="" /><p>Gestion de stock</p></a></th>
+				<th><a href="ajout_stock.php"><img id="imageArticle" src="Images/ajout2.png" alt="" /><p>Ajouter un article</p></a></th>
+				<th><a href="modif_article.php" ><img id="imageArticle" src="Images/update2.png" alt="" /><p>Modifier un article</p></a></th>
+								<th><a href="consult_article.php"><img id="imageArticle" src="Images/consult2.png" alt="" /><p>Consulter un article</p></a></th>
 			</tr>
 		</table>
 	</center>
