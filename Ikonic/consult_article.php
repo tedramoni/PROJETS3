@@ -24,6 +24,7 @@ if(isset($_POST['valider'])) {
 	<link rel="alternate stylesheet" media="screen" type="text/css" title="couleur" href="style/couleur1.css" />
 	<link rel="alternate stylesheet" media="screen" type="text/css" title="couleur2" href="style/couleur2.css" />
 	<link rel="alternate stylesheet" media="screen" type="text/css" title="couleur3" href="style/couleur3.css" />
+	<link rel="stylesheet" type="text/css" href="style/TableCSSCode.css" />
 		<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/themes/smoothness/jquery-ui.css" />
 
 	<script type="text/javascript" src="Inclusion/styleswitcher.js"></script>
@@ -285,6 +286,7 @@ if(isset($_POST['valider'])) {
 	
 	?>
 			<br/>
+		<div class="CSSTableGenerator" >
 		<table id="tab_article">
 			<tr class="tab_article_couleur">
 				<td>Référence</td>
@@ -318,7 +320,7 @@ if(isset($_POST['valider'])) {
 				echo "</table><br/>";
 				if($page)
 				{
-				
+					echo "Page > ";
 				for($i=1;$i<=$nbPage;$i++)
 				{
 					echo "<a href='consult_article.php?p=$i'> $i </a>";
@@ -327,6 +329,7 @@ if(isset($_POST['valider'])) {
 			?>
 		
 		</center>
+		</div>
 
 
 </section>
