@@ -100,7 +100,7 @@ tinymce.init({
 			<br/>
 			<fieldset>
 				<legend>Coordonnées du client</legend>
-					<label for="code">Code: </label><input type="text" name="code" required="required" /><br/>
+					<label for="code">Code: </label><input type="text" name="code" maxlength="6" required="required" /><br/>
 					<label for="forme_juridique">Forme juridique: </label>
 					<select name="forme_juridique" onchange="change_manga(this.value)"><option value="sa">S.A</option>
 						<option value="sarl">S.A.R.L</option>
