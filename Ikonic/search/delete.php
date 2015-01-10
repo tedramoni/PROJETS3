@@ -24,7 +24,7 @@
 			
 			if ($action1 && $action2 && $action3) 
 			{
-				header("Location: modifier_client.php?envoie=ok&cc=".$code_client); 
+				header("Location: http://iuted.bugs3.com/projet/Ikonic2/gestion_client.php"); 
 			}
 			else 
 			{

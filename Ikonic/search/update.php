@@ -210,7 +210,7 @@ if(isset($_SESSION['pseudo']))
 				/* FIN BLOC MYSQL */
 				if ($action1 && $action2 && $action3 && $action4)
 				{
-					header("Location: update.php?state=success");
+					header("Location: modifier_client.php?envoie=ok&cc=".$code);
 					exit();
 				}	
 				else 
@@ -223,17 +223,8 @@ else
 {
 	 if(isset($_GET['state']))
 	 {
-		if($_GET['state']='success')
-		{
-			echo '<h1 style="padding-bottom: 40px; text-align:center;"> Modifications effectuées avec succès ! </h1>';
-			echo 'Retourner à la page de <a href="http://iuted.bugs3.com/projet/Ikonic2/search/index2.php">modification</a> ou <a href="http://iuted.bugs3.com/projet/Ikonic2/search/index.php">consultation</a>'; 
-		}
-		
-		else
-		{
-			echo '<h1 style="padding-bottom: 40px; text-align:center;"> Erreur lors de la modification du client ! </h1>';
-			echo 'Retourner à la page de <a href="http://iuted.bugs3.com/projet/Ikonic2/search/index2.php">modification</a> ou <a href="http://iuted.bugs3.com/projet/Ikonic2/search/index.php">consultation</a>'; 
-		}		
+		echo '<h1 style="padding-bottom: 40px; text-align:center;"> Erreur lors de la modification du client ! </h1>';
+		echo 'Retourner à la page de <a href="http://iuted.bugs3.com/projet/Ikonic2/search/index2.php">modification</a> ou <a href="http://iuted.bugs3.com/projet/Ikonic2/search/index.php">consultation</a>'; 		
 	 }
 }
 }
