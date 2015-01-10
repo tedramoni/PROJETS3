@@ -74,11 +74,11 @@ if(isset($_SESSION['pseudo']))
 
 	// AFFICHAGE DU CLIENT APRES ENVOIE DU CODE
 
-	if(isset($_POST['envoie']))
+	if(isset($_GET['envoie']))
 	{
-		if(isset($_POST['cc']))
+		if(isset($_GET['cc']))
 		{
-			$code_client=$_POST['cc'];
+			$code_client=$_GET['cc'];
 			$connexion=mysqli_connect('mysql.serversfree.com', 'u157965635_root', 'ramoni') or die ("Connexion Impossible");
 			$bd="u157965635_ikc";
 			mysqli_select_db($connexion, $bd) or die ("Erreur l.16");
