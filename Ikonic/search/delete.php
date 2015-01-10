@@ -24,7 +24,7 @@
 			
 			if ($action1 && $action2 && $action3) 
 			{
-				header("Location: success.php?state=success&type=client"); 
+				header("Location: modifier_client.php?envoie=ok&cc=".$code_client); 
 			}
 			else 
 			{

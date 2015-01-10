@@ -14,13 +14,14 @@
 			$db = "u157965635_ikc";
 			mysqli_select_db($connexion, $db);
 			$adresse=$_GET['id'];
+			$code_client=$_GET['cc'];
 					
 			$req1 = 'DELETE FROM adresse WHERE adresse.index ="'.$adresse.'"';		
 			$action1 = mysqli_query($connexion, $req1);
 			
 			if ($action1) 
 			{
-				header("Location: success.php?state=success&type=adresse"); 
+				header("Location: modifier_client.php?envoie=ok&cc=".$code_client);
 				exit();
 			}
 			else 
