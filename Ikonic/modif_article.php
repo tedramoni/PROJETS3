@@ -106,7 +106,7 @@ if(isset($_GET['ref'])) {
 				$poids=htmlentities($_POST['poids']);
 				
 				//On se connecte à la BD
-				$connexion = mysqli_connect("localhost", "root", "", "membre");
+				$connexion = mysqli_connect("mysql.serversfree.com", "u157965635_root", "ramoni");
 				//On prépare notre requête
 				$requete="UPDATE article SET libelle=?,famille=?,prix_ht=?,tva=?,prix_achat=?,nbre_stock=?,volume=?,poids=? WHERE ref=?;";
 				$prepa = mysqli_stmt_init($connexion);
