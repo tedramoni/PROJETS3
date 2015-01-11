@@ -5,7 +5,7 @@ if(!$_SESSION['pseudo'])
 {
 	header('Location:index.php');
 }
-if(isset($_POST['valider'])) {
+if(isset($_GET['ref'])) {
 	$form=false;
 }
 ?>
@@ -27,6 +27,13 @@ if(isset($_POST['valider'])) {
 				width:50px;
 			}
 	</style>
+			<script>
+			function test()
+			{
+				document.getElementById("contentArea").innerHTML ="<label>Nombre en stock: </label> <input type='number' name='nbre_stock' required='required'  min='0' step='any' />";
+				document.getElementById("contentArea").innerHTML+=" au <input type='date' name='date' value='01/01/2015'/>";
+			}
+		</script>
 
 <title>Ikonic: Modification d'un article</title>
 </head>
@@ -94,6 +101,7 @@ if(isset($_POST['valider'])) {
 				$tva=htmlentities($_POST['tva']);
 				$prix_achat=htmlentities($_POST['prix_achat']);
 				$nbre_stock=htmlentities($_POST['nbre_stock']);
+				$dateE=htmlentities($_POST['date']);
 				$volume=htmlentities($_POST['volume']);
 				$poids=htmlentities($_POST['poids']);
 				
@@ -109,9 +117,20 @@ if(isset($_POST['valider'])) {
 				// Fermeture de la requête
 				mysqli_stmt_close($prepa);
 				echo "<center><p style=\"color:green;\"><img src='Images/ok.png' />  L'article a bien été modifié.</p><br/></center>";
+			
+			if(isset($_POST['nbre_stock']) && isset($_POST['date']))
+			{
+				if(!empty($_POST['nbre_stock']) && !empty($_POST['date']))
+				{
+					
+					$requete="INSERT INTO STOCK(ref,date,nbre_entree) VALUES('{$reference}','{$dateE}',{$nbre_stock})";
+					connexion();
+					mysql_query($requete) or die(mysql_error());
+				}
 			}
 		
 		}
+	}
 	}
 ?>
 		<?php
@@ -171,12 +190,12 @@ if(isset($_POST['valider'])) {
 	}
 	else
 		{
-			if(isset($_POST['valider']))
+			if(isset($_GET['ref']))
 			{
-				if(isset($_POST['recherche']) && !empty($_POST['recherche']))
+				if(isset($_GET['ref']) && !empty($_GET['ref']))
 				{
 					connexion();
-					$reference=$_POST['recherche'];
+					$reference=$_GET['ref'];
 					$sql="SELECT COUNT(id) FROM article WHERE ref='".$reference."'";
 					$result=mysql_query($sql);
 					$data=mysql_fetch_array($result);
@@ -190,7 +209,7 @@ if(isset($_POST['valider'])) {
 					$sql='SELECT * FROM article WHERE ref="'.$reference.'"';
 					$execute=mysql_query("$sql") or die('Erreur au niveau de la requete SQL'.mysql_error());
 					$data=mysql_fetch_array($execute);
-					echo "<br/><center><a href='modif_article.php' style='border-bottom:1px dotted black;'>Revenir à la page précédente.</a><br/><br/>";
+					echo "<br/><center><a href='gestion_stock.php' style='border-bottom:1px dotted black;'>Revenir à la page précédente.</a><br/><br/>";
 	?>
 	<script>
 		function verif()
@@ -205,7 +224,7 @@ if(isset($_POST['valider'])) {
 			}
 		}
 	</script>
-	<a href="#" style="border-bottom:1px dotted red;color:red;" onclick="verif();"> Voulez-vous supprimer cette article?</a></center><br/>
+	<a href="#" style="border-bottom:1px dotted red;color:red;" onclick="verif();"> Voulez-vous supprimer cet article?</a></center><br/>
 
 		<div id="formu_contact">
 	<form method="post" action="" name="form_contact">
@@ -252,7 +271,8 @@ if(isset($_POST['valider'])) {
 					<label for="tva">TVA: </label><input type="number" name="tva"  onkeyup="calculTTC()" id="tva" onclick="calculTTC()" value="<?php echo $data['tva']; ?>" required="required"  min="0" step="any" /> %<br/>
 					<label for="ttc">Prix de vente TTC: </label><input type="number" value="<?php echo ($data['prix_ht']*$data['tva']/100)+$data['prix_ht']; ?>" name="ttc" id="ttc"disabled="disabled" required="required"  min="0" step="any" /> €<br/>
 					<label for="prix_achat">Prix d'achat: </label><input type="number" name="prix_achat" value="<?php echo $data['prix_achat']; ?>" required="required"  min="0" step="any" /> €<br/>
-					<label for="nbre_stock">Nombre en stock: </label><input type="number" name="nbre_stock" value="<?php echo $data['nbre_stock']; ?>" required="required"  min="0" step="any" /><br/>
+					<label for="nbre_stock">Stock: </label><button type="button" onclick="test()">Entrez stock </button><br/><br/>
+					<div id="contentArea"> </div>
 					<label for="volume">Volume: </label><input type="number" name="volume" value="<?php echo $data['volume']; ?>" required="required"  min="0" step="any" /> m<sup>3</sup><br/>
 					<label for="poids">Poids: </label><input type="number" name="poids" value="<?php echo $data['poids']; ?>" required="required"  min="0" step="any" /> kg<br/>
 			</fieldset>
