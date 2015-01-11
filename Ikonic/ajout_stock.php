@@ -21,6 +21,12 @@ if(!isset($_SESSION['pseudo'])) {
 					width:50px;
 				}
 		</style>
+		<script>
+			function test()
+			{
+				document.getElementById("contentArea").innerHTML ="<label>Date: </label><input type='date' value='01/01/2015'/>";
+			}
+		</script>
 
 <title>Ikonic: Ajout d'un article</title>
 </head>
@@ -78,7 +84,7 @@ if(!isset($_SESSION['pseudo'])) {
 		{
 			//Si toutes les variables existent, on vérifie qu'elles ne sont pas vide
 			if(!empty($_POST['reference']) && !empty($_POST['libelle']) && !empty($_POST['famille']) && !empty($_POST['prix_vente_ht'])
-			&& !empty($_POST['tva']) && !empty($_POST['prix_achat']) && !empty($_POST['nbre_stock']) && !empty($_POST['volume']) && !empty($_POST['poids']))
+			&& !empty($_POST['tva']) && !empty($_POST['nbre_stock']))
 			{
 				//Si elles ne sont pas vide non plus, alors on sécrurise les données pour pas que l'utilisateur entre du SQL ou du HTML dans la BD
 				$reference=htmlentities($_POST['reference']);
@@ -88,11 +94,12 @@ if(!isset($_SESSION['pseudo'])) {
 				$tva=htmlentities($_POST['tva']);
 				$prix_achat=htmlentities($_POST['prix_achat']);
 				$nbre_stock=htmlentities($_POST['nbre_stock']);
+				$dateE=htmlentities($_POST['dateE']);
 				$volume=htmlentities($_POST['volume']);
 				$poids=htmlentities($_POST['poids']);
 				
 				//On se connecte à la BD
-				$connexion = mysqli_connect("localhost", "root", "", "membre");
+				$connexion=mysqli_connect("mysql.serversfree.com", "u157965635_root", "ramoni");
 				//On prépare notre requête
 				$requete="INSERT INTO article(ref,libelle,famille,prix_ht,tva,prix_achat,nbre_stock,volume,poids) values(?,?,?,?,?,?,?,?,?);";
 				$prepa = mysqli_stmt_init($connexion);
@@ -102,6 +109,10 @@ if(!isset($_SESSION['pseudo'])) {
 				$resultat = mysqli_stmt_execute($prepa);
 				// Fermeture de la requête
 				mysqli_stmt_close($prepa);
+				
+				$requete="INSERT INTO STOCK(ref,date,nbre_entree,nbre_stock) VALUES('{$reference}','{$dateE}',{$nbre_stock},{$nbre_stock})";
+				connexion();
+				mysql_query($requete) or die(mysql_error());
 				echo "<center><p style=\"color:green;\"><img src='Images/ok.png' />  L'article a bien été enregistré.</p><br/></center>";
 			}
 		
@@ -151,10 +162,13 @@ if(!isset($_SESSION['pseudo'])) {
 					<label for="prix_vente_ht">Prix de vente HT: </label><input type="number" onkeyup="calculTTC()" id="prix_vente_ht" onclick="calculTTC()" name="prix_vente_ht" required="required" min="0" step="any" /> €<br/>
 					<label for="tva">TVA: </label><input type="number" onkeyup="calculTTC()" onclick="calculTTC()" id="tva" name="tva" required="required" min="0" step="any" /> %<br/>
 					<label for="ttc">Prix de vente TTC: </label><input type="number" name="ttc" id="ttc" required="required" min="0" step="any" disabled="disabled" /> €<br/>
-					<label for="prix_achat">Prix d'achat: </label><input type="number" name="prix_achat" required="required" min="0" step="any" /> €<br/>
-					<label for="nbre_stock">Nombre en stock: </label><input type="number" name="nbre_stock" required="required" min="0" step="any" /><br/>
-					<label for="volume">Volume: </label><input type="number" name="volume" required="required" min="0" step="any" /> m<sup>3</sup><br/>
-					<label for="poids">Poids: </label><input type="number" name="poids" required="required" min="0" step="any"/> kg<br/>
+					<label for="prix_achat">Prix d'achat: </label><input type="number" name="prix_achat" min="0" step="any" /> €<br/>
+					<label for="nbre_stock">Nombre en stock: </label><input type="number" name="nbre_stock" required="required" min="0" step="any" />
+					 au <input type="date" name="dateE" />
+					
+					<br/>
+					<label for="volume">Volume: </label><input type="number" name="volume" min="0" step="any" /> m<sup>3</sup><br/>
+					<label for="poids">Poids: </label><input type="number" name="poids" min="0" step="any"/> kg<br/>
 			</fieldset>
 
 			<center><input type="submit" name="valider" /></center>
