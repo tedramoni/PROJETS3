@@ -38,7 +38,21 @@
 		<?php include("Inclusion/gestion.php");  include("Inclusion/header.php"); actif(1); ?><br/><br/>
 		<h1 style="padding-top: 55px; text-align:center;">Ajout d'un client</h1><br/><br/>	
 	
-
+	<?php
+	if (isset($_GET['err']))
+	{
+		if ($_GET['err'] == 'err1')
+		{
+			echo "<center><p style='color:red;'>Le code client doit être de la forme : 9, puis une lettre, puis 4 chiffres (ex : 9L0015) !<center><br><br>";
+		}
+		if ($_GET['err'] == 'err2')
+		{
+			echo "<center><p style='color:red;'>Le code client existe déjà !<center><br><br>";
+		}
+	}
+	
+	
+	?>
 	
 	<div id="formu_contact">
 		<form method="post" action="process.php" id="form_contact2">

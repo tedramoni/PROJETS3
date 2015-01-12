@@ -5,6 +5,14 @@
 				connexion();
 				// Test - Code existant ?
 				$code = $_POST['code'];
+				//Test : Code dans le bon format ?
+			
+				$exprRegCode='~^9[a-zA-Z][0-9]{4,4}$~';
+				
+				if(!preg_match($exprRegCode,$code))
+				{
+					header('location: ajout_client.php?err=err1');
+				}
 				
 				$test1 = "Select code from client ";
 				$test1 .= "where code ='$code'";
@@ -21,8 +29,24 @@
 					$forme_juridique = $_POST['forme_juridique'];
 					$raison_sociale = $_POST['raison_sociale'];
 					$chk = $_POST['chk'];
-					
+					if ($chk == 'on')
+					{
+						$bool_livraison = true;
+					}
+					else
+					{
+						$bool_livraison = false;
+					}
 					// Adresse Livraison
+					$chk2 = $_POST['chk2'];
+					if ($chk == 'on')
+					{
+						$bool_facture = true;
+					}
+					else
+					{
+						$bool_facture = false;
+					}
 					$BX_code = $_POST['BX_code'];
 					$BX_adr1 = $_POST['BX_adr1'];
 					$BX_adr2 = $_POST['BX_adr2'];
@@ -36,6 +60,15 @@
 					$BX_type = $_POST['BX_type'];
 					
 					// Adresse Facturation
+					$chk3 = $_POST['chk3'];
+					if ($chk == 'on')
+					{
+						$bool_contact = true;
+					}
+					else
+					{
+						$bool_contact = false;
+					}
 					$BX_code2 = $_POST['BX_code2'];
 					$BX_adr1_2 = $_POST['BX_adr1_2'];
 					$BX_adr2_2 = $_POST['BX_adr2_2'];
@@ -82,7 +115,8 @@
 					$action1 = mysql_query($req1) or die(mysql_error());
 					echo $BX_adr1;
 					
-					
+					if($bool_livraison)
+					{
 					//Insertion adresses de livraison (table adresse)
 					for($i=0;$i<sizeof($BX_adr1);$i++)
 					{
@@ -93,7 +127,10 @@
 						$action2 = mysql_query($req2) or die(mysql_error());
 					}
 					
-				
+					}
+					
+					if($bool_facture)
+					{
 					//Insertion adresses de facturation (table adresse)
 					for($i=0;$i<sizeof($BX_adr1_2);$i++)
 					{
@@ -103,7 +140,10 @@
 						echo $req3;
 						$action3 = mysql_query($req3) or die(mysql_error());
 					}
+					}
 					
+					if($bool_contact)
+					{
 					//Insertion contacts (table contact)
 					for($i=0;$i<sizeof($code_contact);$i++)
 					{
@@ -113,7 +153,7 @@
 						echo $req4;
 						$action4 = mysql_query($req4) or die(mysql_error());
 					}
-				
+					}
 					header('location: client.php');
 					
 				}// Fin else test code client existant

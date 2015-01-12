@@ -142,7 +142,7 @@
 								<label for="email_contact">Email: </label><input type="text" name="email_contact[]" required="required" value="<?php echo $ligne[7]; ?>" /><br/>
 								</td></tr></table>
 								<br />
-								<?php if($i != 1) echo "<a title='Supprimer' href='delcontact.php?id=".$ligne[0]."'><strong>Supprimer contact</strong></a>";?> <br/>		
+								<?php echo "<center><a title='Supprimer' href='delcontact.php?id=".$ligne[0]."&cc=".$code_client."'><strong>Supprimer contact</strong></a></center>";?> <br/>		
 							</fieldset>
 							<?php $i++;		
 							}
@@ -185,8 +185,10 @@
 
 									<label for="BX_site_web">Site Web: </label>
 									<input type="text" class="small"  name="BX_site_web[]" value="<?php  echo $ligne[9]; ?>"/><br/><br/>
+									<input type="hidden" class="small"  name="index[]" value="<?php  echo $ligne[11]; ?>"/>
 								</td></tr></table>
 								<br />
+								<center><a <?php echo "href='deladresse.php?id=".$ligne[11]."&cc=".$code_client."'";?> style="border-bottom:1px dotted red;color:red;">Supprimer l'adresse</a></center>
 							</fieldset>
 							<?php $i++;		
 							}
@@ -227,13 +229,19 @@
 
 									<label for="BX_site_web">Site Web: </label>
 									<input type="text" class="small"  name="BX_site_web2[]" value="<?php  echo $ligne[9]; ?>"/><br/><br/>	
-
+									<input type="hidden" class="small"  name="index[]" value="<?php  echo $ligne[11]; ?>"/><br/><br/>
 								</td></tr></table><br/>
+								<center><a <?php echo "href='deladresse.php?id=".$ligne[11]."&cc=".$code_client."'"; ?> style="border-bottom:1px dotted red;color:red;">Supprimer l'adresse</a></center>
 							</fieldset>
 							<?php $j++;		
 							}
 						?>		
 					</div>	
+							<center><a href="<?php echo "add_infos.php?type=contact&id=".$code_client?>" onclick="window.open('<?php echo "add_infos.php?type=contact&id=".$code_client?>', 'newwindow', 'width=400, height=400, menubar=no, resizable=no, scrollbars=no, toolbar=no'); return false;">Ajouter contact</a>
+							<?php espace(5);?><a href="'<?php echo "add_infos.php?type=livraison&id=".$code_client?>" onclick="window.open('<?php echo "add_infos.php?type=livraison&id=".$code_client?>', 'newwindow', 'width=400, height=400, menubar=no, resizable=no, scrollbars=no, toolbar=no'); return false;">Ajouter adresse livraison</a>
+							<?php espace(5);?><a href="'<?php echo "add_infos.php?type=facturation&id=".$code_client?>" onclick="window.open('<?php echo "add_infos.php?type=facturation&id=".$code_client?>', 'newwindow', 'width=400, height=400, menubar=no, resizable=no, scrollbars=no, toolbar=no'); return false;">Ajouter adresse facturation</a>
+							<?php espace(5);?></center>
+							<br/>
 							<center><input type="submit" name="update" value="Modifier" />
 							<a title="suppression" href="modif_client.php?id=<?php echo $code_client; ?>"><button type="button">Supprimer client</button></a></center>			
 					</form>
@@ -255,7 +263,7 @@
 		{
 			connexion();
 			$code=$_GET['id'];
-			$sql="DELETE FROM CLIENT WHERE code='$code';";
+			$sql="DELETE FROM client WHERE code='$code';";
 			mysql_query($sql) or die(mysql_error());
 			header('Location:client.php');
 		}

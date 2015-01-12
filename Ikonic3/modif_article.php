@@ -58,7 +58,7 @@
 				// Préparation de la requête : envoi à la base
 				mysqli_stmt_prepare($prepa, $requete);
 				mysqli_stmt_bind_param($prepa,'ssdddidds',$libelle,$famille,$prix_vente_ht,$tva,$prix_achat,$nbre_stock,$volume,$poids,$reference);
-				$resultat = mysqli_stmt_execute($prepa) or die("errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrreyr");
+				$resultat = mysqli_stmt_execute($prepa) or die("errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrreur");
 				// Fermeture de la requête
 				mysqli_stmt_close($prepa);
 				echo "<center><p style=\"color:green;\"><img src='images/ok.png' />  L'article a bien été modifié.</p></center>";
@@ -69,7 +69,7 @@
 				{
 					$nbre_stock=htmlentities($_POST['nbre_stock']);
 					$dateE=htmlentities($_POST['date']);
-					$requete="INSERT INTO STOCK(ref,date,nbre_entree) VALUES('{$reference}','{$dateE}',{$nbre_stock})";
+					$requete="INSERT INTO stock(ref,date,nbre_entree) VALUES('{$reference}','{$dateE}',{$nbre_stock})";
 					connexion();
 					mysql_query($requete) or die(mysql_error());
 				}
