@@ -53,6 +53,10 @@
 	
 	
 	?>
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 	
 	<div id="formu_contact">
 		<form method="post" action="process.php" id="form_contact2">
