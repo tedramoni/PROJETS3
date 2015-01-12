@@ -43,22 +43,18 @@
 	{
 		if ($_GET['err'] == 'err1')
 		{
-			echo "<center><p style='color:red;'>Le code client doit être de la forme : 9, puis une lettre, puis 4 chiffres (ex : 9L0015) !<center><br><br>";
+			echo "<center><p style='color:red;'>Le code client doit être de la forme : 9, puis une lettre, puis 4 chiffres (ex : 9L0015) !</center><br><br>";
 		}
 		if ($_GET['err'] == 'err2')
 		{
-			echo "<center><p style='color:red;'>Le code client existe déjà !<center><br><br>";
+			echo "<center><p style='color:red;'>Le code client existe déjà !</center><br><br>";
 		}
 	}
 	
 	
 	?>
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
-	
-	<div id="formu_contact">
+<div id="formu_contact">
 		<form method="post" action="process.php" id="form_contact2">
 		<br/>
 					<label for="commercial"><u>Commercial :</u> </label><input type="text" id="commercial" name="commercial" required="required"  onkeyup="myFunction()"/>
