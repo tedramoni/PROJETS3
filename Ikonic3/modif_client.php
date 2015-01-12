@@ -26,11 +26,7 @@
         #makeWizard:hover { background-color:#000;}
     </style>
 	<script type="text/javascript" src="Inclusion/formToWizard.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $("#formu_contact").formToWizard()
-        });
-    </script>
+
 </head>
 
 
