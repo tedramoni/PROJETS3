@@ -39,7 +39,7 @@
 		<h1 style="padding-top: 55px; text-align:center;">Ajout d'un client</h1><br/><br/>	
 	
 	<?php
-	if isset($_GET['err'])
+	if (isset($_GET['err']))
 	{
 		if ($_GET['err'] == 'err1')
 		{
