@@ -10,7 +10,7 @@
 				
 				$exprRegCode='~^9[a-zA-Z][0-9]{4,4}$~';
 				
-				if(!preg_match($exprRegCode,$code)
+				if(!preg_match($exprRegCode,$code))
 				{
 					header('location: ajout_client.php?err=err1');
 				}
