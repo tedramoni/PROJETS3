@@ -93,7 +93,6 @@
 						$req1 = "INSERT INTO client";
 						$req1 .=" values ('$code', '$forme_juridique', '$raison_sociale', '$commercial', '$mode_paiement', $echeance, $bool_fdm, $jour, $remise, '$contenu')";
 						$action1 = mysql_query($req1) or die(mysql_error());
-						echo $BX_adr1;
 						
 						
 						//Insertion adresses de livraison (table adresse)
