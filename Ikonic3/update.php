@@ -83,7 +83,7 @@ if(isset($_POST)==true && empty($_POST)==false)
 					$req1 .= "info_comp = '".$contenu."' ";
 					$req1 .= "WHERE code = '".$code."';";
 					$action1 = mysql_query($req1) or die(mysqli_error());
-					/*
+					
 					//Insertion adresses de livraison (table adresse)
 					for($i=0;$i<sizeof($BX_adr1);$i++)
 					{				
@@ -101,7 +101,7 @@ if(isset($_POST)==true && empty($_POST)==false)
 						$req2 .= "WHERE `index` = ".$index[$i].";";
 						$action2 = mysql_query($req2) or die(mysql_error());						
 					}
-					/*
+					
 					//Insertion adresses de facturation (table adresse)
 					for($i=0;$i<sizeof($BX_adr1_2);$i++)
 					{
