@@ -43,13 +43,11 @@
 	{
 		if ($_GET['err'] == 'err1')
 		{
-			echo "<br>
-						<center><p style='color:red;'>Le code client doit être de la forme : 9, puis une lettre, puis 4 chiffres (ex : 9L0015) !<br>";
+			echo "<center><p style='color:red;'>Le code client doit être de la forme : 9, puis une lettre, puis 4 chiffres (ex : 9L0015) !<center><br><br>";
 		}
 		if ($_GET['err'] == 'err2')
 		{
-			echo "<br>
-						<center><p style='color:red;'>Le code client existe déjà !<br>";
+			echo "<center><p style='color:red;'>Le code client existe déjà !<center><br><br>";
 		}
 	}
 	
