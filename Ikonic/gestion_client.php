@@ -97,17 +97,17 @@ if(isset($_POST['valider'])) {
 		
 		?>
 		<br/>
-	<form name="form_contact" method="POST" action="test.php">
+	<form name="form_contact" method="POST" action="gestion_client.php">
 		Code : <input type="text" id="recherche_code" name="recherche_code" onkeyup="myFunction('code')"/>
 		<input type="submit" name="valider" /><br/><br/>			
 	</form>	
 
-	<form name="form_contact" method="POST" action="test.php">
+	<form name="form_contact" method="POST" action="gestion_client.php">
 		Commercial: <input type="text" id="recherche_commercial" name="recherche_commercial" onkeyup="myFunction('commercial')"/>
 		<input type="submit" name="valider2" /><br/><br/>				
 	</form>	
 
-	<form name="form_contact" method="POST" action="test.php">
+	<form name="form_contact" method="POST" action="gestion_client.php">
 		Raison sociale : <input type="text" id="recherche_raison" name="recherche_raison" onkeyup="myFunction('raison')"/>
 		<input type="submit" name="valider3" />			
 	</form>		
@@ -186,7 +186,7 @@ if(isset($_POST['valider'])) {
 				}
 	else
 	{
-		echo "<a href='test.php' style='border-bottom:1px dotted black;'>Revenir au listing général ici.</a><br/>";
+		echo "<a href='gestion_client.php' style='border-bottom:1px dotted black;'>Revenir au listing général ici.</a><br/>";
 	}
 	
 	?>
