@@ -95,11 +95,10 @@
 			<center>
 			<?php
 				connexion();
-				$sql2="SELECT code, raison_sociale, nom_commercial FROM client WHERE code NOT IN (SELECT code_client FROM adresse) GROUP BY code ORDER BY code";
 				if(!isset($_POST['ok']))
 				{
 					$sql ="Select code,raison_sociale,cp,ville,nom_commercial from client,adresse WHERE adresse.code_client=client.code group by code order by code";
-					//$sql = 'Select code,raison_sociale,nom_commercial from client;';
+					$sql2="SELECT code, raison_sociale, nom_commercial FROM client WHERE code NOT IN (SELECT code_client FROM adresse) GROUP BY code ORDER BY code";
 				}
 				else
 				{
@@ -107,7 +106,7 @@
 					$rs=$_POST['recherche_raison'];
 					$com=$_POST['recherche_commercial'];
 					$sql ="Select code,raison_sociale,cp,ville,nom_commercial from client,adresse WHERE adresse.code_client=client.code AND code like '$code%' AND raison_sociale like '$rs%' AND nom_commercial like '$com%'	 group by code order by code";
-					
+					$sql2="SELECT code, raison_sociale, nom_commercial FROM client WHERE code NOT IN (SELECT code_client FROM adresse) AND code like '$code%' AND raison_sociale like '$rs%' AND nom_commercial like '$com%' GROUP BY code ORDER BY code";
 				}
 			?>
 			
