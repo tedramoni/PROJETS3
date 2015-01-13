@@ -82,11 +82,16 @@
 									<label for="forme_juridique">Forme juridique: </label>
 									<select name="forme_juridique" onchange="change_manga(this.value)">
 										<option value="<?php echo $ligne[1]; ?>"><?php echo $ligne[1]; ?></option>
-										<option value="sa">S.A</option>
-										<option value="sarl">S.A.R.L</option>
-										<option value="sci">SCI</option>	
-										<option value="collectivite">Collectivité</option>
-										<option value="particulier">Particulier</option>
+										<?php
+												$tab_fj=array('S.A','S.A.R.L','SCI','Collectivité','Particulier');
+												foreach($tab_fj as $i)
+												{
+													if($i!=$ligne[1])
+													{
+														echo "<option value=\"{$i}\">{$i}</option>";
+													}
+												}
+										?>
 									</select><br/><br/>
 									<label for="raison_sociale">Raison sociale: </label><input type="text" name="raison_sociale" required="required" value="<?php  echo $ligne[2]; ?>"/>
 							</fieldset>
@@ -95,11 +100,16 @@
 									<label for="mode_paiement">Mode de règlement: </label>
 									<select name="mode_paiement" required="required" onchange="change_manga(this.value)">
 										<option value="<?php  echo $ligne[4]; ?>"><?php  echo $ligne[4]; ?></option>
-										<option value="cb">Carte bancaire</option>
-										<option value="virement">Virement</option>
-										<option value="cheque">Chèque</option>	
-										<option value="traite">Traite</option>
-										<option value="especes">Espèces</option>
+										<?php
+												$tab_paiement=array('Carte Bancaire','Virement','Chèque','Traite','Espèces');
+												foreach($tab_paiement as $i)
+												{
+													if($i!=$ligne[4])
+													{
+														echo "<option value=\"{$i}\">{$i}</option>";
+													}
+												}
+										?>
 									</select><br/><br/>
 									<label for="remise">Remise: </label><input type="number"  name="remise" min="0" max="100" value="<?php  echo $ligne[8]; ?>" required="required" /> %<br/>
 									<label for="echeance">Echeance: à </label><input type="number"  name="echeance" min="0" max="100" value="<?php  echo $ligne[5];?>" required="required" /> jours.<br/>
@@ -229,7 +239,7 @@
 
 									<label for="BX_site_web">Site Web: </label>
 									<input type="text" class="small"  name="BX_site_web2[]" value="<?php  echo $ligne[9]; ?>"/><br/><br/>	
-									<input type="hidden" class="small"  name="index[]" value="<?php  echo $ligne[11]; ?>"/><br/><br/>
+									<input type="hidden" class="small"  name="index2[]" value="<?php  echo $ligne[11]; ?>"/><br/><br/>
 								</td></tr></table><br/>
 								<center><a <?php echo "href='deladresse.php?id=".$ligne[11]."&cc=".$code_client."'"; ?> style="border-bottom:1px dotted red;color:red;">Supprimer l'adresse</a></center>
 							</fieldset>
