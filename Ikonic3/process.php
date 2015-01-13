@@ -23,7 +23,7 @@
 					$resultattest1 = mysql_fetch_row($actiontest1);
 					if ($resultattest1[0] == $code)
 					{
-						header('location: ajout_client.php?success=err1');
+						header('location: ajout_client.php?err=err2');
 					}
 					else
 					{
