@@ -249,7 +249,7 @@
 					</div>	
 
 							<center><input type="submit" name="update" value="Modifier" />
-							<a title="suppression" href="modif_client.php?id=<?php echo $code_client; ?>"><button type="button">Supprimer client</button></a></center>			
+							<a title="suppression" href="delete.php?id=<?php echo $code_client; ?>"><button type="button">Supprimer client</button></a></center>			
 					</form>
 				
 				<!-- FIN TEST FORMULAIRE -->
@@ -265,15 +265,6 @@
 			}
 
 		}//Fin if (isset($_POST['cc']))
-		if(isset($_GET['id']))
-		{
-			connexion();
-			$code=$_GET['id'];
-			$sql="DELETE FROM client WHERE code='$code';";
-			mysql_query($sql) or die(mysql_error());
-			header('Location:client.php');
-		}
-
 ?>
 	
 	
