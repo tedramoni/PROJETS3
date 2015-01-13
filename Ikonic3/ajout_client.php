@@ -53,8 +53,8 @@
 	
 	
 	?>
-
-<div id="formu_contact">
+	
+	<div id="formu_contact">
 		<form method="post" action="process.php" id="form_contact2">
 		<br/>
 					<label for="commercial"><u>Commercial :</u> </label><input type="text" id="commercial" name="commercial" required="required"  onkeyup="myFunction()"/>
@@ -71,11 +71,11 @@
 				}
 				</script>
 				<label for="forme_juridique">Forme juridique: </label>
-				<select name="forme_juridique" onchange="change_manga(this.value)"><option value="sa">S.A</option>
-					<option value="sarl">S.A.R.L</option>
-					<option value="sci">SCI</option>	
-					<option value="collectivite">Collectivité</option>
-					<option value="particulier">Particulier</option>
+				<select name="forme_juridique" onchange="change_manga(this.value)"><option value="S.A">S.A</option>
+					<option value="S.AR.L">S.A.R.L</option>
+					<option value="SCI">SCI</option>	
+					<option value="Collectivité">Collectivité</option>
+					<option value="Particulier">Particulier</option>
 				</select><br/><br/>
 				<label for="raison_sociale">Raison sociale: </label><input type="text" name="raison_sociale" required="required" />
 			</fieldset>
@@ -179,11 +179,11 @@
 			<fieldset><br/>
 				<legend>Paiement</legend>
 					<label for="mode_paiement">Mode de règlement: </label>
-					<select name="mode_paiement" required="required" onchange="change_manga(this.value)"><option value="cb">Carte bancaire</option>
-						<option value="virement">Virement</option>
-						<option value="cheque">Chèque</option>	
-						<option value="traite">Traite</option>
-						<option value="especes">Espèces</option>
+					<select name="mode_paiement" required="required" onchange="change_manga(this.value)"><option value="Carte bancaire">Carte bancaire</option>
+						<option value="Virement">Virement</option>
+						<option value="Chèque">Chèque</option>	
+						<option value="Traite">Traite</option>
+						<option value="Espèces">Espèces</option>
 					</select><br/><br/>
 					<label for="remise">Remise: </label><input type="number"  name="remise" min="0" max="100" value="0" required="required" /> %<br/>
 					<label for="echeance">Echeance: à </label><input type="number"  name="echeance" min="0" max="100" value="0" required="required" /> jours.<br/>
