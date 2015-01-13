@@ -62,7 +62,11 @@
 				$result4=mysqli_query($connexion,$query4) or die ("Erreur l.21");
 			
 				?>
-
+				<center><a href="<?php echo "add_infos.php?type=contact&id=".$code_client?>" onclick="window.open('<?php echo "add_infos.php?type=contact&id=".$code_client?>', 'newwindow', 'width=400, height=400, menubar=no, resizable=no, scrollbars=no, toolbar=no'); return false;">Ajouter contact</a>
+				<?php espace(5);?><a href="'<?php echo "add_infos.php?type=livraison&id=".$code_client?>" onclick="window.open('<?php echo "add_infos.php?type=livraison&id=".$code_client?>', 'newwindow', 'width=400, height=400, menubar=no, resizable=no, scrollbars=no, toolbar=no'); return false;">Ajouter adresse livraison</a>
+				<?php espace(5);?><a href="'<?php echo "add_infos.php?type=facturation&id=".$code_client?>" onclick="window.open('<?php echo "add_infos.php?type=facturation&id=".$code_client?>', 'newwindow', 'width=400, height=400, menubar=no, resizable=no, scrollbars=no, toolbar=no'); return false;">Ajouter adresse facturation</a>
+				<?php espace(5);?></center>
+							<br/>
 				<!-- FORMULAIRE -->
 				<div id="formu_contact">
 					<?php
@@ -233,11 +237,7 @@
 							}
 						?>		
 					</div>	
-							<center><a href="<?php echo "add_infos.php?type=contact&id=".$code_client?>" onclick="window.open('<?php echo "add_infos.php?type=contact&id=".$code_client?>', 'newwindow', 'width=400, height=400, menubar=no, resizable=no, scrollbars=no, toolbar=no'); return false;">Ajouter contact</a>
-							<?php espace(5);?><a href="'<?php echo "add_infos.php?type=livraison&id=".$code_client?>" onclick="window.open('<?php echo "add_infos.php?type=livraison&id=".$code_client?>', 'newwindow', 'width=400, height=400, menubar=no, resizable=no, scrollbars=no, toolbar=no'); return false;">Ajouter adresse livraison</a>
-							<?php espace(5);?><a href="'<?php echo "add_infos.php?type=facturation&id=".$code_client?>" onclick="window.open('<?php echo "add_infos.php?type=facturation&id=".$code_client?>', 'newwindow', 'width=400, height=400, menubar=no, resizable=no, scrollbars=no, toolbar=no'); return false;">Ajouter adresse facturation</a>
-							<?php espace(5);?></center>
-							<br/>
+
 							<center><input type="submit" name="update" value="Modifier" />
 							<a title="suppression" href="modif_client.php?id=<?php echo $code_client; ?>"><button type="button">Supprimer client</button></a></center>			
 					</form>
