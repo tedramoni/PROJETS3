@@ -84,8 +84,10 @@
 					$nbre_entree=htmlentities($_POST['nbre_stock']);
 					$dateE=htmlentities($_POST['date']);
 					$requete="INSERT INTO stock(ref,date,nbre_entree,nbre_stock) VALUES('{$reference}','{$dateE}',{$nbre_entree},{$nbre_stock})";
+					$requete2="UPDATE stock SET nbre_stock={$nbre_stock} where ref='{$reference}'";
 					connexion();
 					mysql_query($requete) or die(mysql_error());
+					mysql_query($requete2) or die(mysql_error());
 				}
 			}
 		
