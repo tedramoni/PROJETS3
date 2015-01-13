@@ -3,7 +3,7 @@ include("Inclusion/gestion.php");
 
 if(isset($_POST)==true && empty($_POST)==false)
 {
-				//Connexion à la base de données
+				//Connexion Ã  la base de donnÃ©es
 				
 				$connexion=connexion();		
 				// Test - Code existant ?
@@ -82,7 +82,7 @@ if(isset($_POST)==true && empty($_POST)==false)
 					$req1 .= "remise = '".$remise."', ";
 					$req1 .= "info_comp = '".$contenu."' ";
 					$req1 .= "WHERE code = '".$code."';";
-					$action1 = mysql_query($req1) or die(mysqli_error());
+					$action1 = mysql_query($req1) or die("Erreur action 1: ".mysql_error());
 					
 					//Insertion adresses de livraison (table adresse)
 					for($i=0;$i<sizeof($BX_adr1);$i++)
@@ -99,7 +99,8 @@ if(isset($_POST)==true && empty($_POST)==false)
 						$req2 .= "email ='".$BX_email[$i]."',";
 						$req2 .= "site_web ='".$BX_site_web[$i]."' ";
 						$req2 .= "WHERE `index` = ".$index[$i].";";
-						$action2 = mysql_query($req2) or die(mysql_error());						
+						echo $req2.'<br/>';
+						$action2 = mysql_query($req2) or die("Erreur action 2: ".mysql_error());						
 					}
 					
 					//Insertion adresses de facturation (table adresse)
@@ -117,7 +118,8 @@ if(isset($_POST)==true && empty($_POST)==false)
 						$req3 .= "email ='".$BX_email2[$i]."',";
 						$req3 .= "site_web ='".$BX_site_web2[$i]."' ";
 						$req3 .= "WHERE `index` =".$index2[$i].";";
-						$action3 = mysql_query($req3) or die(mysql_error());		
+						echo $req3;
+						$action3 = mysql_query($req3) or die("Erreur action 3 : ".mysql_error());		
 					}
 					
 					//Insertion contacts (table contact)
@@ -133,7 +135,7 @@ if(isset($_POST)==true && empty($_POST)==false)
 						$req4 .= "email ='".$email_contact[$i]."',";
 						$req4 .= "fax ='".$fax[$i]."' ";
 						$req4 .= "WHERE code ='".$code_contact[$i]."';";
-						$action4 = mysqli_query($req4) or die(mysql_error());		
+						$action4 = mysql_query($req4) or die("Erreur action 4: ".mysql_error());		
 					}								
 				/* FIN BLOC MYSQL */
 				if ($action1)
