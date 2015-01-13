@@ -41,7 +41,7 @@
                 </li>
                 <li><a href="#">BL</a></li>
                 <li><a href="#">Facturation</a></li>
-                <li><a href="#">Paramètre</a></li>
+                <li><a href="#">Paramètres</a></li>
             </ul>
 <?php
 	}
