@@ -34,7 +34,7 @@
 				//Si elles ne sont pas vide non plus, alors on sécrurise les données pour pas que l'utilisateur entre du SQL ou du HTML dans la BD
 				$reference=htmlentities($_POST['reference']);
 				$libelle=htmlentities($_POST['libelle']);
-				$famille=utf8_encode(htmlentities($_POST['famille']));
+				$famille=$_POST['famille'];
 				$prix_vente_ht=htmlentities($_POST['prix_vente_ht']);
 				$tva=htmlentities($_POST['tva']);
 				$prix_achat=htmlentities($_POST['prix_achat']);
@@ -42,7 +42,16 @@
 				$dateE=htmlentities($_POST['dateE']);
 				$volume=htmlentities($_POST['volume']);
 				$poids=htmlentities($_POST['poids']);
-				
+				//Test si la reference existe déja dans la BD
+				connexion();
+				$sql="SELECT count(ref) from article where ref='{$reference}'";
+				$test=mysql_fetch_array(mysql_query($sql)) or die("Erreur au count(ref)".mysql_error());
+				if($test[0]==1)
+				{
+					echo "<center><p style='color:red;'>Cette référence existe déjà dans la base de donnée.</p></center><br/>";
+				}
+				else
+				{
 				//On se connecte à la BD
 				$connexion=connexionI();
 				//On prépare notre requête
@@ -59,6 +68,7 @@
 				connexion();
 				mysql_query($requete) or die(mysql_error());
 				echo "<center><p style=\"color:green;\"><img src='images/ok.png' />  L'article a bien été enregistré.</p><br/></center>";
+				}
 			}
 		
 		}
