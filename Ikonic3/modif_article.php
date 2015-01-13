@@ -38,17 +38,31 @@
 		{
 			//Si toutes les variables existent, on vérifie qu'elles ne sont pas vide
 			if(!empty($_POST['reference']) && !empty($_POST['libelle']) && !empty($_POST['famille']) && !empty($_POST['prix_vente_ht'])
-			&& !empty($_POST['tva']) && !empty($_POST['prix_achat']) && !empty($_POST['volume']) && !empty($_POST['poids']))
+			&& !empty($_POST['tva']))
 			{
+				
 				//Si elles ne sont pas vide non plus, alors on sécrurise les données pour pas que l'utilisateur entre du SQL ou du HTML dans la BD
 				$reference=htmlentities($_POST['reference']);
+				//Recuperation du nombre stock ds la BD
+				connexion();
+				$sql='SELECT * FROM article WHERE ref="'.$reference.'"';
+				$execute=mysql_query("$sql") or die('Erreur au niveau de la requete SQL'.mysql_error());
+				$data=mysql_fetch_array($execute);
+				$nbre_stock=$data['nbre_stock'];
+				if(isset($_POST['nbre_stock']))
+				{
+					$nbre_stock=$nbre_stock+$_POST['nbre_stock'];
+				}
 				$libelle=htmlentities($_POST['libelle']);
-				$famille=utf8_encode(htmlentities($_POST['famille']));
+				$famille=$_POST['famille'];
 				$prix_vente_ht=htmlentities($_POST['prix_vente_ht']);
 				$tva=htmlentities($_POST['tva']);
-				$prix_achat=htmlentities($_POST['prix_achat']);
-				$volume=htmlentities($_POST['volume']);
-				$poids=htmlentities($_POST['poids']);
+				$prix_achat=$_POST['prix_achat'];
+				$volume=$_POST['volume'];
+				$poids=$_POST['poids'];
+				if(empty($poids)) $poids=0.0;
+				if(empty($volume)) $volume=0.0;
+				if(empty($prix_achat)) $prix_achat=0.0;
 				
 				//On se connecte à la BD
 				$connexion = connexionI();
@@ -67,9 +81,9 @@
 			{
 				if(!empty($_POST['nbre_stock']) && !empty($_POST['date']))
 				{
-					$nbre_stock=htmlentities($_POST['nbre_stock']);
+					$nbre_entree=htmlentities($_POST['nbre_stock']);
 					$dateE=htmlentities($_POST['date']);
-					$requete="INSERT INTO stock(ref,date,nbre_entree) VALUES('{$reference}','{$dateE}',{$nbre_stock})";
+					$requete="INSERT INTO stock(ref,date,nbre_entree,nbre_stock) VALUES('{$reference}','{$dateE}',{$nbre_entree},{$nbre_stock})";
 					connexion();
 					mysql_query($requete) or die(mysql_error());
 				}
