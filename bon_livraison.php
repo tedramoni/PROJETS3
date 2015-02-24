@@ -35,21 +35,45 @@ $pdf->addLineFormat($cols);
 
 $y    = 115;
 
-$line = array( "Référence"    => "IKE-08HBS",
-               "Désignation"  => "DVR 8 voies, 8x25 IPS @ 2CIF, VGA+HDMI\n" .
-                                 "SN : 7514552",
-               "Qté"     => "1" );
-$size = $pdf->addLine( $y, $line );
-$y   += $size + 6;
+$nbCommande=10;
+$reference=array("IKE-08HBS","IKE-DD2000","IKE-DD2000","IKE-DD2000","IKE-DD2000","IKE-DD2000","IKE-DD2000","IKE-DD2000","IKE-DD2000","IKE-DD2000");
+$designation=array("DVR 8 voies, 8x25 IPS @ 2CIF, VGA+HDMI\n" .
+					"SN : 7514552","Disque dur 2TO SV35\n" .
+					"SN : mk0013","Disque dur 2TO SV35\n" .
+					"SN : mk0013","Disque dur 2TO SV35\n" .
+					"SN : mk0013","Disque dur 2TO SV35\n" .
+					"SN : mk0013","Disque dur 2TO SV35\n" .
+					"SN : mk0013","Disque dur 2TO SV35\n" .
+					"SN : mk0013","Disque dur 2TO SV35\n" .
+					"SN : mk0013","Disque dur 2TO SV35\n" .
+					"SN : mk0013","Disque dur 2TO SV35\n" .
+					"SN : mk0013");
+$quantité=array(1,1,1,1,1,1,1,1,1,1);
+$total=array_sum ( $quantité );
+for($i=0;$i<$nbCommande;$i++){
+	if($i>=9 && $bool='false') {
+		$pdf->AddPage();
+		$bool='true';
+		$cols=array( "Référence"    => 40,
+					 "Désignation"  => 130,
+					 "Qté"     => 20);
+		$pdf->addCols2( $cols);
+		$cols=array( "Référence"    => "C",
+					 "Désignation"  => "J",
+					 "Qté"     => "C");
+		$pdf->addLineFormat($cols);
+		$y    = 35;
+	}
+	$line = array( "Référence"    => $reference[$i],
+					   "Désignation"  => $designation[$i],
+					   "Qté"     => $quantité[$i] );
+	$size = $pdf->addLine( $y, $line );
+	$y   += $size + 6;					   
+}
 
-$line = array( "Référence"    => "IKE-DD2000",
-               "Désignation"  => "Disque dur 2TO SV35\n" .
-                                 "SN : mk0013",
-               "Qté"     => "1" );
-$size = $pdf->addLine( $y, $line );
-$y   += $size + 6;
-$pdf->addCadreColis("1", "EXAPAQ", "15kg");
+$pdf->addCadreColis($total, "EXAPAQ", "15kg");
 $pdf->addNomSignature();
 $pdf->addPiedPage("IKONIC - SARL au capital de 300 000 € inscrite au RC EVRY - N° siret 34796918000020 - APE 6201Z - Identification TVA FR 51 347 969 180");
 $pdf->Output();
+	
 ?>

@@ -251,6 +251,29 @@ function addCols( $tab )
     }
 }
 
+// trace le cadre des colonnes du devis/facture
+function addCols2( $tab )
+{
+    global $colonnes;
+    
+    $r1  = 10;
+    $r2  = $this->w - ($r1 * 2) ;
+    $y1  = 20;
+    $y2  = $this->h - 60 - $y1;
+    $this->SetXY( $r1, $y1 );
+    $this->Rect( $r1, $y1, $r2, $y2, "D");
+    $this->Line( $r1, $y1+6, $r1+$r2, $y1+6);
+    $colX = $r1;
+    $colonnes = $tab;
+    while ( list( $lib, $pos ) = each ($tab) )
+    {
+        $this->SetXY( $colX, $y1+2 );
+        $this->Cell( $pos-2, 1, $lib, 0, 0, "C");
+        $colX += $pos;
+        $this->Line( $colX, $y1, $colX, $y1+$y2);
+    }
+}
+
 // mémorise le format (gauche, centre, droite) d'une colonne
 function addLineFormat( $tab )
 {
