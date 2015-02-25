@@ -153,7 +153,7 @@ $(document).ready(function() {
         var volume = valeur[2];
 
         $el = $(this);
-        $el.parent().parent().find("td.product-title textarea").val(libelle);
+        $el.parent().parent().find("td.product-title textarea.name-pics").val(libelle);
         $el.parent().parent().find("td.Poids_article input.poids").val(poids);
         $el.parent().parent().find("td.Volume_article input.volume").val(volume);
 
@@ -280,5 +280,80 @@ $(document).ready(function() {
         $el.parent().parent().find("td.row-total input.row-total-input").val(prix);
         calcProdSubTotal();
     });
-
+	
+	$(".btn_load_client").bind("click", function() {
+        $el = $(this);
+		var code_client = $el.parent().parent().find("input.cc").val();
+        if(code_client !== ""){ //si la recherche est différent de rien
+            $.ajax({
+                type: "POST",
+                url: "load_client.php",
+                data: {
+                        code_client : code_client
+                },
+                success: function (data){
+						var datas = jQuery.parseJSON(data);
+						
+						  $el.parent().parent().find("input.nom_commercial").val("");
+						  $el.parent().parent().find("input.mode_reglement").val("");
+						  $el.parent().parent().find("input.echeance").val("");
+						  $el.parent().parent().find("textarea.infos").val("");
+						   
+						  $el.parent().parent().find("input.adr1_f").val("");
+						  $el.parent().parent().find("input.adr2_f").val("");
+						  $el.parent().parent().find("input.adr3_f").val("");
+						  $el.parent().parent().find("input.cp_f").val("");
+						  $el.parent().parent().find("input.ville_f").val("");
+						  $el.parent().parent().find("input.pays_f").val("");
+						  $el.parent().parent().find("input.telbur_f").val("");
+						  $el.parent().parent().find("input.mail_f").val("");
+						  $el.parent().parent().find("input.web_f").val("");
+						  
+						  $el.parent().parent().find("input.adr1_l").val("");
+						  $el.parent().parent().find("input.adr2_l").val("");
+						  $el.parent().parent().find("input.adr3_l").val("");
+						  $el.parent().parent().find("input.cp_l").val("");
+						  $el.parent().parent().find("input.v_l").val("");
+						  $el.parent().parent().find("input.pays_l").val("");
+						  $el.parent().parent().find("input.telbur_l").val("");
+						  $el.parent().parent().find("input.mail_l").val("");
+						  $el.parent().parent().find("input.web_l").val("");
+						  
+						$.each(datas, function (key, value) {
+						 if(key==0)
+						 {						   					   
+						  $el.parent().parent().find("input.nom_commercial").val(value.nom_commercial);
+						  $el.parent().parent().find("input.mode_reglement").val(value.mode_reglement);
+						  $el.parent().parent().find("input.echeance").val(value.echeance);
+						  $el.parent().parent().find("textarea.infos").val(value.info_comp);
+						 }
+						 if(key==1)
+						 {						  
+						  $el.parent().parent().find("input.adr1_f").val(value.adr1);
+						  $el.parent().parent().find("input.adr2_f").val(value.adr2);
+						  $el.parent().parent().find("input.adr3_f").val(value.adr3);
+						  $el.parent().parent().find("input.cp_f").val(value.cp);
+						  $el.parent().parent().find("input.ville_f").val(value.ville);
+						  $el.parent().parent().find("input.pays_f").val(value.pays);
+						  $el.parent().parent().find("input.telbur_f").val(value.tel_bur);
+						  $el.parent().parent().find("input.mail_f").val(value.email);					
+						  $el.parent().parent().find("input.web_f").val(value.site_web);
+						 }
+						 if(key==2)
+						 {						  
+						  $el.parent().parent().find("input.adr1_l").val(value.adr1);					  
+						  $el.parent().parent().find("input.adr2_l").val(value.adr2);					  
+						  $el.parent().parent().find("input.adr3_l").val(value.adr3);					  
+						  $el.parent().parent().find("input.cp_l").val(value.cp);					  
+						  $el.parent().parent().find("input.v_l").val(value.ville);						  
+						  $el.parent().parent().find("input.pays_l").val(value.pays);					  
+						  $el.parent().parent().find("input.telbur_l").val(value.tel_bur);					  
+						  $el.parent().parent().find("input.mail_l").val(value.email);				  
+						  $el.parent().parent().find("input.web_l").val(value.site_web);
+						 }		 
+						});
+				}
+            });
+        }
+    });
 });

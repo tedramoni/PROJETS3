@@ -47,7 +47,8 @@
                     <br/>
 
                     <label for="code_client"><u>Code Client :</u> </label>
-                    <input type="text" id="code_client" name="code_client" onkeyup="myFunction()" />
+                    <input type="text" id="code_client" name="code_client" class="cc" onkeyup="myFunction()" />
+					<input type="button" value="Charger données client" class="btn_load_client" style="width:200px"></input>
                     <br/>
 
                     <script>
@@ -68,16 +69,16 @@
                     </script>
 
                     <label for="nom_commercial"><u>Nom Commercial :</u> </label>
-                    <input type="text" id="nom_commercial" name="nom_commercial" required="required" />
+                    <input type="text" class="nom_commercial" id="nom_commercial" name="nom_commercial" required="required" />
                     <br/>
                     <label for="mode_reglement"><u>Mode de règlement :</u> </label>
-                    <input type="text" id="mode_reglement" name="mode_reglement" required="required" />
+                    <input type="text" class="mode_reglement" id="mode_reglement" name="mode_reglement" required="required" />
                     <br/>
                     <label for="echeance"><u>Echeance :</u> </label>
-                    <input type="text" id="echeance" name="echeance" required="required" />
+                    <input type="text" class="echeance" id="echeance" name="echeance" required="required" />
                     <br/>
                     <label for="infos"><u>Informations complémentaire :</u> </label>
-                    <input type="text" id="infos" name="infos" required="required" />
+                    <textarea class="infos" id="infos" name="infos" required="required"></textarea>
                     <br/>
                 </fieldset>
                 <fieldset>
@@ -90,41 +91,41 @@
                                     <br/>
                                     <td>
                                         <label for="BX_adr1">Adresse 1: </label>
-                                        <input type="text" class="small" name="BX_adr1" />
+                                        <input type="text" class="adr1_l" name="BX_adr1" />
                                         <br/>
 
                                         <label for="BX_adr2">Adresse 2: </label>
-                                        <input type="text" class="small" name="BX_adr2" />
+                                        <input type="text" class="adr2_l" name="BX_adr2" />
                                         <br/>
 
                                         <label for="BX_adr3">Adresse 3: </label>
-                                        <input type="text" class="small" name="BX_adr3" />
+                                        <input type="text" class="adr3_l" name="BX_adr3" />
                                         <br/>
 
                                         <label for="BX_cp">Code Postal: </label>
-                                        <input type="text" class="small" name="BX_cp" />
+                                        <input type="text" class="cp_l" name="BX_cp" />
                                         <br/>
 
                                         <label for="BX_ville">Ville: </label>
-                                        <input type="text" class="small" name="BX_ville" />
+                                        <input type="text" class="v_l" name="BX_ville" />
                                         <br/>
                                         <hr>
                                     </td>
                                     <td>
                                         <label for="BX_pays">Pays: </label>
-                                        <input type="text" class="small" name="BX_pays" />
+                                        <input type="text" class="pays_l" name="BX_pays" />
                                         <br/>
 
                                         <label for="BX_tel_bur">Tel. Bureau: </label>
-                                        <input type="text" class="small" name="BX_tel_bur" />
+                                        <input type="text" class="telbur_l" name="BX_tel_bur" />
                                         <br/>
 
                                         <label for="BX_email">Email: </label>
-                                        <input type="text" class="small" name="BX_email" />
+                                        <input type="text" class="mail_l" name="BX_email" />
                                         <br/>
 
                                         <label for="BX_site_web">Site Web: </label>
-                                        <input type="text" class="small" name="BX_site_web" />
+                                        <input type="text" class="web_l" name="BX_site_web" />
                                         <br/>
                                         <br/>
                                     </td>
@@ -143,41 +144,41 @@
                                     <br/>
                                     <td>
                                         <label for="BX_adr1_2">Adresse 1: </label>
-                                        <input type="text" class="small" name="BX_adr1_2" />
+                                        <input type="text" class="adr1_f" name="BX_adr1_2" />
                                         <br />
 
                                         <label for="BX_adr2_2">Adresse 2: </label>
-                                        <input type="text" class="small" name="BX_adr2_2" />
+                                        <input type="text" class="adr2_f" name="BX_adr2_2" />
                                         <br />
 
                                         <label for="BX_adr3_2">Adresse 3: </label>
-                                        <input type="text" class="small" name="BX_adr3_2" />
+                                        <input type="text" class="adr3_f" name="BX_adr3_2" />
                                         <br />
 
                                         <label for="BX_cp2">Code Postal: </label>
-                                        <input type="text" class="small" name="BX_cp2" />
+                                        <input type="text" class="cp_f" name="BX_cp2" />
                                         <br/>
 
                                         <label for="BX_ville2">Ville: </label>
-                                        <input type="text" class="small" name="BX_ville2" />
+                                        <input type="text" class="ville_f" name="BX_ville2" />
                                         <br />
                                         <hr>
                                     </td>
                                     <td>
                                         <label for="BX_pays2">Pays: </label>
-                                        <input type="text" class="small" name="BX_pays2" />
+                                        <input type="text" class="pays_f" name="BX_pays2" />
                                         <br />
 
                                         <label for="BX_tel_bur2">Tel. Bureau: </label>
-                                        <input type="text" class="small" name="BX_tel_bur2" />
+                                        <input type="text" class="telbur_f" name="BX_tel_bur2" />
                                         <br />
 
                                         <label for="BX_email2">Email: </label>
-                                        <input type="text" class="small" name="BX_email2" />
+                                        <input type="text" class="mail_f" name="BX_email2" />
                                         <br/>
 
                                         <label for="BX_site_web2">Site Web: </label>
-                                        <input type="text" class="small" name="BX_site_web2" />
+                                        <input type="text" class="web_f" name="BX_site_web2" />
                                         <br/>
 
                                     </td>
