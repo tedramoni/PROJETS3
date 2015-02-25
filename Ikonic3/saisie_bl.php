@@ -221,40 +221,6 @@
                                 <th style="text-align: right;">Total (m3)</th>
 
                             </tr>
-                            <tr class="Ligne" id="first">
-                                <td class="supligne"> &nbsp
-                                    <input type="button" class="btn-sup" value="-" style="width:30px"> </input>
-                                </td>
-                                <td class="format">
-                                    <SELECT name="format[]" class="selected_format_input" style="width:100px">
-                                        <OPTION selected="selected" VALUE="0"></OPTION>
-                                        <?php for($i=0;$i<sizeof($article);$i++) { echo "<OPTION VALUE='{$article[$i]['prix_ht']}-{$article[$i]['libelle']}-{$article[$i]['volume']}-{$article[$i]['poids']}'>{$article[$i]['ref']}</OPTION>"; } ?>
-                                    </SELECT>
-                                </td>
-                                <td class="product-title">
-                                    <textarea placeholder="Libellé de l'article &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Numero de série" rows="3" cols="40" class="name-pics" name="namearticle[]"></textarea>
-                                </td>
-
-                                <td class="num-pallets">
-                                    <input type="number" min="0" name="qarticle[]" class="num-pallets-input" style="width:40px"></input>
-                                </td>
-
-                                <td class="prix_article">
-                                    <input type="number" name="prix_article[]" style="width:40px" class="prix"></input>&euro;</td>
-                                <td class="remise_article">
-                                    <input type="number" min="0" value="0" name="rarticle[]" style="width:40px" class="remise_article-input"></input>%
-                                </td>
-                                <td class="Poids_article">
-                                    <input type="number" name="poids_article[]" style="width:40px" class="poids" readonly></input> kg</td>
-                                <td class="Volume_article">
-                                    <input type="number" name="volume_article[]" style="width:40px" class="volume" readonly></input> m3</td>
-                                <td class="row-total">
-                                    <input type="text" name="prixtt_article[]" style="width:60px" class="row-total-input" readonly></input>&euro;</td>
-                                <td class="row-totalp">
-                                    <input type="text" name="totalp_article[]" style="width:60px" class="row-totalp-input" readonly></input>kg</td>
-                                <td class="row-totalv">
-                                    <input type="text" name="totalv_article[]" style="width:60px" class="row-totalv-input" readonly></input>m3</td>
-                            </tr>
                             <tr class="Ligne" id="default">
                                 <td class="supligne" style="text-align:center"> &nbsp
                                     <input type="button" class="btn-sup" value="-" style="width:30px align:center"> </input>
