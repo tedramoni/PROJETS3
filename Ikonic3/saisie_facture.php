@@ -168,7 +168,7 @@
                     <input type="text" class="echeance" id="echeance" name="echeance" required="required" value=<?php echo $echeance ?> />
                     <br/>
                     <label for="infos"><u>Informations complémentaire :</u> </label>
-                    <textarea class="infos" id="infos" name="infos" required="required" value=<?php echo $infos ?>></textarea>
+                    <textarea class="infos" id="infos" name="infos" required="required" ><?php echo $infos ?></textarea>
                     <br/>
                 </fieldset>
                 <fieldset>
