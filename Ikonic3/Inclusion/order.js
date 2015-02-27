@@ -146,13 +146,14 @@ $(document).ready(function() {
 
     $(".selected_format_input").change(function() {
         //var format = $(this).val();
-        var valeur = $(this).val().split("-");
+        var valeur = $(this).val().split("|");
         var format = valeur[0];
         var libelle = valeur[1] + "\nSN : ";
         var poids = valeur[3];
         var volume = valeur[2];
 
         $el = $(this);
+        $el.parent().parent().find("td.num-pallets input.num-pallets-input").val(0);
         $el.parent().parent().find("td.product-title textarea.name-pics").val(libelle);
         $el.parent().parent().find("td.Poids_article input.poids").val(poids);
         $el.parent().parent().find("td.Volume_article input.volume").val(volume);

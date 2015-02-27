@@ -10,6 +10,23 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
     <script type='text/javascript' src='Inclusion/order.js'></script>
+	<script type="text/javascript">
+    function submitForm(action)
+    {
+        document.getElementById('form1').action = action;
+        document.getElementById('form1').submit();
+    }
+	function quitter_sans_sauvegarde() {
+	  if (confirm("Quitter sans sauvegarder ?")) {
+	   window.location.href = "http://iuted.bugs3.com/projet/Ikonic3/";
+      }
+	}
+	function quitter_avec_sauvegarde() {
+	  if (confirm("Quitter et sauvegarder ce bon de livraison ?")) {
+	   	  alert("en construction");
+	  }
+	}
+</script>
 
     <title>Ikonic: Saisie d'un BL</title>
 
@@ -28,7 +45,7 @@
         <?php if (isset($_GET[ 'err'])) { if ($_GET[ 'err']=='err1' ) { echo "<center><p style='color:red;'>Le code client doit être de la forme : 9, puis une lettre, puis 4 chiffres (ex : 9L0015) !</center><br><br>"; } if ($_GET[ 'err']=='err2' ) { echo "<center><p style='color:red;'>Le code client existe déjà !</center><br><br>"; } } $liste=array(); connexion(); $sql='Select * from client' ; $requete=mysql_query($sql); while($result=mysql_fetch_array($requete)) { $liste[]=$result[ 'code']; } $sql2="SELECT * FROM article " ; $execute2=mysql_query($sql2) or die( 'Erreur au niveau de la requete'.mysql_error()); $article=array(); $i=0; while($data2=mysql_fetch_array($execute2)) { $article[$i]=$data2; $i++; } ?>
 
         <div id="formu_contact">
-            <form method="post" action=".php">
+            <form method="post" action="bl_pdf.php" id="form1">
                 <br/>
                 <label for="numero_bl"><u>N°BL :</u> </label>
                 <input type="text" id="numero_bl" name="numero_bl" required="required" />
@@ -229,25 +246,25 @@
                                 <td class="format">
                                     <SELECT name="format[]" class="selected_format_input" style="width:100px">
                                         <OPTION selected="selected" VALUE="0"></OPTION>
-                                        <?php for($i=0;$i<sizeof($article);$i++) { echo "<OPTION VALUE='{$article[$i]['prix_ht']}-{$article[$i]['libelle']}-{$article[$i]['volume']}-{$article[$i]['poids']}'>{$article[$i]['ref']}</OPTION>"; } ?>
+                                        <?php for($i=0;$i<sizeof($article);$i++) { echo "<OPTION VALUE='{$article[$i]['prix_ht']}|{$article[$i]['libelle']}|{$article[$i]['volume']}|{$article[$i]['poids']}|{$article[$i]['ref']}'>{$article[$i]['ref']}</OPTION>"; } ?>
                                     </SELECT>
                                 </td>
                                 <td class="product-title">
                                     <textarea placeholder="Libellé de l'article &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Numero de série" rows="3" cols="40" class="name-pics" name="namearticle[]"></textarea>
                                 </td>
                                 <td class="num-pallets">
-                                    <input type="number" min="0" name="qarticle[]" style="width:40px" class="num-pallets-input"></input>
+                                    <input type="number" step="any" min="0" name="qarticle[]" style="width:40px" class="num-pallets-input"></input>
                                 </td>
                                 <!-- <td class="prix_article"><span name="prix_article[]" class="prix"></span>&euro;</td> -->
                                 <td class="prix_article">
-                                    <input type="number" style="width:40px" name="prix_article[]" class="prix"></input>&euro;</td>
+                                    <input type="number" step="any" min="0" style="width:40px" name="prix_article[]" class="prix"></input>&euro;</td>
                                 <td class="remise_article">
-                                    <input type="number" min="0" value="0" style="width:40px" name="rarticle[]" class="remise_article-input"></input>%
+                                    <input type="number" step="any" min="0" value="0" style="width:40px" name="rarticle[]" class="remise_article-input"></input>%
                                 </td>
                                 <td class="Poids_article">
-                                    <input type="number" name="poids_article[]" style="width:40px" class="poids" readonly></input> kg</td>
+                                    <input type="number" step="any" min="0" name="poids_article[]" style="width:40px" class="poids" readonly></input> kg</td>
                                 <td class="Volume_article">
-                                    <input type="number" name="volume_article[]" style="width:40px" class="volume" readonly></input> m3</td>
+                                    <input type="number" step="any" min="0" name="volume_article[]" style="width:40px" class="volume" readonly></input> m3</td>
                                 <td class="row-total">
                                     <input type="text" style="width:60px" name="prixtt_article[]" class="row-total-input" readonly></input>&euro;</td>
                                 <td class="row-totalp">
@@ -273,16 +290,13 @@
                         <span> <b> TOTAL HT: </b></span>
                         <input type="text" name="totalHT" style="width:80px" class="total-box" value="0&euro;" id="product-ht" readonly></input>&euro;
                         <br />
-
                     </div>
 
                     <div class="Total" style="text-align: left;">
                         <span> <b> TOTAL TTC:</b> </span>
                         <input type="text" style="width:80px" name="totalTTC" class="total-box" value="0&euro;" id="product-subtotal" readonly></input>&euro;
                         <br />
-
                     </div>
-
                 </div>
 
                 <div class="TotalTVA" style="text-align: left;">
@@ -292,17 +306,19 @@
                 </div>
 
                 <!-- Fin Saisie Commande -->
-
+				<input type="checkbox" name="duplicata" value="Oui"> Marquer ce BL en DUPLICATA ? </input>
                 <center>
-                    <input type="submit" name="valider" name="valider" />
+                   <!-- <input type="submit" name="valider" /> -->
+				   <input type="button" onclick="submitForm('saisie_facture.php')" value="Transformer en facture" />
+				   <input type="button" onclick="quitter_sans_sauvegarde()" value="Annuler" />
+				   <input type="button" onclick="quitter_avec_sauvegarde()" value="Sauvegarder" />
+				   <input type="button" onclick="submitForm('bl_pdf.php')" value="Imprimer BL" />
                 </center>
             </form>
     </section>
     </div>
 
-
     <?php include( "Inclusion/bottom.php"); ?>
-
 </body>
 
 </html>
