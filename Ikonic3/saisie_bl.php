@@ -46,7 +46,7 @@
         <?php if (isset($_GET[ 'err'])) { if ($_GET[ 'err']=='err1' ) { echo "<center><p style='color:red;'>Le code client doit être de la forme : 9, puis une lettre, puis 4 chiffres (ex : 9L0015) !</center><br><br>"; } if ($_GET[ 'err']=='err2' ) { echo "<center><p style='color:red;'>Le code client existe déjà !</center><br><br>"; } } $liste=array(); connexion(); $sql='Select * from client' ; $requete=mysql_query($sql); while($result=mysql_fetch_array($requete)) { $liste[]=$result[ 'code']; } $sql2="SELECT * FROM article " ; $execute2=mysql_query($sql2) or die( 'Erreur au niveau de la requete'.mysql_error()); $article=array(); $i=0; while($data2=mysql_fetch_array($execute2)) { $article[$i]=$data2; $i++; } ?>
 
         <div id="formu_contact">
-            <form method="post" action="bl_pdf.php" id="form1">
+            <form method="post" action="" id="form1" .target="_blank">
                 <br/>
                 <label for="numero_bl"><u>N°BL :</u> </label>
                 <input type="text" id="numero_bl" name="numero_bl" required="required" />
