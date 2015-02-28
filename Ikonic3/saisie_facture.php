@@ -315,50 +315,88 @@
                             </tr>
 							<!-- récup des commandes précédentes -->
 							<?php
-							$i=0;
-							while($i<sizeof($_POST['format']))
-							{
-							 $pieces = explode("|", $_POST['format'][$i]);
-							 if($i==0){ echo '<tr class="Ligne" id="default">';}
-							 else { echo '<tr class="Ligne" id="suite">';}
-                                echo '<td class="supligne" style="text-align:center"> &nbsp';
-                                    echo '<input type="button" class="btn-sup" value="-" style="width:30px align:center"> </input>';
-                                echo'</td>';
-                                echo'<td class="format">';
-                                   echo' <SELECT name="format[]" class="selected_format_input" style="width:100px">';
-										echo '<OPTION selected="selected" VALUE="'.$_POST['format'][$i].'">'.$pieces[4].'</OPTION>';
-                                        echo '<OPTION VALUE="0"></OPTION>';
-                                        for($j=0;$j<sizeof($article);$j++) 
-										{ 
-											$chaine=$article[$j]['prix_ht']."|".$article[$j]['libelle']."|".$article[$j]['volume']."|".$article[$j]['poids']."|".$article[$j]['ref'];
-											$reference=$article[$j]["ref"];
-											echo '<OPTION VALUE="'.$chaine.'">'.$reference.'</OPTION>'; 
-										}
-                                    echo '</SELECT>';
-                                echo '</td>';
-                                echo'<td class="product-title">';
-                                    echo'<textarea rows="3" cols="40" class="name-pics" name="namearticle[]">'.$_POST['namearticle'][$i].'</textarea>';
-                                echo'</td>';
-                                echo'<td class="num-pallets">';
-                                    echo'<input type="number" step="any" min="0" name="qarticle[]" style="width:40px" class="num-pallets-input" value="'.$_POST['qarticle'][$i].'"></input>';
-                                echo'</td>';
-                                echo'<td class="prix_article">';
-                                    echo'<input type="number" step="any" min="0" style="width:40px" name="prix_article[]" class="prix" value="'.$_POST['prix_article'][$i].'"></input>&euro;</td>';
-                                echo'<td class="remise_article">';
-                                    echo'<input type="number" step="any" min="0" value="'.$_POST['rarticle'][$i].'" style="width:40px" name="rarticle[]" class="remise_article-input"></input>%';
-                                echo'</td>';
-                                echo'<td class="Poids_article">';
-                                    echo'<input type="number" step="any" min="0" name="poids_article[]" style="width:40px" class="poids" value="'.$_POST['poids_article'][$i].'" readonly></input> kg</td>';
-                                echo'<td class="Volume_article">';
-                                    echo'<input type="number" step="any" min="0" name="volume_article[]" style="width:40px" class="volume" value="'.$_POST['volume_article'][$i].'" readonly></input> m3</td>';
-                                echo '<td class="row-total">';
-                                    echo '<input type="text" style="width:60px" name="prixtt_article[]" class="row-total-input" value="'.$_POST['prixtt_article'][$i].'" readonly></input>&euro;</td>';
-                                echo '<td class="row-totalp">';
-                                    echo '<input type="text" name="totalp_article[]" style="width:60px" class="row-totalp-input" value="'.$_POST['totalp_article'][$i].'" readonly></input>kg</td>';
-                                echo '<td class="row-totalv">';
-                                    echo '<input type="text" name="totalv_article[]" style="width:60px" class="row-totalv-input" value="'.$_POST['totalv_article'][$i].'" readonly></input>m3</td>';
-                             echo'</tr>';
-							$i++;
+							if(isset($_POST) &&!empty($_POST)){
+								$i=0;
+								while($i<sizeof($_POST['format']))
+								{
+								 $pieces = explode("|", $_POST['format'][$i]);
+								 if($i==0){ echo '<tr class="Ligne" id="default">';}
+								 else { echo '<tr class="Ligne" id="suite">';}
+									echo '<td class="supligne" style="text-align:center"> &nbsp';
+										echo '<input type="button" class="btn-sup" value="-" style="width:30px align:center"> </input>';
+									echo'</td>';
+									echo'<td class="format">';
+									   echo' <SELECT name="format[]" class="selected_format_input" style="width:100px">';
+											echo '<OPTION selected="selected" VALUE="'.$_POST['format'][$i].'">'.$pieces[4].'</OPTION>';
+											echo '<OPTION VALUE="0"></OPTION>';
+											for($j=0;$j<sizeof($article);$j++) 
+											{ 
+												$chaine=$article[$j]['prix_ht']."|".$article[$j]['libelle']."|".$article[$j]['volume']."|".$article[$j]['poids']."|".$article[$j]['ref'];
+												$reference=$article[$j]["ref"];
+												echo '<OPTION VALUE="'.$chaine.'">'.$reference.'</OPTION>'; 
+											}
+										echo '</SELECT>';
+									echo '</td>';
+									echo'<td class="product-title">';
+										echo'<textarea rows="3" cols="40" class="name-pics" name="namearticle[]">'.$_POST['namearticle'][$i].'</textarea>';
+									echo'</td>';
+									echo'<td class="num-pallets">';
+										echo'<input type="number" step="any" min="0" name="qarticle[]" style="width:40px" class="num-pallets-input" value="'.$_POST['qarticle'][$i].'"></input>';
+									echo'</td>';
+									echo'<td class="prix_article">';
+										echo'<input type="number" step="any" min="0" style="width:40px" name="prix_article[]" class="prix" value="'.$_POST['prix_article'][$i].'"></input>&euro;</td>';
+									echo'<td class="remise_article">';
+										echo'<input type="number" step="any" min="0" value="'.$_POST['rarticle'][$i].'" style="width:40px" name="rarticle[]" class="remise_article-input"></input>%';
+									echo'</td>';
+									echo'<td class="Poids_article">';
+										echo'<input type="number" step="any" min="0" name="poids_article[]" style="width:40px" class="poids" value="'.$_POST['poids_article'][$i].'" readonly></input> kg</td>';
+									echo'<td class="Volume_article">';
+										echo'<input type="number" step="any" min="0" name="volume_article[]" style="width:40px" class="volume" value="'.$_POST['volume_article'][$i].'" readonly></input> m3</td>';
+									echo '<td class="row-total">';
+										echo '<input type="text" style="width:60px" name="prixtt_article[]" class="row-total-input" value="'.$_POST['prixtt_article'][$i].'" readonly></input>&euro;</td>';
+									echo '<td class="row-totalp">';
+										echo '<input type="text" name="totalp_article[]" style="width:60px" class="row-totalp-input" value="'.$_POST['totalp_article'][$i].'" readonly></input>kg</td>';
+									echo '<td class="row-totalv">';
+										echo '<input type="text" name="totalv_article[]" style="width:60px" class="row-totalv-input" value="'.$_POST['totalv_article'][$i].'" readonly></input>m3</td>';
+								 echo'</tr>';
+								$i++;
+								}
+							}
+							else {?>
+							    <tr class="Ligne" id="default">
+                                <td class="supligne" style="text-align:center"> &nbsp
+                                    <input type="button" class="btn-sup" value="-" style="width:30px align:center"> </input>
+                                </td>
+                                <td class="format">
+                                    <SELECT name="format[]" class="selected_format_input" style="width:100px">
+                                        <OPTION selected="selected" VALUE="0"></OPTION>
+                                        <?php for($i=0;$i<sizeof($article);$i++) { echo "<OPTION VALUE='{$article[$i]['prix_ht']}|{$article[$i]['libelle']}|{$article[$i]['volume']}|{$article[$i]['poids']}|{$article[$i]['ref']}'>{$article[$i]['ref']}</OPTION>"; } ?>
+                                    </SELECT>
+                                </td>
+                                <td class="product-title">
+                                    <textarea placeholder="Libellé de l'article &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Numero de série" rows="3" cols="40" class="name-pics" name="namearticle[]"></textarea>
+                                </td>
+                                <td class="num-pallets">
+                                    <input type="number" step="any" min="0" name="qarticle[]" style="width:40px" class="num-pallets-input"></input>
+                                </td>
+                                <!-- <td class="prix_article"><span name="prix_article[]" class="prix"></span>&euro;</td> -->
+                                <td class="prix_article">
+                                    <input type="number" step="any" min="0" style="width:40px" name="prix_article[]" class="prix"></input>&euro;</td>
+                                <td class="remise_article">
+                                    <input type="number" step="any" min="0" value="0" style="width:40px" name="rarticle[]" class="remise_article-input"></input>%
+                                </td>
+                                <td class="Poids_article">
+                                    <input type="number" step="any" min="0" name="poids_article[]" style="width:40px" class="poids" readonly></input> kg</td>
+                                <td class="Volume_article">
+                                    <input type="number" step="any" min="0" name="volume_article[]" style="width:40px" class="volume" readonly></input> m3</td>
+                                <td class="row-total">
+                                    <input type="text" style="width:60px" name="prixtt_article[]" class="row-total-input" readonly></input>&euro;</td>
+                                <td class="row-totalp">
+                                    <input type="text" name="totalp_article[]" style="width:60px" class="row-totalp-input" readonly></input>kg</td>
+                                <td class="row-totalv">
+                                    <input type="text" name="totalv_article[]" style="width:60px" class="row-totalv-input" readonly></input>m3</td>
+                            </tr>
+							<?php
 							}
 							?>
 							<!-- ligne pour commander -->

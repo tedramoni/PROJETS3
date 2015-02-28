@@ -8,15 +8,26 @@
 		if($i==1)
 		{
 ?>
-			<li class="active"><a href="client.php">Client</a></li>
+			<li class="active"><a href="client.php">Client</a>
 <?php			
 		}
 		else
 		{
 ?>
-			<li><a href="client.php">Client</a></li>
+			<li><a href="client.php">Client</a>
 <?php
 		}
+?>
+                    <ul class="subs">
+                        <li><a href="client.php">Client</a>
+                            <ul>
+                                <li><a href="client.php">Listing des clients</a></li>
+                                <li><a href="ajout_client.php">Ajouter un client</a></li>
+                            </ul>
+                        </li>
+
+                    </ul></li>
+<?php
 		if($i==1){
 			echo '<li><a href="article.php">Article</a>';
 		}
@@ -39,8 +50,8 @@
 
                     </ul>
                 </li>
-                <li><a href="#">BL</a></li>
-                <li><a href="#">Facturation</a></li>
+                <li><a href="saisie_bl.php">BL</a></li>
+                <li><a href="saisie_facture.php">Facturation</a></li>
                 <li><a href="#">Paramètres</a></li>
             </ul>
 <?php
