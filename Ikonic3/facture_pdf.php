@@ -105,7 +105,7 @@ if(isset($_POST))
 
 	$pdf->addFraisPort("1500");
 	$pdf->addReglementEcheance($_POST['mode_reglement'],$_POST['echeance']);
-	$pdf->addCadrePaiement("0,00",$_POST['totalHT'],$_POST['totalTVA'],$_POST['totalTTC'],"0.00",$_POST['totalTTC']);
+	$pdf->addCadrePaiement($_POST['totalPort'],$_POST['totalHT'],$_POST['totalTVA'],$_POST['totalTTC'],"0.00",$_POST['totalTTC']);
 	$pdf->addPiedPage("IKONIC - SARL au capital de 300 000 € inscrite au RC EVRY - N° siret 34796918000020 - APE 6201Z - Identification TVA FR 51 347 969 180");
 	$pdf->Output();
 }

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
-    <script type='text/javascript' src='Inclusion/order.js'></script>
+    <script type='text/javascript' src='Inclusion/order_facture.js'></script>
 	<script type="text/javascript">
     function submitForm(action)
     {
@@ -42,7 +42,7 @@
         <br/>
         <br/>
 
-        <?php if (isset($_GET[ 'err'])) { if ($_GET[ 'err']=='err1' ) { echo "<center><p style='color:red;'>Le code client doit être de la forme : 9, puis une lettre, puis 4 chiffres (ex : 9L0015) !</center><br><br>"; } if ($_GET[ 'err']=='err2' ) { echo "<center><p style='color:red;'>Le code client existe déjà !</center><br><br>"; } } $liste=array(); connexion(); $sql='Select * from client' ; $requete=mysql_query($sql); while($result=mysql_fetch_array($requete)) { $liste[]=$result[ 'code']; } $sql2="SELECT * FROM article " ; $execute2=mysql_query($sql2) or die( 'Erreur au niveau de la requete'.mysql_error()); $article=array(); $i=0; while($data2=mysql_fetch_array($execute2)) { $article[$i]=$data2; $i++; } ?>
+        <?php if (isset($_GET[ 'err'])) { if ($_GET[ 'err']=='err1' ) { echo "<center><p style='color:red;'>Le code client doit être de la forme : 9, puis une lettre, puis 4 chiffres (ex : 9L0015) !</center><br><br>"; } if ($_GET[ 'err']=='err2' ) { echo "<center><p style='color:red;'>Le code client existe déjà !</center><br><br>"; } } $liste=array(); connexion(); $sql='Select * from client' ; $requete=mysql_query($sql); while($result=mysql_fetch_array($requete)) { $liste[]=$result[ 'code']; } $sql2="SELECT * FROM article " ; $execute2=mysql_query($sql2) or die( 'Erreur au niveau de la requete'.mysql_error()); $article=array(); $i=0; while($data2=mysql_fetch_array($execute2)) { $article[$i]=$data2; $i++; } ?>		
 		<?php
 		if(isset($_POST))
 		{
@@ -121,23 +121,23 @@
                 <input type="text" id="numero_f" name="numero_f" required="required" value=""/><br/>
 				
                 <label for="numero_bl"><u>N°BL :</u> </label>
-                <input type="text" id="numero_bl" name="numero_bl" required="required" value=<?php echo $numero_bl ?>/>
+                <input type="text" id="numero_bl" name="numero_bl" required="required" value='<?php echo $numero_bl; ?>'/>
 
                 <fieldset>
                     <br/>
                     <legend>Bon de livraison</legend>
                     <label for="date">Date : </label>
-                    <input type="date" name="date" id="date" maxlength="6" required="required" value=<?php echo $date ?> />
+                    <input type="date" name="date" id="date" maxlength="6" required="required" value='<?php echo $date; ?>' />
                     <br/>
                     <label for="ref_client"><u>Référence du client :</u> </label>
-                    <input type="text" id="ref_client" name="ref_client" required="required" value=<?php echo $ref_client ?> />
+                    <input type="text" id="ref_client" name="ref_client" required="required" value='<?php echo $ref_client; ?>' />
                     <br/>
                     <label for="ref_fournisseur"><u>Référence du fournisseur :</u> </label>
-                    <input type="text" id="ref_fournisseur" name="ref_fournisseur" required="required" value=<?php echo $ref_fournisseur ?> />
+                    <input type="text" id="ref_fournisseur" name="ref_fournisseur" required="required" value='<?php echo $ref_fournisseur; ?>' />
                     <br/>
 
                     <label for="code_client"><u>Code Client :</u> </label>
-                    <input type="text" id="code_client" name="code_client" class="cc" onkeyup="myFunction()" value=<?php echo $code_client ?>/>
+                    <input type="text" id="code_client" name="code_client" class="cc" onkeyup="myFunction()" value='<?php echo $code_client; ?>'/>
 					<input type="button" value="Charger données client" class="btn_load_client" style="width:200px"></input>
                     <br/>
 
@@ -159,16 +159,16 @@
                     </script>
 
                     <label for="nom_commercial"><u>Nom Commercial :</u> </label>
-                    <input type="text" class="nom_commercial" id="nom_commercial" name="nom_commercial" required="required" value=<?php echo $nom_commercial ?> />
+                    <input type="text" class="nom_commercial" id="nom_commercial" name="nom_commercial" required="required" value='<?php echo $nom_commercial; ?> '/>
                     <br/>
                     <label for="mode_reglement"><u>Mode de règlement :</u> </label>
-                    <input type="text" class="mode_reglement" id="mode_reglement" name="mode_reglement" required="required" value=<?php echo $mode_reglement ?>/>
+                    <input type="text" class="mode_reglement" id="mode_reglement" name="mode_reglement" required="required" value='<?php echo $mode_reglement; ?>'/>
                     <br/>
                     <label for="echeance"><u>Echeance :</u> </label>
-                    <input type="text" class="echeance" id="echeance" name="echeance" required="required" value=<?php echo $echeance ?> />
+                    <input type="text" class="echeance" id="echeance" name="echeance" required="required" value='<?php echo $echeance; ?>' />
                     <br/>
                     <label for="infos"><u>Informations complémentaire :</u> </label>
-                    <textarea class="infos" id="infos" name="infos" required="required" ><?php echo $infos ?></textarea>
+                    <textarea class="infos" id="infos" name="infos" required="required" ><?php echo $infos; ?></textarea>
                     <br/>
                 </fieldset>
                 <fieldset>
@@ -181,41 +181,41 @@
                                     <br/>
                                     <td>
                                         <label for="BX_adr1">Adresse 1: </label>
-                                        <input type="text" class="adr1_l" name="BX_adr1" value=<?php echo $BX_adr1 ?> />
+                                        <input type="text" class="adr1_l" name="BX_adr1" value='<?php echo $BX_adr1; ?> '/>
                                         <br/>
 
                                         <label for="BX_adr2">Adresse 2: </label>
-                                        <input type="text" class="adr2_l" name="BX_adr2" value=<?php echo $BX_adr2 ?> />
+                                        <input type="text" class="adr2_l" name="BX_adr2" value='<?php echo $BX_adr2; ?>' />
                                         <br/>
 
                                         <label for="BX_adr3">Adresse 3: </label>
-                                        <input type="text" class="adr3_l" name="BX_adr3" value=<?php echo $BX_adr3 ?> />
+                                        <input type="text" class="adr3_l" name="BX_adr3" value='<?php echo $BX_adr3; ?>' />
                                         <br/>
 
                                         <label for="BX_cp">Code Postal: </label>
-                                        <input type="text" class="cp_l" name="BX_cp" value=<?php echo $BX_cp ?>/>
+                                        <input type="text" class="cp_l" name="BX_cp" value='<?php echo $BX_cp; ?>'/>
                                         <br/>
 
                                         <label for="BX_ville">Ville: </label>
-                                        <input type="text" class="v_l" name="BX_ville" value=<?php echo $BX_ville ?> />
+                                        <input type="text" class="v_l" name="BX_ville" value='<?php echo $BX_ville; ?>' />
                                         <br/>
                                         <hr>
                                     </td>
                                     <td>
                                         <label for="BX_pays">Pays: </label>
-                                        <input type="text" class="pays_l" name="BX_pays" value=<?php echo $BX_pays ?> />
+                                        <input type="text" class="pays_l" name="BX_pays" value='<?php echo $BX_pays; ?>' />
                                         <br/>
 
                                         <label for="BX_tel_bur">Tel. Bureau: </label>
-                                        <input type="text" class="telbur_l" name="BX_tel_bur" value=<?php echo $BX_tel_bur ?> />
+                                        <input type="text" class="telbur_l" name="BX_tel_bur" value='<?php echo $BX_tel_bur; ?> '/>
                                         <br/>
 
                                         <label for="BX_email">Email: </label>
-                                        <input type="text" class="mail_l" name="BX_email" value=<?php echo $BX_email ?>/>
+                                        <input type="text" class="mail_l" name="BX_email" value='<?php echo $BX_email; ?>'/>
                                         <br/>
 
                                         <label for="BX_site_web">Site Web: </label>
-                                        <input type="text" class="web_l" name="BX_site_web" value=<?php echo $BX_site_web ?>/>
+                                        <input type="text" class="web_l" name="BX_site_web" value='<?php echo $BX_site_web;?>'/>
                                         <br/>
                                         <br/>
                                     </td>
@@ -234,41 +234,41 @@
                                     <br/>
                                     <td>
                                         <label for="BX_adr1_2">Adresse 1: </label>
-                                        <input type="text" class="adr1_f" name="BX_adr1_2" value=<?php echo $BX_adr1_2 ?> />
+                                        <input type="text" class="adr1_f" name="BX_adr1_2" value='<?php echo $BX_adr1_2; ?>' />
                                         <br />
 
                                         <label for="BX_adr2_2">Adresse 2: </label>
-                                        <input type="text" class="adr2_f" name="BX_adr2_2" value=<?php echo $BX_adr2_2 ?>/>
+                                        <input type="text" class="adr2_f" name="BX_adr2_2" value='<?php echo $BX_adr2_2;?>'/>
                                         <br />
 
                                         <label for="BX_adr3_2">Adresse 3: </label>
-                                        <input type="text" class="adr3_f" name="BX_adr3_2" value=<?php echo $BX_adr3_2 ?>/>
+                                        <input type="text" class="adr3_f" name="BX_adr3_2" value='<?php echo $BX_adr3_2; ?>'/>
                                         <br />
 
                                         <label for="BX_cp2">Code Postal: </label>
-                                        <input type="text" class="cp_f" name="BX_cp2" value=<?php echo $BX_cp2 ?> />
+                                        <input type="text" class="cp_f" name="BX_cp2" value='<?php echo $BX_cp2; ?>' />
                                         <br/>
 
                                         <label for="BX_ville2">Ville: </label>
-                                        <input type="text" class="ville_f" name="BX_ville2" value=<?php echo $BX_ville2 ?>/>
+                                        <input type="text" class="ville_f" name="BX_ville2" value='<?php echo $BX_ville2; ?>'/>
                                         <br />
                                         <hr>
                                     </td>
                                     <td>
                                         <label for="BX_pays2">Pays: </label>
-                                        <input type="text" class="pays_f" name="BX_pays2" value=<?php echo $BX_pays2 ?>/>
+                                        <input type="text" class="pays_f" name="BX_pays2" value='<?php echo $BX_pays2; ?>'/>
                                         <br />
 
                                         <label for="BX_tel_bur2">Tel. Bureau: </label>
-                                        <input type="text" class="telbur_f" name="BX_tel_bur2" value=<?php echo $BX_tel_bur2 ?>/>
+                                        <input type="text" class="telbur_f" name="BX_tel_bur2" value='<?php echo $BX_tel_bur2; ?>'/>
                                         <br />
 
                                         <label for="BX_email2">Email: </label>
-                                        <input type="text" class="mail_f" name="BX_email2" value=<?php echo $BX_email2 ?>/>
+                                        <input type="text" class="mail_f" name="BX_email2" value='<?php echo $BX_email2; ?>'/>
                                         <br/>
 
                                         <label for="BX_site_web2">Site Web: </label>
-                                        <input type="text" class="web_f" name="BX_site_web2" value=<?php echo $BX_site_web2 ?> />
+                                        <input type="text" class="web_f" name="BX_site_web2" value='<?php echo $BX_site_web2; ?> '/>
                                         <br/>
 
                                     </td>
@@ -282,7 +282,7 @@
                     <legend>Livraison</legend>
                     <label for="expedition">Expedition: </label>
                     <select name="expedition" required="required" onchange="change_manga(this.value)">
-						<option value=<?php echo $expedition ?>><?php echo $expedition ?></option>
+						<option value='<?php echo $expedition; ?>'><?php echo $expedition; ?></option>
                         <option value="Retrait">Retrait</option>
                         <option value="Chronopost">Chronopost</option>
                         <option value="TNT Express">TNT Express</option>
@@ -311,40 +311,88 @@
                                 <th style="text-align: right;">Total (&euro;)</th>
                                 <th style="text-align: right;">Total (kg)</th>
                                 <th style="text-align: right;">Total (m3)</th>
-
                             </tr>
-                            <tr class="Ligne" id="default">
+							<!-- récup des commandes précédentes -->
+							<?php
+							$i=0;
+							while($i<sizeof($_POST['format']))
+							{
+							 $pieces = explode("|", $_POST['format'][$i]);
+							 if($i==0){ echo '<tr class="Ligne" id="default">';}
+							 else { echo '<tr class="Ligne" id="suite">';}
+                                echo '<td class="supligne" style="text-align:center"> &nbsp';
+                                    echo '<input type="button" class="btn-sup" value="-" style="width:30px align:center"> </input>';
+                                echo'</td>';
+                                echo'<td class="format">';
+                                   echo' <SELECT name="format[]" class="selected_format_input" style="width:100px">';
+										echo '<OPTION selected="selected" VALUE="'.$_POST['format'][$i].'">'.$pieces[4].'</OPTION>';
+                                        echo '<OPTION VALUE="0"></OPTION>';
+                                        for($j=0;$j<sizeof($article);$j++) 
+										{ 
+											$chaine=$article[$j]['prix_ht']."|".$article[$j]['libelle']."|".$article[$j]['volume']."|".$article[$j]['poids']."|".$article[$j]['ref'];
+											$reference=$article[$j]["ref"];
+											echo '<OPTION VALUE="'.$chaine.'">'.$reference.'</OPTION>'; 
+										}
+                                    echo '</SELECT>';
+                                echo '</td>';
+                                echo'<td class="product-title">';
+                                    echo'<textarea rows="3" cols="40" class="name-pics" name="namearticle[]">'.$_POST['namearticle'][$i].'</textarea>';
+                                echo'</td>';
+                                echo'<td class="num-pallets">';
+                                    echo'<input type="number" step="any" min="0" name="qarticle[]" style="width:40px" class="num-pallets-input" value="'.$_POST['qarticle'][$i].'"></input>';
+                                echo'</td>';
+                                echo'<td class="prix_article">';
+                                    echo'<input type="number" step="any" min="0" style="width:40px" name="prix_article[]" class="prix" value="'.$_POST['prix_article'][$i].'"></input>&euro;</td>';
+                                echo'<td class="remise_article">';
+                                    echo'<input type="number" step="any" min="0" value="'.$_POST['rarticle'][$i].'" style="width:40px" name="rarticle[]" class="remise_article-input"></input>%';
+                                echo'</td>';
+                                echo'<td class="Poids_article">';
+                                    echo'<input type="number" step="any" min="0" name="poids_article[]" style="width:40px" class="poids" value="'.$_POST['poids_article'][$i].'" readonly></input> kg</td>';
+                                echo'<td class="Volume_article">';
+                                    echo'<input type="number" step="any" min="0" name="volume_article[]" style="width:40px" class="volume" value="'.$_POST['volume_article'][$i].'" readonly></input> m3</td>';
+                                echo '<td class="row-total">';
+                                    echo '<input type="text" style="width:60px" name="prixtt_article[]" class="row-total-input" value="'.$_POST['prixtt_article'][$i].'" readonly></input>&euro;</td>';
+                                echo '<td class="row-totalp">';
+                                    echo '<input type="text" name="totalp_article[]" style="width:60px" class="row-totalp-input" value="'.$_POST['totalp_article'][$i].'" readonly></input>kg</td>';
+                                echo '<td class="row-totalv">';
+                                    echo '<input type="text" name="totalv_article[]" style="width:60px" class="row-totalv-input" value="'.$_POST['totalv_article'][$i].'" readonly></input>m3</td>';
+                             echo'</tr>';
+							$i++;
+							}
+							?>
+							<!-- ligne pour commander -->
+                            <tr class="Ligne" id="port">
                                 <td class="supligne" style="text-align:center"> &nbsp
-                                    <input type="button" class="btn-sup" value="-" style="width:30px align:center"> </input>
+                                    <!-- <input type="button" class="btn-sup" value="-" style="width:30px align:center" hidden> </input> -->
                                 </td>
                                 <td class="format">
-                                    <SELECT name="format[]" class="selected_format_input" style="width:100px">
-                                        <OPTION selected="selected" VALUE="0"></OPTION>
-                                        <?php for($i=0;$i<sizeof($article);$i++) { echo "<OPTION VALUE='{$article[$i]['prix_ht']}|{$article[$i]['libelle']}|{$article[$i]['volume']}|{$article[$i]['poids']}|{$article[$i]['ref']}'>{$article[$i]['ref']}</OPTION>"; } ?>
+                                    <SELECT name="format[]" class="selected_format_input" style="width:100px" readonly>
+                                        <OPTION selected="selected" VALUE="24|Frais de port|0|0|IKA-PORT">IKA-PORT</OPTION>
+										<OPTION VALUE="0"></OPTION>
+                                        for($i=0;$i<sizeof($article);$i++) { echo "<OPTION VALUE='{$article[$i]['prix_ht']}|{$article[$i]['libelle']}|{$article[$i]['volume']}|{$article[$i]['poids']}|{$article[$i]['ref']}'>{$article[$i]['ref']}</OPTION>"; }
                                     </SELECT>
                                 </td>
                                 <td class="product-title">
-                                    <textarea placeholder="Libellé de l'article &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Numero de série" rows="3" cols="40" class="name-pics" name="namearticle[]"></textarea>
+                                    <textarea placeholder="Libellé de l'article &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Numero de série" rows="3" cols="40" class="name-pics" name="namearticle[]" readonly>Frais de Port</textarea>
                                 </td>
                                 <td class="num-pallets">
-                                    <input type="number" step="any" min="0" name="qarticle[]" style="width:40px" class="num-pallets-input"></input>
+                                    <input type="number" step="any" min="1" name="qarticle[]" style="width:40px" class="num-pallets-input" value="1" readonly></input>
                                 </td>
-                                <!-- <td class="prix_article"><span name="prix_article[]" class="prix"></span>&euro;</td> -->
                                 <td class="prix_article">
-                                    <input type="number" step="any" min="0" style="width:40px" name="prix_article[]" class="prix"></input>&euro;</td>
+                                    <input type="number" step="any" min="0" style="width:40px" name="prix_article[]" class="prix" value="24" readonly></input>&euro;</td>
                                 <td class="remise_article">
-                                    <input type="number" step="any" min="0" value="0" style="width:40px" name="rarticle[]" class="remise_article-input"></input>%
+                                    <input type="number" step="any" min="0" value="0" style="width:40px" name="rarticle[]" class="remise_article-input" value="0" readonly></input>%
                                 </td>
                                 <td class="Poids_article">
-                                    <input type="number" step="any" min="0" name="poids_article[]" style="width:40px" class="poids" readonly></input> kg</td>
+                                    <input type="number" step="any" min="0" name="poids_article[]" style="width:40px" class="poids" value="0"readonly></input> kg</td>
                                 <td class="Volume_article">
-                                    <input type="number" step="any" min="0" name="volume_article[]" style="width:40px" class="volume" readonly></input> m3</td>
+                                    <input type="number" step="any" min="0" name="volume_article[]" style="width:40px" class="volume" value="0" readonly></input> m3</td>
                                 <td class="row-total">
-                                    <input type="text" style="width:60px" name="prixtt_article[]" class="row-total-input" readonly></input>&euro;</td>
+                                    <input type="text" style="width:60px" name="prixtt_article[]" class="row-total-input" value="24" readonly></input>&euro;</td>
                                 <td class="row-totalp">
-                                    <input type="text" name="totalp_article[]" style="width:60px" class="row-totalp-input" readonly></input>kg</td>
+                                    <input type="text" name="totalp_article[]" style="width:60px" class="row-totalp-input" value="0" readonly></input>kg</td>
                                 <td class="row-totalv">
-                                    <input type="text" name="totalv_article[]" style="width:60px" class="row-totalv-input" readonly></input>m3</td>
+                                    <input type="text" name="totalv_article[]" style="width:60px" class="row-totalv-input" value="0" readonly></input>m3</td>
                             </tr>
                         </tbody>
                     </table>
@@ -352,32 +400,34 @@
 
                     <div class="TotalPoids" style="text-align: left;">
                         <span>  <b>TOTAL POIDS:</b> </span>
-                        <input type="text" name="totalPoids" style="width:80px" class="total-poids" value="0" id="product-poids" readonly></input>kg
+                        <input type="text" name="totalPoids" style="width:80px" class="total-poids" value='<?php echo $_POST['totalPoids']; ?>' id="product-poids" readonly></input>kg
                     </div>
                     <div class="TotalVolume" style="text-align: left;">
                         <span> <b> TOTAL VOLUME: </b></span>
-                        <input type="text" name="totalVolume" style="width:80px" class="total-volume" value="0" id="product-volume" readonly></input>m3
+                        <input type="text" name="totalVolume" style="width:80px" class="total-volume" value='<?php echo $_POST['totalVolume']; ?>' id="product-volume" readonly></input>m3
                         <br />
                     </div>
                     <br/>
                     <div class="TotalHT" style="text-align: left;">
                         <span> <b> TOTAL HT: </b></span>
-                        <input type="text" name="totalHT" style="width:80px" class="total-box" value="0&euro;" id="product-ht" readonly></input>&euro;
+                        <input type="text" name="totalHT" style="width:80px" class="total-box" value='<?php echo $_POST['totalHT']+24; ?>' id="product-ht" readonly></input>&euro;
                         <br />
                     </div>
 
                     <div class="Total" style="text-align: left;">
                         <span> <b> TOTAL TTC:</b> </span>
-                        <input type="text" style="width:80px" name="totalTTC" class="total-box" value="0&euro;" id="product-subtotal" readonly></input>&euro;
+                        <input type="text" style="width:80px" name="totalTTC" class="total-box" value='<?php echo $_POST['totalTTC']+28.8; ?>' id="product-subtotal" readonly></input>&euro;
                         <br />
                     </div>
                 </div>
 
                 <div class="TotalTVA" style="text-align: left;">
                     <span>  <b>DONT T.V.A:</b></span>
-                    <input type="text" class="total-box" style="width:80px" value="0&euro;" name="totalTVA" id="product-TVA" readonly></input>&euro;
+                    <input type="text" class="total-box" style="width:80px" value='<?php echo $_POST['totalTVA']+4.8;?>' name="totalTVA" id="product-TVA" readonly></input>&euro;
                     <br />
                 </div>
+				
+				<input type="text" name="totalPort" style="width:80px" class="total-port" value='24' id="product-poort" readonly hidden></input>
 
                 <!-- Fin Saisie Commande -->
 				<input type="checkbox" name="duplicata" value="Oui"> Marquer cette Facture en DUPLICATA ? </input>
