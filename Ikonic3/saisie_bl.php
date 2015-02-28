@@ -14,6 +14,7 @@
     function submitForm(action)
     {
         document.getElementById('form1').action = action;
+		document.getElementById('form1').target="_blank";
         document.getElementById('form1').submit();
     }
 	function quitter_sans_sauvegarde() {

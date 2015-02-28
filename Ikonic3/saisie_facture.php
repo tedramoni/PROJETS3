@@ -14,6 +14,7 @@
     function submitForm(action)
     {
         document.getElementById('form1').action = action;
+		document.getElementById('form1').target="_blank";
         document.getElementById('form1').submit();
     }
 	function quitter_sans_sauvegarde() {
@@ -115,7 +116,7 @@
 		
 		?>
         <div id="formu_contact">
-            <form method="post" action="bl_pdf.php" id="form1">
+            <form method="post" action="" id="form1">
                 <br/>
 				<label for="numero_f"><u>N°Facture :</u> </label>
                 <input type="text" id="numero_f" name="numero_f" required="required" value=""/><br/>
