@@ -28,6 +28,9 @@
 	  }
 	}
 </script>
+<style type="text/css">
+    #element2 {float:right;}
+</style>
 
     <title>Ikonic: Saisie d'un BL</title>
 
@@ -36,26 +39,48 @@
 
 <body>
     <section>
-        <?php include( "Inclusion/gestion.php"); include( "Inclusion/header.php"); actif(1); ?>
+        <?php include( "Inclusion/gestion.php"); include( "Inclusion/header.php"); actif(3); ?>
         <br/>
         <br/>
         <h1 style="padding-top: 55px; text-align:center;">Saisie d'un bon de livraison</h1>
         <br/>
         <br/>
 
-        <?php if (isset($_GET[ 'err'])) { if ($_GET[ 'err']=='err1' ) { echo "<center><p style='color:red;'>Le code client doit être de la forme : 9, puis une lettre, puis 4 chiffres (ex : 9L0015) !</center><br><br>"; } if ($_GET[ 'err']=='err2' ) { echo "<center><p style='color:red;'>Le code client existe déjà !</center><br><br>"; } } $liste=array(); connexion(); $sql='Select * from client' ; $requete=mysql_query($sql); while($result=mysql_fetch_array($requete)) { $liste[]=$result[ 'code']; } $sql2="SELECT * FROM article " ; $execute2=mysql_query($sql2) or die( 'Erreur au niveau de la requete'.mysql_error()); $article=array(); $i=0; while($data2=mysql_fetch_array($execute2)) { $article[$i]=$data2; $i++; } ?>
-
+        <?php if (isset($_GET[ 'err'])) 
+        { if ($_GET[ 'err']=='err1' ) 
+            { 
+                echo "<center><p style='color:red;'>Le code client doit être de la forme : 9, puis une lettre, puis 4 chiffres (ex : 9L0015) !</center><br><br>";
+            } 
+          if ($_GET[ 'err']=='err2' ) 
+            { echo "<center><p style='color:red;'>Le code client existe déjà !</center><br><br>"; 
+            } 
+        } 
+        $liste=array(); 
+        connexion(); 
+        $sql='Select * from client' ; 
+        $requete=mysql_query($sql); 
+        while($result=mysql_fetch_array($requete)) 
+            { $liste[]=$result[ 'code']; }
+         $sql2="SELECT * FROM article " ; 
+         $execute2=mysql_query($sql2) or die( 'Erreur au niveau de la requete'.mysql_error()); 
+         $article=array(); $i=0; 
+        while($data2=mysql_fetch_array($execute2)) 
+            { $article[$i]=$data2; $i++; }
+            $sql="SELECT * FROM parametre;";
+            $requete=mysql_query($sql);
+            $data=mysql_fetch_array($requete);
+        ?>
         <div id="formu_contact">
             <form method="post" action="" id="form1" .target="_blank">
                 <br/>
                 <label for="numero_bl"><u>N°BL :</u> </label>
-                <input type="text" id="numero_bl" name="numero_bl" required="required" />
+                <input type="text" id="numero_bl" name="numero_bl" required="required" value="<?php echo $data[num_bl];?>"/>
 
                 <fieldset>
                     <br/>
                     <legend>Bon de livraison</legend>
                     <label for="date">Date : </label>
-                    <input type="date" name="date" id="date" maxlength="6" required="required" value="<?php echo date('Y-m-d'); ?>" />
+                    <input type="date" name="date" id="date" maxlength="8" required="required" value="<?php echo date('Y-m-d'); ?>" />
                     <br/>
                     <label for="ref_client"><u>Référence du client :</u> </label>
                     <input type="text" id="ref_client" name="ref_client" required="required" />
@@ -88,6 +113,8 @@
 
                     <label for="nom_commercial"><u>Nom Commercial :</u> </label>
                     <input type="text" class="nom_commercial" id="nom_commercial" name="nom_commercial" required="required" />
+                    <input type="hidden" class="raison_social" id="raison_social" name="raison_social" required="required" />
+                    <input type="hidden" class="remise" id="remise" name="remise" required="required" value="0" />
                     <br/>
                     <label for="mode_reglement"><u>Mode de règlement :</u> </label>
                     <input type="text" class="mode_reglement" id="mode_reglement" name="mode_reglement" required="required" />
@@ -215,6 +242,9 @@
                         <option value="TNT Express">TNT Express</option>
                         <option value="Exapaq">Exapaq</option>
                     </select>
+                    <br/><br/>
+                    <label for="colis">Nombre de colis: </label>
+                    <input type="number" id="colis" name="colis" required="required" value="1" />
                     <br/>
                     <br/>
                 </fieldset>
@@ -233,12 +263,7 @@
                                 <th>Quantit&eacute;e</th>
                                 <th>Prix</th>
                                 <th>Remise</th>
-                                <th>Poids</th>
-                                <th>Volume</th>
                                 <th style="text-align: right;">Total (&euro;)</th>
-                                <th style="text-align: right;">Total (kg)</th>
-                                <th style="text-align: right;">Total (m3)</th>
-
                             </tr>
                             <tr class="Ligne" id="default">
                                 <td class="supligne" style="text-align:center"> &nbsp
@@ -262,49 +287,58 @@
                                 <td class="remise_article">
                                     <input type="number" step="any" min="0" value="0" style="width:40px" name="rarticle[]" class="remise_article-input"></input>%
                                 </td>
-                                <td class="Poids_article">
+                                <td style="display:none;" class="Poids_article">
                                     <input type="number" step="any" min="0" name="poids_article[]" style="width:40px" class="poids" readonly></input> kg</td>
-                                <td class="Volume_article">
+                                <td style="display:none;" class="Volume_article">
                                     <input type="number" step="any" min="0" name="volume_article[]" style="width:40px" class="volume" readonly></input> m3</td>
                                 <td class="row-total">
                                     <input type="text" style="width:60px" name="prixtt_article[]" class="row-total-input" readonly></input>&euro;</td>
-                                <td class="row-totalp">
+                                <td style="display:none;"class="row-totalp">
                                     <input type="text" name="totalp_article[]" style="width:60px" class="row-totalp-input" readonly></input>kg</td>
-                                <td class="row-totalv">
+                                <td style="display:none;"class="row-totalv">
                                     <input type="text" name="totalv_article[]" style="width:60px" class="row-totalv-input" readonly></input>m3</td>
                             </tr>
                         </tbody>
                     </table>
-                    <br/>
-
-                    <div class="TotalPoids" style="text-align: left;">
-                        <span>  <b>TOTAL POIDS:</b> </span>
-                        <input type="text" name="totalPoids" style="width:80px" class="total-poids" value="0" id="product-poids" readonly></input>kg
+                    <br/><br/>
+                    <div id="element2">
+                        <fieldset>
+                            <br/>
+                            <legend>Informations Article</legend>
+                            <br/>
+                            <label>Article: </label><label id="iarticle" for="ArticleInfos"></label><br/>
+                            <label>Poids: </label><label id="ipoids" for="PoidsInfos"></label><br/>
+                            <label>Volume: </label><label id="ivolume" for="VolumeInfos"></label><br/>
+                        </fieldset>
                     </div>
-                    <div class="TotalVolume" style="text-align: left;">
-                        <span> <b> TOTAL VOLUME: </b></span>
-                        <input type="text" name="totalVolume" style="width:80px" class="total-volume" value="0" id="product-volume" readonly></input>m3
+                        <div class="TotalPoids" style="text-align: left;">
+                            <span>  <b>TOTAL POIDS:</b> </span>
+                            <input type="text" name="totalPoids" style="width:80px" class="total-poids" value="0" id="product-poids" readonly></input>kg
+                        </div>
+                        <div class="TotalVolume" style="text-align: left;">
+                            <span> <b> TOTAL VOLUME: </b></span>
+                            <input type="text" name="totalVolume" style="width:80px" class="total-volume" value="0" id="product-volume" readonly></input>m3
+                            <br />
+                        </div>
+                        <br/>
+                        <div class="TotalHT" style="text-align: left;">
+                            <span> <b> TOTAL HT: </b></span>
+                            <input type="text" name="totalHT" style="width:80px" class="total-box" value="0&euro;" id="product-ht" readonly></input>&euro;
+                            <br />
+                        </div>
+
+                        <div class="Total" style="text-align: left;">
+                            <span> <b> TOTAL TTC:</b> </span>
+                            <input type="text" style="width:80px" name="totalTTC" class="total-box" value="0&euro;" id="product-subtotal" readonly></input>&euro;
+                            <br />
+                        </div>
+                    </div>
+
+                    <div class="TotalTVA" style="text-align: left;">
+                        <span>  <b>DONT T.V.A:</b></span>
+                        <input type="text" class="total-box" style="width:80px" value="0&euro;" name="totalTVA" id="product-TVA" readonly></input>&euro;
                         <br />
                     </div>
-                    <br/>
-                    <div class="TotalHT" style="text-align: left;">
-                        <span> <b> TOTAL HT: </b></span>
-                        <input type="text" name="totalHT" style="width:80px" class="total-box" value="0&euro;" id="product-ht" readonly></input>&euro;
-                        <br />
-                    </div>
-
-                    <div class="Total" style="text-align: left;">
-                        <span> <b> TOTAL TTC:</b> </span>
-                        <input type="text" style="width:80px" name="totalTTC" class="total-box" value="0&euro;" id="product-subtotal" readonly></input>&euro;
-                        <br />
-                    </div>
-                </div>
-
-                <div class="TotalTVA" style="text-align: left;">
-                    <span>  <b>DONT T.V.A:</b></span>
-                    <input type="text" class="total-box" style="width:80px" value="0&euro;" name="totalTVA" id="product-TVA" readonly></input>&euro;
-                    <br />
-                </div>
 
                 <!-- Fin Saisie Commande -->
 				<input type="checkbox" name="duplicata" value="Oui"> Marquer ce BL en DUPLICATA ? </input>

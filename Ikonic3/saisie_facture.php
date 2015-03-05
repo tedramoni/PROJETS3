@@ -36,14 +36,18 @@
 
 <body>
     <section>
-        <?php include( "Inclusion/gestion.php"); include( "Inclusion/header.php"); actif(1); ?>
+        <?php include( "Inclusion/gestion.php"); include( "Inclusion/header.php"); actif(4); ?>
         <br/>
         <br/>
         <h1 style="padding-top: 55px; text-align:center;">Saisie d'une facture</h1>
         <br/>
         <br/>
 
-        <?php if (isset($_GET[ 'err'])) { if ($_GET[ 'err']=='err1' ) { echo "<center><p style='color:red;'>Le code client doit être de la forme : 9, puis une lettre, puis 4 chiffres (ex : 9L0015) !</center><br><br>"; } if ($_GET[ 'err']=='err2' ) { echo "<center><p style='color:red;'>Le code client existe déjà !</center><br><br>"; } } $liste=array(); connexion(); $sql='Select * from client' ; $requete=mysql_query($sql); while($result=mysql_fetch_array($requete)) { $liste[]=$result[ 'code']; } $sql2="SELECT * FROM article " ; $execute2=mysql_query($sql2) or die( 'Erreur au niveau de la requete'.mysql_error()); $article=array(); $i=0; while($data2=mysql_fetch_array($execute2)) { $article[$i]=$data2; $i++; } ?>		
+        <?php if (isset($_GET[ 'err'])) { if ($_GET[ 'err']=='err1' ) { echo "<center><p style='color:red;'>Le code client doit être de la forme : 9, puis une lettre, puis 4 chiffres (ex : 9L0015) !</center><br><br>"; } if ($_GET[ 'err']=='err2' ) { echo "<center><p style='color:red;'>Le code client existe déjà !</center><br><br>"; } } $liste=array(); connexion(); $sql='Select * from client' ; $requete=mysql_query($sql); while($result=mysql_fetch_array($requete)) { $liste[]=$result[ 'code']; } $sql2="SELECT * FROM article " ; $execute2=mysql_query($sql2) or die( 'Erreur au niveau de la requete'.mysql_error()); $article=array(); $i=0; while($data2=mysql_fetch_array($execute2)) { $article[$i]=$data2; $i++; } 
+            $sql3="SELECT * FROM parametre;";
+            $requete3=mysql_query($sql3);
+            $data=mysql_fetch_array($requete3);
+        ?>		
 		<?php
 		if(isset($_POST))
 		{
@@ -53,6 +57,7 @@
 			$ref_fournisseur=$_POST['ref_fournisseur'];
 			$code_client=$_POST['code_client'];
 			$nom_commercial=$_POST['nom_commercial'];
+            $raison_social=$_POST['raison_social'];
 			$mode_reglement=$_POST['mode_reglement'];
 			$echeance=$_POST['echeance'];
 			$infos=$_POST['infos'];
@@ -78,6 +83,7 @@
 			$BX_site_web2=$_POST['BX_site_web2'];
 			
 			$expedition=$_POST['expedition'];
+            $colis=$_POST['colis'];
 		}
 		else
 		{
@@ -87,6 +93,7 @@
 			$ref_fournisseur="";
 			$code_client="";
 			$nom_commercial="";
+            $raison_social="";
 			$mode_reglement="";
 			$echeance="";
 			$infos="";
@@ -119,7 +126,7 @@
             <form method="post" action="" id="form1">
                 <br/>
 				<label for="numero_f"><u>N°Facture :</u> </label>
-                <input type="text" id="numero_f" name="numero_f" required="required" value=""/><br/>
+                <input type="text" id="numero_f" name="numero_f" required="required" value="<?php echo $data[num_facture];?>"/><br/>
 				
                 <label for="numero_bl"><u>N°BL :</u> </label>
                 <input type="text" id="numero_bl" name="numero_bl" required="required" value='<?php echo $numero_bl; ?>'/>
@@ -161,6 +168,7 @@
 
                     <label for="nom_commercial"><u>Nom Commercial :</u> </label>
                     <input type="text" class="nom_commercial" id="nom_commercial" name="nom_commercial" required="required" value='<?php echo $nom_commercial; ?> '/>
+                    <input type="text" class="raison_social" id="raison_social" name="raison_social" required="required" value='<?php echo $raison_social; ?> '/>
                     <br/>
                     <label for="mode_reglement"><u>Mode de règlement :</u> </label>
                     <input type="text" class="mode_reglement" id="mode_reglement" name="mode_reglement" required="required" value='<?php echo $mode_reglement; ?>'/>
@@ -289,6 +297,9 @@
                         <option value="TNT Express">TNT Express</option>
                         <option value="Exapaq">Exapaq</option>
                     </select>
+                    <br/><br/>
+                    <label for="colis">Nombre de colis: </label>
+                    <input type="number" id="colis" name="colis" required="required" value="1" />
                     <br/>
                     <br/>
                 </fieldset>
@@ -307,11 +318,7 @@
                                 <th>Quantit&eacute;e</th>
                                 <th>Prix</th>
                                 <th>Remise</th>
-                                <th>Poids</th>
-                                <th>Volume</th>
                                 <th style="text-align: right;">Total (&euro;)</th>
-                                <th style="text-align: right;">Total (kg)</th>
-                                <th style="text-align: right;">Total (m3)</th>
                             </tr>
 							<!-- récup des commandes précédentes -->
 							<?php
@@ -348,15 +355,15 @@
 									echo'<td class="remise_article">';
 										echo'<input type="number" step="any" min="0" value="'.$_POST['rarticle'][$i].'" style="width:40px" name="rarticle[]" class="remise_article-input"></input>%';
 									echo'</td>';
-									echo'<td class="Poids_article">';
+									echo'<td style="display:none;" class="Poids_article">';
 										echo'<input type="number" step="any" min="0" name="poids_article[]" style="width:40px" class="poids" value="'.$_POST['poids_article'][$i].'" readonly></input> kg</td>';
-									echo'<td class="Volume_article">';
+									echo'<td style="display:none;" class="Volume_article">';
 										echo'<input type="number" step="any" min="0" name="volume_article[]" style="width:40px" class="volume" value="'.$_POST['volume_article'][$i].'" readonly></input> m3</td>';
 									echo '<td class="row-total">';
 										echo '<input type="text" style="width:60px" name="prixtt_article[]" class="row-total-input" value="'.$_POST['prixtt_article'][$i].'" readonly></input>&euro;</td>';
-									echo '<td class="row-totalp">';
+									echo '<td style="display:none;" class="row-totalp">';
 										echo '<input type="text" name="totalp_article[]" style="width:60px" class="row-totalp-input" value="'.$_POST['totalp_article'][$i].'" readonly></input>kg</td>';
-									echo '<td class="row-totalv">';
+									echo '<td style="display:none;" class="row-totalv">';
 										echo '<input type="text" name="totalv_article[]" style="width:60px" class="row-totalv-input" value="'.$_POST['totalv_article'][$i].'" readonly></input>m3</td>';
 								 echo'</tr>';
 								$i++;
@@ -385,15 +392,15 @@
                                 <td class="remise_article">
                                     <input type="number" step="any" min="0" value="0" style="width:40px" name="rarticle[]" class="remise_article-input"></input>%
                                 </td>
-                                <td class="Poids_article">
+                                <td style="display:none;" class="Poids_article">
                                     <input type="number" step="any" min="0" name="poids_article[]" style="width:40px" class="poids" readonly></input> kg</td>
-                                <td class="Volume_article">
+                                <td style="display:none;" class="Volume_article">
                                     <input type="number" step="any" min="0" name="volume_article[]" style="width:40px" class="volume" readonly></input> m3</td>
                                 <td class="row-total">
                                     <input type="text" style="width:60px" name="prixtt_article[]" class="row-total-input" readonly></input>&euro;</td>
-                                <td class="row-totalp">
+                                <td style="display:none;" class="row-totalp">
                                     <input type="text" name="totalp_article[]" style="width:60px" class="row-totalp-input" readonly></input>kg</td>
-                                <td class="row-totalv">
+                                <td style="display:none;" class="row-totalv">
                                     <input type="text" name="totalv_article[]" style="width:60px" class="row-totalv-input" readonly></input>m3</td>
                             </tr>
 							<?php
@@ -418,30 +425,30 @@
                                     <input type="number" step="any" min="1" name="qarticle[]" style="width:40px" class="num-pallets-input" value="1" readonly></input>
                                 </td>
                                 <td class="prix_article">
-                                    <input type="number" step="any" min="0" style="width:40px" name="prix_article[]" class="prix" value="24" readonly></input>&euro;</td>
+                                    <input type="number" step="any" min="0" style="width:40px" name="prix_article[]" class="prix" value="24" ></input>&euro;</td>
                                 <td class="remise_article">
                                     <input type="number" step="any" min="0" value="0" style="width:40px" name="rarticle[]" class="remise_article-input" value="0" readonly></input>%
                                 </td>
-                                <td class="Poids_article">
+                                <td style="display:none;" class="Poids_article">
                                     <input type="number" step="any" min="0" name="poids_article[]" style="width:40px" class="poids" value="0"readonly></input> kg</td>
-                                <td class="Volume_article">
+                                <td style="display:none;" class="Volume_article">
                                     <input type="number" step="any" min="0" name="volume_article[]" style="width:40px" class="volume" value="0" readonly></input> m3</td>
                                 <td class="row-total">
                                     <input type="text" style="width:60px" name="prixtt_article[]" class="row-total-input" value="24" readonly></input>&euro;</td>
-                                <td class="row-totalp">
+                                <td style="display:none;" class="row-totalp">
                                     <input type="text" name="totalp_article[]" style="width:60px" class="row-totalp-input" value="0" readonly></input>kg</td>
-                                <td class="row-totalv">
+                                <td style="display:none;" class="row-totalv">
                                     <input type="text" name="totalv_article[]" style="width:60px" class="row-totalv-input" value="0" readonly></input>m3</td>
                             </tr>
                         </tbody>
                     </table>
                     <br/>
 
-                    <div class="TotalPoids" style="text-align: left;">
+                    <div style="display:none;" class="TotalPoids" style="text-align: left;">
                         <span>  <b>TOTAL POIDS:</b> </span>
                         <input type="text" name="totalPoids" style="width:80px" class="total-poids" value='<?php echo $_POST['totalPoids']; ?>' id="product-poids" readonly></input>kg
                     </div>
-                    <div class="TotalVolume" style="text-align: left;">
+                    <div style="display:none;" class="TotalVolume" style="text-align: left;">
                         <span> <b> TOTAL VOLUME: </b></span>
                         <input type="text" name="totalVolume" style="width:80px" class="total-volume" value='<?php echo $_POST['totalVolume']; ?>' id="product-volume" readonly></input>m3
                         <br />

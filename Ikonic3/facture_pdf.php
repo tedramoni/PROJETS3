@@ -26,8 +26,8 @@ if(isset($_POST))
 	$pdf->fact_dev($_POST['numero_f']);
 	$pdf->addDate($_POST['date']);
 	$pdf->addClient($_POST['code_client']);
-	$pdf->addClientAdresseLivraison($_POST['code_client'],utf8_decode($_POST['nom_commercial']),utf8_decode($_POST['BX_adr1']." ".$_POST['BX_adr2']." ".$_POST['BX_adr3']),$_POST['BX_cp']." ".$_POST['BX_ville'],utf8_decode($_POST['BX_pays']));
-	$pdf->addReference($_POST['ref_client'],"28/10/14","890");	
+	$pdf->addClientAdresseLivraison(utf8_decode($_POST['raison_social']),utf8_decode($_POST['nom_commercial']),utf8_decode($_POST['BX_adr1_2']." ".$_POST['BX_adr2_2']." ".$_POST['BX_adr3_2']),$_POST['BX_cp2']." ".$_POST['BX_ville2'],utf8_decode($_POST['BX_pays2']),utf8_decode($_POST['BX_adr1']." ".$_POST['BX_adr2']." ".$_POST['BX_adr3']),$_POST['BX_cp']." ".$_POST['BX_ville'],utf8_decode($_POST['BX_pays']));
+	$pdf->addReference($_POST['ref_client'],$_POST['ref_fournisseur']);	
 	$cols=array( "Référence"    => 30,
 				 "Désignation"  => 90,
 				 "Qté"     => 10,

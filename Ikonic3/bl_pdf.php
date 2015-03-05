@@ -21,8 +21,8 @@
 		$pdf->fact_dev($_POST['numero_bl']);
 		$pdf->addDate($_POST['date']);
 		
-		$pdf->addClient($_POST['code_client'],utf8_decode($_POST['nom_commercial']),utf8_decode($_POST['BX_adr1']." ".$_POST['BX_adr2']." ".$_POST['BX_adr3']),$_POST['BX_cp']." ".$_POST['BX_ville'],utf8_decode($_POST['BX_pays']));
-		$pdf->addReference($_POST['ref_client'],"28/10/14","890");
+		$pdf->addClient(utf8_decode($_POST['raison_social']),utf8_decode($_POST['nom_commercial']),utf8_decode($_POST['BX_adr1']." ".$_POST['BX_adr2']." ".$_POST['BX_adr3']),$_POST['BX_cp']." ".$_POST['BX_ville'],utf8_decode($_POST['BX_pays']));
+		$pdf->addReference($_POST['ref_client'],$_POST['ref_fournisseur']);
 		$cols=array( "Référence"    => 40,
 					 "Désignation"  => 130,
 					 "Qté"     => 20);
@@ -71,7 +71,7 @@
 			$y   += $size + 6;					   
 		}
 
-		$pdf->addCadreColis($total, $_POST['expedition'], $_POST['totalPoids']."kg");
+		$pdf->addCadreColis($_POST['colis'], $_POST['expedition'], $_POST['totalPoids']."kg");
 		$pdf->addNomSignature();
 		$pdf->addPiedPage("IKONIC - SARL au capital de 300 000 € inscrite au RC EVRY - N° siret 34796918000020 - APE 6201Z - Identification TVA FR 51 347 969 180");
 		$pdf->Output();

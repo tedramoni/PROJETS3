@@ -224,7 +224,7 @@ function addClient( $ref )
 
 // Affiche l'adresse du client et de livraison
 // (en haut, a droite)
-function addClientAdresseLivraison($client, $adresse, $cp, $pays )
+function addClientAdresseLivraison($client,$adresse2, $cp2, $pays2, $adresse, $cp, $pays )
 {
 	// Adresse du client
     $r1  = $this->w - 92;
@@ -237,11 +237,11 @@ function addClientAdresseLivraison($client, $adresse, $cp, $pays )
     $this->Cell(10,5, $client, 0, 0, "");
     $this->SetXY( $r1-35	+ ($r2-$r1)/2 - 5, $y1+6 );
     $this->SetFont( "Arial", "", 12);
-    $this->Cell(10,5,$adresse, 0,0, "");
+    $this->Cell(10,5,$adresse2, 0,0, "");
     $this->SetXY( $r1-35 + ($r2-$r1)/2 - 5, $y1+15 );
-    $this->Cell(10,5,$cp, 0,0, "");
+    $this->Cell(10,5,$cp2, 0,0, "");
 	$this->SetXY( $r1-35 + ($r2-$r1)/2 - 5, $y1+21 );
-    $this->Cell(10,5,$pays, 0,0, "");
+    $this->Cell(10,5,$pays2, 0,0, "");
 	// Adresse de livraison
 	$r1  = $r1 + 18 ;
     $r2  = $r2 ;
@@ -265,9 +265,9 @@ function addClientAdresseLivraison($client, $adresse, $cp, $pays )
 
 // Affiche une ligne avec des reference
 // (en haut, a gauche)
-function addReference($num_commande,$date,$iko)
+function addReference($num_commande,$iko)
 {
-	$text="Votre réf. : cmd " .$num_commande. " du ".$date."        IKO : ".$iko;
+	$text="Votre réf. : " .$num_commande. "        IKONIC : ".$iko;
     $this->SetFont( "Arial", "B", 10);
     $length = $this->GetStringWidth( $text);
     $r1  = 10;

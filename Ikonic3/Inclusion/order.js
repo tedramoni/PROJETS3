@@ -151,12 +151,19 @@ $(document).ready(function() {
         var libelle = valeur[1] + "\nSN : ";
         var poids = valeur[3];
         var volume = valeur[2];
+        var ref = valeur[4];
+        var remise = $(".remise").val();
 
         $el = $(this);
         $el.parent().parent().find("td.num-pallets input.num-pallets-input").val(0);
         $el.parent().parent().find("td.product-title textarea.name-pics").val(libelle);
         $el.parent().parent().find("td.Poids_article input.poids").val(poids);
         $el.parent().parent().find("td.Volume_article input.volume").val(volume);
+        $el.parent().parent().find("td.remise_article input.remise_article-input").val(remise);
+
+        document.getElementById("iarticle").innerHTML = ref;
+        document.getElementById("ipoids").innerHTML = poids;        
+        document.getElementById("ivolume").innerHTML = volume;
 
         if (format != "0") {
             var prix = parseFloat(format);
@@ -296,6 +303,9 @@ $(document).ready(function() {
 						var datas = jQuery.parseJSON(data);
 						
 						  $el.parent().parent().find("input.nom_commercial").val("");
+                          $el.parent().parent().find("input.raison_social").val("");
+                          $el.parent().parent().find("input.remise").val("");
+                          $el.parent().parent().find("input.raison_social").val("");
 						  $el.parent().parent().find("input.mode_reglement").val("");
 						  $el.parent().parent().find("input.echeance").val("");
 						  $el.parent().parent().find("textarea.infos").val("");
@@ -324,6 +334,8 @@ $(document).ready(function() {
 						 if(key==0)
 						 {						   					   
 						  $el.parent().parent().find("input.nom_commercial").val(value.nom_commercial);
+                          $el.parent().parent().find("input.raison_social").val(value.raison_sociale);
+                          $el.parent().parent().find("input.remise").val(value.remise);
 						  $el.parent().parent().find("input.mode_reglement").val(value.mode_reglement);
 						  $el.parent().parent().find("input.echeance").val(value.echeance);
 						  $el.parent().parent().find("textarea.infos").val(value.info_comp);

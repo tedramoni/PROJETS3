@@ -215,9 +215,9 @@ function addClient($client, $nom, $adresse, $cp, $pays )
 
 // Affiche une ligne avec des reference
 // (en haut, a gauche)
-function addReference($num_commande,$date,$iko)
+function addReference($num_commande,$iko)
 {
-	$text="Votre réf. : cmd " .$num_commande. " du ".$date."        IKO : ".$iko;
+	$text="Votre réf. : " .$num_commande. " ".$date."        IKONIC: ".$iko;
     $this->SetFont( "Arial", "B", 10);
     $length = $this->GetStringWidth( $text);
     $r1  = 10;
