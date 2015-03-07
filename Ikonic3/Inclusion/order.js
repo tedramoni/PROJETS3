@@ -7,7 +7,9 @@ function CleanNumber(value) {
 
 }
 
-
+function round(value) {
+    return parseFloat(Math.round(value * 100) / 100).toFixed(2);
+}
 
 function CommaFormatted(amount) {
     var i = parseFloat(amount);
@@ -78,7 +80,7 @@ function calcProdSubTotal() {
     	$('#product-red').val("0€");
     }*/
 
-    $("#product-ht").val(prodSubTotal);
+    $("#product-ht").val(round(prodSubTotal));
     $("#product-poids").val(poidsTotal);
     $("#product-volume").val(volumeTotal);
     calculTva();
@@ -95,8 +97,8 @@ function calculTva() {
 
     }
 	
-    $("#product-TVA").val(valtva);
-    $("#product-subtotal").val(parseFloat($("#product-ht").val()) + valtva);
+    $("#product-TVA").val(round(valtva));
+    $("#product-subtotal").val(round(parseFloat($("#product-ht").val()) + valtva));
 }
 
 
@@ -182,13 +184,13 @@ $(document).ready(function() {
 
         nb = ($el.parent().parent().find("td.num-pallets input.num-pallets-input").val());
 
-        $el.parent().parent().find("td.prix_article input").val(prix);
+        $el.parent().parent().find("td.prix_article input").val(round(prix));
 
         if (prix != "") {
             prix = parseFloat(prix) * nb;
         }
 
-        $el.parent().parent().find("td.row-total input.row-total-input").val(prix)
+        $el.parent().parent().find("td.row-total input.row-total-input").val(round(prix));
 
         calcProdSubTotal();
     });
@@ -202,17 +204,17 @@ $(document).ready(function() {
         nb = ($el.parent().parent().find("td.num-pallets input.num-pallets-input").val());
         if ($el.parent().parent().find("td.prix_article input.prix").val() != "") {
             var prix = 0;
-            prix = (parseFloat($el.parent().parent().find("td.prix_article input.prix").val()) * parseFloat($el.parent().parent().find("td.num-pallets input.num-pallets-input").val())) * (1 - (parseFloat($el.parent().parent().find("td.remise_article input.remise_article-input").val()) / 100));
+            prix = round((parseFloat($el.parent().parent().find("td.prix_article input.prix").val()) * parseFloat($el.parent().parent().find("td.num-pallets input.num-pallets-input").val())) * (1 - (parseFloat($el.parent().parent().find("td.remise_article input.remise_article-input").val()) / 100)));
             poids = (parseFloat($el.parent().parent().find("td.Poids_article input.poids").val()) * parseFloat($el.parent().parent().find("td.num-pallets input.num-pallets-input").val()));
             volume = (parseFloat($el.parent().parent().find("td.Volume_article input.volume").val()) * parseFloat($el.parent().parent().find("td.num-pallets input.num-pallets-input").val()));
         }
         $el.parent().parent().find("td.num-pallets input.num-pallets-input").val(nb);
         if ($el.parent().parent().find("td.prix_article input.prix").val() != "") {
-            prix = (parseFloat($el.parent().parent().find("td.prix_article input.prix").val()) * parseFloat($el.parent().parent().find("td.num-pallets input.num-pallets-input").val())) * (1 - (parseFloat($el.parent().parent().find("td.remise_article input.remise_article-input").val()) / 100));
+            prix = round((parseFloat($el.parent().parent().find("td.prix_article input.prix").val()) * parseFloat($el.parent().parent().find("td.num-pallets input.num-pallets-input").val())) * (1 - (parseFloat($el.parent().parent().find("td.remise_article input.remise_article-input").val()) / 100)));
             poids = (parseFloat($el.parent().parent().find("td.Poids_article input.poids").val()) * parseFloat($el.parent().parent().find("td.num-pallets input.num-pallets-input").val()));
             volume = (parseFloat($el.parent().parent().find("td.Volume_article input.volume").val()) * parseFloat($el.parent().parent().find("td.num-pallets input.num-pallets-input").val()));
         }
-        $el.parent().parent().find("td.row-total input.row-total-input").val(prix);
+        $el.parent().parent().find("td.row-total input.row-total-input").val(round(prix));
         $el.parent().parent().find("td.row-totalp input.row-totalp-input").val(poids);
         $el.parent().parent().find("td.row-totalv input.row-totalv-input").val(volume);
         calcProdSubTotal();
@@ -227,17 +229,17 @@ $(document).ready(function() {
         nb = ($el.parent().parent().find("td.num-pallets input.num-pallets-input").val());
         if ($el.parent().parent().find("td.prix_article span.prix").val() != "") {
             var prix = 0;
-            prix = (parseFloat($el.parent().parent().find("td.prix_article input.prix").val()) * parseFloat($el.parent().parent().find("td.num-pallets input.num-pallets-input").val())) * (1 - (parseFloat($el.parent().parent().find("td.remise_article input.remise_article-input").val()) / 100));
+            prix = round((parseFloat($el.parent().parent().find("td.prix_article input.prix").val()) * parseFloat($el.parent().parent().find("td.num-pallets input.num-pallets-input").val())) * (1 - (parseFloat($el.parent().parent().find("td.remise_article input.remise_article-input").val()) / 100)));
             poids = (parseFloat($el.parent().parent().find("td.Poids_article input.poids").val()) * parseFloat($el.parent().parent().find("td.num-pallets input.num-pallets-input").val()));
             volume = (parseFloat($el.parent().parent().find("td.Volume_article input.volume").val()) * parseFloat($el.parent().parent().find("td.num-pallets input.num-pallets-input").val()));
         }
         $el.parent().parent().find("td.num-pallets input.num-pallets-input").val(nb);
         if ($el.parent().parent().find("td.prix_article input.prix").val() != "") {
-            prix = (parseFloat($el.parent().parent().find("td.prix_article input.prix").val()) * parseFloat($el.parent().parent().find("td.num-pallets input.num-pallets-input").val())) * (1 - (parseFloat($el.parent().parent().find("td.remise_article input.remise_article-input").val()) / 100));
+            prix = round((parseFloat($el.parent().parent().find("td.prix_article input.prix").val()) * parseFloat($el.parent().parent().find("td.num-pallets input.num-pallets-input").val())) * (1 - (parseFloat($el.parent().parent().find("td.remise_article input.remise_article-input").val()) / 100)));
             poids = (parseFloat($el.parent().parent().find("td.Poids_article input.poids").val()) * parseFloat($el.parent().parent().find("td.num-pallets input.num-pallets-input").val()));
             volume = (parseFloat($el.parent().parent().find("td.Volume_article input.volume").val()) * parseFloat($el.parent().parent().find("td.num-pallets input.num-pallets-input").val()));
         }
-        $el.parent().parent().find("td.row-total input.row-total-input").val(prix);
+        $el.parent().parent().find("td.row-total input.row-total-input").val(round(prix));
         $el.parent().parent().find("td.row-totalp input.row-totalp-input").val(poids);
         $el.parent().parent().find("td.row-totalv input.row-totalv-input").val(volume);
         calcProdSubTotal();
@@ -251,10 +253,10 @@ $(document).ready(function() {
         $el.parent().parent().find("td.remise_article input.remise_article-input").val(remise);
         if ($el.parent().parent().find("td.prix_article input.prix").val() != "") {
 
-            prix = (parseFloat($el.parent().parent().find("td.prix_article input.prix").val()) * parseFloat($el.parent().parent().find("td.num-pallets input.num-pallets-input").val())) * (1 - (remise / 100));
+            prix = round((parseFloat($el.parent().parent().find("td.prix_article input.prix").val()) * parseFloat($el.parent().parent().find("td.num-pallets input.num-pallets-input").val())) * (1 - (remise / 100)));
 
         }
-        $el.parent().parent().find("td.row-total input.row-total-input").val(prix);
+        $el.parent().parent().find("td.row-total input.row-total-input").val(round(prix));
         calcProdSubTotal();
     });
 
@@ -266,28 +268,88 @@ $(document).ready(function() {
         $el.parent().parent().find("td.remise_article input.remise_article-input").val(remise);
         if ($el.parent().parent().find("td.prix_article input.prix").val() != "") {
 
-            prix = (parseFloat($el.parent().parent().find("td.prix_article input.prix").val()) * parseFloat($el.parent().parent().find("td.num-pallets input.num-pallets-input").val())) * (1 - (remise / 100));
+            prix = round((parseFloat($el.parent().parent().find("td.prix_article input.prix").val()) * parseFloat($el.parent().parent().find("td.num-pallets input.num-pallets-input").val())) * (1 - (remise / 100)));
 
         }
-        $el.parent().parent().find("td.row-total input.row-total-input").val(prix);
+        $el.parent().parent().find("td.row-total input.row-total-input").val(round(prix));
         calcProdSubTotal();
     });
 
     $(".prix").bind("keyup", function() {
         $el = $(this);
         var prix = 0;
-        prix = (parseFloat($el.parent().parent().find("td.prix_article input.prix").val()) * parseFloat($el.parent().parent().find("td.num-pallets input.num-pallets-input").val())) * (1 - (parseFloat($el.parent().parent().find("td.remise_article input.remise_article-input").val()) / 100));
-        $el.parent().parent().find("td.row-total input.row-total-input").val(prix);
+        $el.parent().parent().find("td.prix_article input.prix").val(round($el.parent().parent().find("td.prix_article input.prix").val()));   
+        prix = round((parseFloat($el.parent().parent().find("td.prix_article input.prix").val()) * parseFloat($el.parent().parent().find("td.num-pallets input.num-pallets-input").val())) * (1 - (parseFloat($el.parent().parent().find("td.remise_article input.remise_article-input").val()) / 100)));
+        $el.parent().parent().find("td.row-total input.row-total-input").val(round(prix));
         calcProdSubTotal();
     });
 
     $(".prix").bind("click", function() {
         $el = $(this);
         var prix = 0;
-        prix = (parseFloat($el.parent().parent().find("td.prix_article input.prix").val()) * parseFloat($el.parent().parent().find("td.num-pallets input.num-pallets-input").val())) * (1 - (parseFloat($el.parent().parent().find("td.remise_article input.remise_article-input").val()) / 100));
-        $el.parent().parent().find("td.row-total input.row-total-input").val(prix);
+        $el.parent().parent().find("td.prix_article input.prix").val(round($el.parent().parent().find("td.prix_article input.prix").val()));   
+        prix = round((parseFloat($el.parent().parent().find("td.prix_article input.prix").val()) * parseFloat($el.parent().parent().find("td.num-pallets input.num-pallets-input").val())) * (1 - (parseFloat($el.parent().parent().find("td.remise_article input.remise_article-input").val()) / 100)));
+        $el.parent().parent().find("td.row-total input.row-total-input").val(round(prix));
         calcProdSubTotal();
     });
+
+    $(".selected_facturation_input").change(function() {
+
+        $el.parent().parent().find("input.adr1_f").val("");
+        $el.parent().parent().find("input.adr2_f").val("");
+        $el.parent().parent().find("input.adr3_f").val("");
+        $el.parent().parent().find("input.cp_f").val("");
+        $el.parent().parent().find("input.ville_f").val("");
+        $el.parent().parent().find("input.pays_f").val("");
+        $el.parent().parent().find("input.telbur_f").val("");
+        $el.parent().parent().find("input.mail_f").val("");
+        $el.parent().parent().find("input.web_f").val("");
+
+        var valeur = $(this).val().split("|");
+
+        $el.parent().parent().find("input.adr1_f").val(valeur[0]);
+        $el.parent().parent().find("input.adr2_f").val(valeur[1]);
+        $el.parent().parent().find("input.adr3_f").val(valeur[2]);
+        $el.parent().parent().find("input.cp_f").val(valeur[3]);
+        $el.parent().parent().find("input.ville_f").val(valeur[4]);
+        $el.parent().parent().find("input.pays_f").val(valeur[5]);
+        $el.parent().parent().find("input.telbur_f").val(valeur[6]);
+        $el.parent().parent().find("input.mail_f").val(valeur[7]);
+        $el.parent().parent().find("input.web_f").val(valeur[8]);
+
+    });
+
+    $(".selected_livraison_input").change(function() {
+
+        $el.parent().parent().find("input.adr1_l").val("");
+        $el.parent().parent().find("input.adr2_l").val("");
+        $el.parent().parent().find("input.adr3_l").val("");
+        $el.parent().parent().find("input.cp_l").val("");
+        $el.parent().parent().find("input.ville_l").val("");
+        $el.parent().parent().find("input.pays_l").val("");
+        $el.parent().parent().find("input.telbur_l").val("");
+        $el.parent().parent().find("input.mail_l").val("");
+        $el.parent().parent().find("input.web_l").val("");
+
+        var valeur = $(this).val().split("|");
+
+        $el.parent().parent().find("input.adr1_l").val(valeur[0]);
+        $el.parent().parent().find("input.adr2_l").val(valeur[1]);
+        $el.parent().parent().find("input.adr3_l").val(valeur[2]);
+        $el.parent().parent().find("input.cp_l").val(valeur[3]);
+        $el.parent().parent().find("input.ville_l").val(valeur[4]);
+        $el.parent().parent().find("input.pays_l").val(valeur[5]);
+        $el.parent().parent().find("input.telbur_l").val(valeur[6]);
+        $el.parent().parent().find("input.mail_l").val(valeur[7]);
+        $el.parent().parent().find("input.web_l").val(valeur[8]);
+
+    });
+
+    function removeOptions(obj) {
+        if (obj == null) return;
+        if (obj.options == null) return;
+        obj.options.length = 1; 
+    }
 	
 	$(".btn_load_client").bind("click", function() {
         $el = $(this);
@@ -301,6 +363,13 @@ $(document).ready(function() {
                 },
                 success: function (data){
 						var datas = jQuery.parseJSON(data);
+                        var nombreAdresseFacturation;
+                        var nombreAdresseLivraison;
+                        var valeurCleFacturation;
+                        var valeurCleLivraison;
+                        var i=0;
+                        var j=0;
+                        var bool=0;
 						
 						  $el.parent().parent().find("input.nom_commercial").val("");
                           $el.parent().parent().find("input.raison_social").val("");
@@ -329,6 +398,9 @@ $(document).ready(function() {
 						  $el.parent().parent().find("input.telbur_l").val("");
 						  $el.parent().parent().find("input.mail_l").val("");
 						  $el.parent().parent().find("input.web_l").val("");
+ 
+                          removeOptions(document.getElementById('selectFacturation'));
+                          removeOptions(document.getElementById('selectLivraison'));
 						  
 						$.each(datas, function (key, value) {
 						 if(key==0)
@@ -363,9 +435,36 @@ $(document).ready(function() {
 						  $el.parent().parent().find("input.telbur_l").val(value.tel_bur);					  
 						  $el.parent().parent().find("input.mail_l").val(value.email);				  
 						  $el.parent().parent().find("input.web_l").val(value.site_web);
-						 }		 
-						});
-				}
+						 }
+                         if(key==3){
+                            nombreAdresseFacturation=value;
+                            valeurCleFacturation=value;
+                            i=4;
+                         }
+                         if(key==i && valeurCleFacturation>0){
+                                var select = document.getElementById('selectFacturation');
+                                var opt = document.createElement('option');
+                                opt.value = value.adr1+"|"+value.adr2+"|"+value.adr3+"|"+value.cp+"|"+value.ville+"|"+value.pays+"|"+value.tel_bur+"|"+value.email+"|"+value.site_web;
+                                opt.innerHTML = value.adr1+", "+value.adr2+", "+value.adr3+", "+value.cp+", "+value.ville+", "+value.pays+", "+value.tel_bur+", "+value.email+", "+value.site_web;
+                                select.appendChild(opt);
+                                i++;
+                                valeurCleFacturation--;
+                         }
+                        if(key==3+nombreAdresseFacturation+1){
+                            nombreAdresseLivraison=value;
+                            i=4+nombreAdresseFacturation+1;
+                         }
+                         if(key==i && nombreAdresseLivraison>0){
+                                var select = document.getElementById('selectLivraison');
+                                var opt = document.createElement('option');
+                                opt.value = value.adr1+"|"+value.adr2+"|"+value.adr3+"|"+value.cp+"|"+value.ville+"|"+value.pays+"|"+value.tel_bur+"|"+value.email+"|"+value.site_web;
+                                opt.innerHTML = value.adr1+", "+value.adr2+", "+value.adr3+", "+value.cp+", "+value.ville+", "+value.pays+", "+value.tel_bur+", "+value.email+", "+value.site_web;
+                                select.appendChild(opt);
+                                i++;
+                                nombreAdresseLivraison--;
+                         }
+                        });
+                    }                        
             });
         }
     });

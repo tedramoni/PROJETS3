@@ -30,6 +30,7 @@
 </script>
 <style type="text/css">
     #element2 {float:right;}
+
 </style>
 
     <title>Ikonic: Saisie d'un BL</title>
@@ -80,7 +81,7 @@
                     <br/>
                     <legend>Bon de livraison</legend>
                     <label for="date">Date : </label>
-                    <input type="date" name="date" id="date" maxlength="8" required="required" value="<?php echo date('Y-m-d'); ?>" />
+                    <input type="date" name="date" id="date" required="required" value="<?php echo date('Y-m-d'); ?>" />
                     <br/>
                     <label for="ref_client"><u>Référence du client :</u> </label>
                     <input type="text" id="ref_client" name="ref_client" required="required" />
@@ -116,6 +117,9 @@
                     <input type="hidden" class="raison_social" id="raison_social" name="raison_social" required="required" />
                     <input type="hidden" class="remise" id="remise" name="remise" required="required" value="0" />
                     <br/>
+                    <label for="acompte"><u>Acompte versé: </u></label>
+                    <input type="number" style="width:100px" step="any" min="0" id="acompte" name="acompte" value="0" /> &euro;
+                    <br/>
                     <label for="mode_reglement"><u>Mode de règlement :</u> </label>
                     <input type="text" class="mode_reglement" id="mode_reglement" name="mode_reglement" required="required" />
                     <br/>
@@ -129,6 +133,8 @@
                 <fieldset>
                     <br/>
                     <legend>Adresse Livraison</legend>
+                        <strong><u><label for="choixLivraison">Choisir une adresse: </label></u></strong>
+                        <SELECT id="selectLivraison" name="selectLivraison" class="selected_livraison_input" style="width:700px"> <OPTION selected="selected" VALUE="">Selectionner une autre adresse que celle par défaut.</OPTION></SELECT> <br/><br/>
                     <table id="dataTableAdresseLivraison" border="1">
                         <tbody>
                             <tr>
@@ -182,6 +188,8 @@
                 <fieldset>
                     <br/>
                     <legend>Adresse Facturation</legend>
+                        <strong><u><label for="choixFacturation">Choisir une adresse: </label></u></strong>
+                        <SELECT id="selectFacturation" name="selectFacturation" class="selected_facturation_input" style="width:700px"> <OPTION selected="selected" VALUE="">Selectionner une autre adresse que celle par défaut.</OPTION></SELECT> <br/><br/>
                     <table id="dataTableAdresseFacturation" border="1">
                         <tbody>
                             <tr>
@@ -250,13 +258,13 @@
                 </fieldset>
                 <br/>
                 <!-- Saisie des commandes -->
-
+				
                 <div class="CSSTableGenerator">
                     <table id="order-table" align="center">
                         <tbody id="tablco">
                             <tr>
                                 <th>
-                                    <input type="button" value="Ajouter article" class="btn_newpics" style="width:100px"></input>
+                                    <input type="button" value="+" class="btn_newpics"></input>
                                 </th>
                                 <th>Référence</th>
                                 <th>Libellé</th>
@@ -283,7 +291,7 @@
                                 </td>
                                 <!-- <td class="prix_article"><span name="prix_article[]" class="prix"></span>&euro;</td> -->
                                 <td class="prix_article">
-                                    <input type="number" step="any" min="0" style="width:40px" name="prix_article[]" class="prix"></input>&euro;</td>
+                                    <input type="number" step="any" min="0" style="width:80px" name="prix_article[]" class="prix"></input>&euro;</td>
                                 <td class="remise_article">
                                     <input type="number" step="any" min="0" value="0" style="width:40px" name="rarticle[]" class="remise_article-input"></input>%
                                 </td>
@@ -292,7 +300,7 @@
                                 <td style="display:none;" class="Volume_article">
                                     <input type="number" step="any" min="0" name="volume_article[]" style="width:40px" class="volume" readonly></input> m3</td>
                                 <td class="row-total">
-                                    <input type="text" style="width:60px" name="prixtt_article[]" class="row-total-input" readonly></input>&euro;</td>
+                                    <input type="text" style="width:80px" name="prixtt_article[]" class="row-total-input" readonly></input>&euro;</td>
                                 <td style="display:none;"class="row-totalp">
                                     <input type="text" name="totalp_article[]" style="width:60px" class="row-totalp-input" readonly></input>kg</td>
                                 <td style="display:none;"class="row-totalv">

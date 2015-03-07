@@ -58,6 +58,7 @@
 			$code_client=$_POST['code_client'];
 			$nom_commercial=$_POST['nom_commercial'];
             $raison_social=$_POST['raison_social'];
+            $acompte=$_POST['acompte'];
 			$mode_reglement=$_POST['mode_reglement'];
 			$echeance=$_POST['echeance'];
 			$infos=$_POST['infos'];
@@ -97,6 +98,7 @@
 			$mode_reglement="";
 			$echeance="";
 			$infos="";
+            $acompte="0";
 			
 			$BX_adr1="";
 			$BX_adr2="";
@@ -168,7 +170,10 @@
 
                     <label for="nom_commercial"><u>Nom Commercial :</u> </label>
                     <input type="text" class="nom_commercial" id="nom_commercial" name="nom_commercial" required="required" value='<?php echo $nom_commercial; ?> '/>
-                    <input type="text" class="raison_social" id="raison_social" name="raison_social" required="required" value='<?php echo $raison_social; ?> '/>
+                    <input type="hidden" class="raison_social" id="raison_social" name="raison_social" required="required" value='<?php echo $raison_social; ?> '/>
+                     <br/>
+                    <label for="acompte"><u>Acompte versé: </u></label>
+                    <input type="hidden" class="acompte" id="acompte" name="acompte" required="required" value='<?php echo $acompte; ?> '/>
                     <br/>
                     <label for="mode_reglement"><u>Mode de règlement :</u> </label>
                     <input type="text" class="mode_reglement" id="mode_reglement" name="mode_reglement" required="required" value='<?php echo $mode_reglement; ?>'/>
@@ -311,7 +316,7 @@
                         <tbody id="tablco">
                             <tr>
                                 <th>
-                                    <input type="button" value="Ajouter article" class="btn_newpics" style="width:100px"></input>
+                                    <input type="button" value="+" class="btn_newpics"></input>
                                 </th>
                                 <th>Référence</th>
                                 <th>Libellé</th>
@@ -351,7 +356,7 @@
 										echo'<input type="number" step="any" min="0" name="qarticle[]" style="width:40px" class="num-pallets-input" value="'.$_POST['qarticle'][$i].'"></input>';
 									echo'</td>';
 									echo'<td class="prix_article">';
-										echo'<input type="number" step="any" min="0" style="width:40px" name="prix_article[]" class="prix" value="'.$_POST['prix_article'][$i].'"></input>&euro;</td>';
+										echo'<input type="number" step="any" min="0" style="width:80px" name="prix_article[]" class="prix" value="'.$_POST['prix_article'][$i].'"></input>&euro;</td>';
 									echo'<td class="remise_article">';
 										echo'<input type="number" step="any" min="0" value="'.$_POST['rarticle'][$i].'" style="width:40px" name="rarticle[]" class="remise_article-input"></input>%';
 									echo'</td>';
@@ -360,7 +365,7 @@
 									echo'<td style="display:none;" class="Volume_article">';
 										echo'<input type="number" step="any" min="0" name="volume_article[]" style="width:40px" class="volume" value="'.$_POST['volume_article'][$i].'" readonly></input> m3</td>';
 									echo '<td class="row-total">';
-										echo '<input type="text" style="width:60px" name="prixtt_article[]" class="row-total-input" value="'.$_POST['prixtt_article'][$i].'" readonly></input>&euro;</td>';
+										echo '<input type="text" style="width:80px" name="prixtt_article[]" class="row-total-input" value="'.$_POST['prixtt_article'][$i].'" readonly></input>&euro;</td>';
 									echo '<td style="display:none;" class="row-totalp">';
 										echo '<input type="text" name="totalp_article[]" style="width:60px" class="row-totalp-input" value="'.$_POST['totalp_article'][$i].'" readonly></input>kg</td>';
 									echo '<td style="display:none;" class="row-totalv">';
@@ -388,7 +393,7 @@
                                 </td>
                                 <!-- <td class="prix_article"><span name="prix_article[]" class="prix"></span>&euro;</td> -->
                                 <td class="prix_article">
-                                    <input type="number" step="any" min="0" style="width:40px" name="prix_article[]" class="prix"></input>&euro;</td>
+                                    <input type="number" step="any" min="0" style="width:80px" name="prix_article[]" class="prix"></input>&euro;</td>
                                 <td class="remise_article">
                                     <input type="number" step="any" min="0" value="0" style="width:40px" name="rarticle[]" class="remise_article-input"></input>%
                                 </td>
@@ -397,7 +402,7 @@
                                 <td style="display:none;" class="Volume_article">
                                     <input type="number" step="any" min="0" name="volume_article[]" style="width:40px" class="volume" readonly></input> m3</td>
                                 <td class="row-total">
-                                    <input type="text" style="width:60px" name="prixtt_article[]" class="row-total-input" readonly></input>&euro;</td>
+                                    <input type="text" style="width:80px" name="prixtt_article[]" class="row-total-input" readonly></input>&euro;</td>
                                 <td style="display:none;" class="row-totalp">
                                     <input type="text" name="totalp_article[]" style="width:60px" class="row-totalp-input" readonly></input>kg</td>
                                 <td style="display:none;" class="row-totalv">
@@ -413,9 +418,7 @@
                                 </td>
                                 <td class="format">
                                     <SELECT name="format[]" class="selected_format_input" style="width:100px" readonly>
-                                        <OPTION selected="selected" VALUE="24|Frais de port|0|0|IKA-PORT">IKA-PORT</OPTION>
-										<OPTION VALUE="0"></OPTION>
-                                        for($i=0;$i<sizeof($article);$i++) { echo "<OPTION VALUE='{$article[$i]['prix_ht']}|{$article[$i]['libelle']}|{$article[$i]['volume']}|{$article[$i]['poids']}|{$article[$i]['ref']}'>{$article[$i]['ref']}</OPTION>"; }
+                                        <OPTION selected="selected" VALUE="24.00.|Frais de port|0|0|IKA-PORT">IKA-PORT</OPTION>
                                     </SELECT>
                                 </td>
                                 <td class="product-title">
@@ -425,7 +428,7 @@
                                     <input type="number" step="any" min="1" name="qarticle[]" style="width:40px" class="num-pallets-input" value="1" readonly></input>
                                 </td>
                                 <td class="prix_article">
-                                    <input type="number" step="any" min="0" style="width:40px" name="prix_article[]" class="prix" value="24" ></input>&euro;</td>
+                                    <input type="number" step="any" min="0" style="width:80px" name="prix_article[]" class="prix" value="24.00" ></input>&euro;</td>
                                 <td class="remise_article">
                                     <input type="number" step="any" min="0" value="0" style="width:40px" name="rarticle[]" class="remise_article-input" value="0" readonly></input>%
                                 </td>
@@ -434,7 +437,7 @@
                                 <td style="display:none;" class="Volume_article">
                                     <input type="number" step="any" min="0" name="volume_article[]" style="width:40px" class="volume" value="0" readonly></input> m3</td>
                                 <td class="row-total">
-                                    <input type="text" style="width:60px" name="prixtt_article[]" class="row-total-input" value="24" readonly></input>&euro;</td>
+                                    <input type="text" style="width:80px" name="prixtt_article[]" class="row-total-input" value="24.00" readonly></input>&euro;</td>
                                 <td style="display:none;" class="row-totalp">
                                     <input type="text" name="totalp_article[]" style="width:60px" class="row-totalp-input" value="0" readonly></input>kg</td>
                                 <td style="display:none;" class="row-totalv">
@@ -456,25 +459,26 @@
                     <br/>
                     <div class="TotalHT" style="text-align: left;">
                         <span> <b> TOTAL HT: </b></span>
-                        <input type="text" name="totalHT" style="width:80px" class="total-box" value='<?php echo $_POST['totalHT']+24; ?>' id="product-ht" readonly></input>&euro;
+                        <?php $ht=($_POST['totalHT']+24.00); ?>
+                        <input type="text" name="totalHT" style="width:80px" class="total-box" value='<?php echo number_format($ht,2); ?>' id="product-ht" readonly></input>&euro;
                         <br />
                     </div>
 
                     <div class="Total" style="text-align: left;">
                         <span> <b> TOTAL TTC:</b> </span>
-                        <input type="text" style="width:80px" name="totalTTC" class="total-box" value='<?php echo $_POST['totalTTC']+28.8; ?>' id="product-subtotal" readonly></input>&euro;
+                        <?php $ttc=($_POST['totalTTC']+28.80); ?>
+                        <input type="text" style="width:80px" name="totalTTC" class="total-box" value='<?php echo number_format($ttc,2); ?>' id="product-subtotal" readonly></input>&euro;
                         <br />
                     </div>
                 </div>
 
                 <div class="TotalTVA" style="text-align: left;">
                     <span>  <b>DONT T.V.A:</b></span>
-                    <input type="text" class="total-box" style="width:80px" value='<?php echo $_POST['totalTVA']+4.8;?>' name="totalTVA" id="product-TVA" readonly></input>&euro;
+                    <?php $tva=($_POST['totalTVA']+4.80); ?>
+                    <input type="text" class="total-box" style="width:80px" value='<?php echo number_format($tva,2); ?>' name="totalTVA" id="product-TVA" readonly></input>&euro;
                     <br />
                 </div>
 				
-				<input type="text" name="totalPort" style="width:80px" class="total-port" value='24' id="product-poort" readonly hidden></input>
-
                 <!-- Fin Saisie Commande -->
 				<input type="checkbox" name="duplicata" value="Oui"> Marquer cette Facture en DUPLICATA ? </input>
                 <center>
