@@ -137,7 +137,25 @@
                     <br/>
                     <legend>Bon de livraison</legend>
                     <label for="date">Date : </label>
-                    <input type="date" name="date" id="date" maxlength="6" required="required" value='<?php echo $date; ?>' />
+                    <input class="datepicker form-control" name="date" id="date" required="required" type="text" value='<?php echo $date; ?>'/>
+                    <script>
+                        $(function() {
+                        $( ".datepicker" ).datepicker({
+                        altField: "#datepicker",
+                        closeText: 'Fermer',
+                        prevText: 'Précédent',
+                        nextText: 'Suivant',
+                        currentText: 'Aujourd\'hui',
+                        monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+                        monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+                        dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+                        dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
+                        dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+                        weekHeader: 'Sem.',
+                        dateFormat: 'dd/mm/yy'
+                        });
+                        });
+                    </script>
                     <br/>
                     <label for="ref_client"><u>Référence du client :</u> </label>
                     <input type="text" id="ref_client" name="ref_client" required="required" value='<?php echo $ref_client; ?>' />
