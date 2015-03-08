@@ -103,9 +103,9 @@ if(isset($_POST))
 			$line = array(	 "Référence"    => $reference[$i],
 							 "Désignation"  => utf8_decode($designation[$i]),
 							 "Qté"     => $quantité[$i],
-							 "P.U."      => $pu[$i],
+							 "P.U."      => number_format($pu[$i],2),
 							 "Rem.%" => $remise[$i],
-							 "Montant HT"  => $prix_ht[$i]);
+							 "Montant HT"  => number_format($prix_ht[$i],2));
 			$size = $pdf->addLine( $y, $line );
 			$y   += $size + 6;					   
 		}
