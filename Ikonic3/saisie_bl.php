@@ -300,7 +300,7 @@
                                 <td class="format">
                                     <SELECT name="format[]" class="selected_format_input" style="width:100px">
                                         <OPTION selected="selected" VALUE="0"></OPTION>
-                                        <?php for($i=0;$i<sizeof($article);$i++) { echo "<OPTION VALUE='{$article[$i]['prix_ht']}|{$article[$i]['libelle']}|{$article[$i]['volume']}|{$article[$i]['poids']}|{$article[$i]['ref']}'>{$article[$i]['ref']}</OPTION>"; } ?>
+                                        <?php for($i=0;$i<sizeof($article);$i++) { echo "<OPTION VALUE='{$article[$i]['prix_ht']}|{$article[$i]['libelle']}|{$article[$i]['volume']}|{$article[$i]['poids']}|{$article[$i]['ref']}|{$article[$i]['nbre_stock']}'>{$article[$i]['ref']}</OPTION>"; } ?>
                                     </SELECT>
                                 </td>
                                 <td class="product-title">
@@ -337,6 +337,7 @@
                             <label>Article: </label><label id="iarticle" for="ArticleInfos"></label><br/>
                             <label>Poids: </label><label id="ipoids" for="PoidsInfos"></label><br/>
                             <label>Volume: </label><label id="ivolume" for="VolumeInfos"></label><br/>
+                            <label>Nombre en stock: </label><label id="istock" for="StockInfos"></label><br/>
                         </fieldset>
                     </div>
                         <div class="TotalPoids" style="text-align: left;">

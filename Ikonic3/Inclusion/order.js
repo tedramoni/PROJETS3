@@ -154,6 +154,7 @@ $(document).ready(function() {
         var poids = valeur[3];
         var volume = valeur[2];
         var ref = valeur[4];
+        var stock = valeur[5];
         var remise = $(".remise").val();
 
         $el = $(this);
@@ -166,6 +167,7 @@ $(document).ready(function() {
         document.getElementById("iarticle").innerHTML = ref;
         document.getElementById("ipoids").innerHTML = poids;        
         document.getElementById("ivolume").innerHTML = volume;
+        document.getElementById("istock").innerHTML = stock;
 
         if (format != "0") {
             var prix = parseFloat(format);
