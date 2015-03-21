@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Dim 15 Mars 2015 à 10:30
+-- Généré le: Sam 21 Mars 2015 à 11:41
 -- Version du serveur: 5.6.12-log
 -- Version de PHP: 5.4.16
 
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `bon_livraison` (
   `cp_L` int(6) NOT NULL,
   `ville_L` varchar(50) NOT NULL,
   `pays_L` varchar(50) NOT NULL,
-  `tel_bureau_L` int(20) NOT NULL,
+  `tel_bureau_L` varchar(20) NOT NULL,
   `email_L` varchar(100) NOT NULL,
   `site_web_L` varchar(100) NOT NULL,
   `adr1_F` varchar(50) NOT NULL,
@@ -58,14 +58,17 @@ CREATE TABLE IF NOT EXISTS `bon_livraison` (
   `cp_F` int(6) NOT NULL,
   `ville_F` varchar(50) NOT NULL,
   `pays_F` varchar(50) NOT NULL,
-  `tel_bureau_F` int(20) NOT NULL,
+  `tel_bureau_F` varchar(20) NOT NULL,
   `email_F` varchar(100) NOT NULL,
   `site_web_F` varchar(100) NOT NULL,
   `liste_articles` varchar(500) NOT NULL,
   `transforme` tinyint(1) NOT NULL,
+  `prix_ttc` float NOT NULL,
+  `prix_ht` float NOT NULL,
+  `raison_sociale` varchar(100) NOT NULL,
   PRIMARY KEY (`num_bl`),
   UNIQUE KEY `num_bl` (`num_bl`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=150004 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=150006 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
