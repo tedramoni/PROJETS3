@@ -510,7 +510,7 @@
                 <center>
                    <!-- <input type="submit" name="valider" /> -->
 				   <input type="button" onclick="quitter_sans_sauvegarde()" value="Annuler" />
-				   <input type="button" onclick="quitter_avec_sauvegarde(traitement_facture.php)" value="Sauvegarder" />
+				   <input type="button" onclick="quitter_avec_sauvegarde('traitement_facture.php')" value="Sauvegarder" />
 				   <input type="button" onclick="submitForm('facture_pdf.php')" value="Imprimer Facture" />
                 </center>
             </form>
