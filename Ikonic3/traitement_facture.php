@@ -10,7 +10,7 @@
 		}
 		if(isset($_POST))
 		{
-			$numero_facture  =$_POST['numero_f'] 
+			$numero_facture  =$_POST['numero_f'];
 			$numero_bl       =$_POST['numero_bl'];
 			$date            =change_format_date($_POST['date']);
 			$ref_client      =$_POST['ref_client'];
@@ -72,19 +72,24 @@
 			$j++;
 		}
 		for ($i=0; $i <sizeof($nameArticle) ; $i++) { 
-			$liste_articles.="/".$nameArticle[$i]."|".$arrayComment[$i]."|".$arrayQte[$i]."|".$arrayPrix[$i]."|".$arrayRemise[$i]."/";
+			$liste_articles.=$nameArticle[$i]."|".$arrayComment[$i]."|".$arrayQte[$i]."|".$arrayPrix[$i]."|".$arrayRemise[$i];
+			if($i!=sizeof($nameArticle)-1)
+				$liste_articles.="**";
 		}
 		
 		
 		//TRAITEMENT BASE DE DONNEES
 		$connexion=connexionI();
-		$sql= "INSERT INTO FACTURES values($numero_facture, $numero_bl, $date, $date_echeance, '$ref_client', '$ref_fournisseur', '$code_client', '$nom_commercial', '$mode_reglement',
+		$sql= "INSERT INTO factures (num_facture, num_bl, date, date_echeance, ref_client, ref_fournisseur, code_client, nom_commercial, mode_reglement, info_comp, type_expedition,
+		nbre_colis, acompte, poids_total, volume_total, adr1_L, adr2_L, adr3_L, cp_L, ville_L, pays_L, tel_bureau_L, email_L, site_web_L, adr1_F, adr2_F, adr3_F, cp_F, ville_F,
+		pays_F, tel_bureau_F, email_F, site_web_F, liste_articles, prix_ttc, prix_ht, raison_sociale)
+		values($numero_facture, $numero_bl, '$date', '$date_echeance', '$ref_client', '$ref_fournisseur', '$code_client', '$nom_commercial', '$mode_reglement',
 		'$info_comp', '$type_expedition', $nbre_colis,
 		$acompte, $totalPds, $totalVolume, '$adr1_L', '$adr2_L', '$adr3_L', $cp_L, 
 			'$ville_L', '$pays_L', '$tel_bureau_L', 
 			'$email_L', '$site_web_L', 
-			'$adr1_F', '$adr2_F', '$adr3_F', $cp_F, '$ville_F', '$pays_F', '$tel_bureau_F', '$email_F', '$site_web_F', '$liste_articles', '$totalTTC', '$totalHT', '$raison_sociale)";
-		echo $sql." <br/>";
+			'$adr1_F', '$adr2_F', '$adr3_F', $cp_F, '$ville_F', '$pays_F', '$tel_bureau_F', '$email_F', '$site_web_F', '$liste_articles', '$totalTTC', '$totalHT', '$raison_sociale')";
 		mysqli_query($connexion,$sql) or die("Erreur: ".mysqli_error($connexion));
-		echo "<br/>".$sql;
+		
+		header('Location:factures.php');
 	?>

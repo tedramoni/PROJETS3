@@ -25,7 +25,7 @@
 	}
 	function quitter_avec_sauvegarde(action) {
 	  document.getElementById('form1').action = action;
-      document.getElementById('form1').target="_blank";
+      //document.getElementById('form1').target="_blank";
       document.getElementById('form1').submit();
 	}
 	
@@ -199,7 +199,7 @@
                     <input type="hidden" class="raison_social" id="raison_social" name="raison_social" required="required" value='<?php echo $raison_social; ?> '/>
                      <br/>
                     <label for="acompte"><u>Acompte versé: </u></label>
-                    <input type="hidden" class="acompte" id="acompte" name="acompte" required="required" value='<?php echo $acompte; ?> '/>
+                    <input type="number" class="acompte" id="acompte" name="acompte" required="required" value='<?php echo $acompte; ?>'/>
                     <br/>
                     <label for="mode_reglement"><u>Mode de règlement :</u> </label>
                     <input type="text" class="mode_reglement" id="mode_reglement" name="mode_reglement" required="required" value='<?php echo $mode_reglement; ?>'/>

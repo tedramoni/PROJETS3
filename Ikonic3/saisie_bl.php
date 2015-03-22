@@ -34,7 +34,7 @@
 	}
 	function quitter_avec_sauvegarde(action) {
          document.getElementById('form1').action = action;
-        document.getElementById('form1').target="_blank";
+        //document.getElementById('form1').target="_blank";
         document.getElementById('form1').submit();
 	}
 	

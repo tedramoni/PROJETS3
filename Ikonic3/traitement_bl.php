@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Enregistrement BL</title>
-</head>
-<body>
 	<?php
 		include( "Inclusion/gestion.php");
 		
@@ -88,7 +81,9 @@
 			$j++;
 		}
 		for ($i=0; $i <sizeof($nameArticle) ; $i++) { 
-			$liste_articles.="/".$nameArticle[$i]."|".$arrayComment[$i]."|".$arrayQte[$i]."|".$arrayPrix[$i]."|".$arrayRemise[$i]."/";
+			$liste_articles.=$nameArticle[$i]."|".$arrayComment[$i]."|".$arrayQte[$i]."|".$arrayPrix[$i]."|".$arrayRemise[$i];
+			if($i!=sizeof($nameArticle)-1)
+				$liste_articles.="**";
 		}
 		
 		
@@ -100,10 +95,8 @@
 			'".$ville_L."', '".$pays_L."', '".$tel_bureau_L."', 
 			'".$email_L."', '".$site_web_L."', 
 			'".$adr1_F."', '".$adr2_F."', '".$adr3_F."', ".$cp_F.", '".$ville_F."', '".$pays_F."', '".$tel_bureau_F."', '".$email_F."', '".$site_web_F."', '".$liste_articles."', '".$totalTTC."', '".$totalHT."')";
-		echo $sql." <br/>";
 		mysqli_query($connexion,$sql) or die("Erreur: ".mysqli_error($connexion));
-		echo "<br/>".$sql;
+		
+		header('Location:bl.php');
 	?>
 	
-</body>
-</html>
