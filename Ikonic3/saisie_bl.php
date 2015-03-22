@@ -37,6 +37,7 @@
         document.getElementById('form1').target="_blank";
         document.getElementById('form1').submit();
 	}
+	
 </script>
 <style type="text/css">
     #element2 {float:right;}
@@ -154,7 +155,7 @@
                     <label for="echeance">Echeance :</label>
                     <input type="text" class="echeance" id="echeance" name="echeance" required="required" />
                     <br/>
-                    <label for="fdm">F.D.M: </label><input type="checkbox" class="fdm" name="fdm" /><br/>
+                    <label for="fdm">F.D.M: </label><input type="checkbox" id="fdm" class="fdm" name="fdm" /><br/>
                     <label for="jour">le:  </label><input type="number" class="jour" name="jour" min="1" max="31" /><br/>
 
                     <label for="infos">Informations complémentaires : </label>
