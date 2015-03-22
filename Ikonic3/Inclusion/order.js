@@ -417,7 +417,12 @@ $(document).ready(function() {
 						  $el.parent().parent().find("input.mode_reglement").val(value.mode_reglement);
 						  $el.parent().parent().find("input.echeance").val(value.echeance);
 						  // Test fin du mois jour
-						  $el.parent().parent().find("input.fdm").val(value.fdm);
+						  
+						  if(value.fdm==true)
+						  {
+							  $el.parent().parent().find("input.fdm").val("on");
+						  }
+						
 						  $el.parent().parent().find("input.jour").val(value.jour);
 						  // Fin test
 						  $el.parent().parent().find("textarea.infos").val(value.info_comp);
