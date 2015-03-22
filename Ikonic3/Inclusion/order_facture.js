@@ -348,7 +348,7 @@ $(document).ready(function() {
         $el = $(this);
         var prix = 0;
         $el.parent().parent().find("td.prix_article input.prix").val($el.parent().parent().find("td.prix_article input.prix").val());        
-        prix = round((parseFloat($el.parent().parent().find("td.prix_article input.prix").val()) * parseFloat($el.parent().parent().find("td.num-pallets input.num-pallets-input").val())) * (1 - (parseFloat($el.parent().parent().find("td.remise_article input.remise_article-input").val()) / 100));
+        prix = round((parseFloat($el.parent().parent().find("td.prix_article input.prix").val()) * parseFloat($el.parent().parent().find("td.num-pallets input.num-pallets-input").val())) * (1 - (parseFloat($el.parent().parent().find("td.remise_article input.remise_article-input").val()) / 100)));
         $el.parent().parent().find("td.row-total input.row-total-input").val(prix);
         calcProdSubTotal();
     });
