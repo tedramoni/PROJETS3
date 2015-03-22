@@ -402,12 +402,12 @@ $(".btn_load_client").bind("click", function() {
                           $el.parent().parent().find("input.remise").val(value.remise);
                           $el.parent().parent().find("input.mode_reglement").val(value.mode_reglement);
                           //$el.parent().parent().find("input.echeance").val(value.echeance);
-						  var ech = value.echeance;
-						  var fdm = value.fdm;
-						  var jour = value.jour;
+						  var ech = Integer.parseInt(value.echeance);
+						  var fdm = Integer.parseInt(value.fdm);
+						  var jour = Integer.parseInt(value.jour);
 						  
-						  //var dateech = calculDate(ech, fdm, jour);
-						  var dateech = calculDate(20,1,10);
+						  var dateech = calculDate(ech, fdm, jour);
+						  //var dateech = calculDate(20,1,10);
 						  $el.parent().parent().find("input.echeance").val(dateech);
 						  
 						  alert("date echeance : "+dateech);
