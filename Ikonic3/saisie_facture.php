@@ -28,6 +28,7 @@
 	   	  alert("en construction");
 	  }
 	}
+	
 </script>
 
     <title>Ikonic: Saisie d'une Facture</title>

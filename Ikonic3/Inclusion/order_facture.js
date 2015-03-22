@@ -1,3 +1,76 @@
+// Calcul de la date pour l'échéance
+function dernierJourDuMois(mois, annee)
+	{
+		switch(mois)
+		{
+			case 4:
+			case 6:
+			case 9:
+			case 11:
+				return 30;
+				
+			case 2:
+				if (annee%400==0 || (annee%4  == 0 && annee%100 !=0))
+					return 29;
+				else return 28;
+			default:
+				return 31;
+		}
+	}
+
+function calculDate(echeance, fdm, le)
+{
+
+	var date = new Date();
+
+	var jour = date.getDate();
+	var mois = date.getMonth()+1;
+	var annee = date.getFullYear();
+
+	if (echeance==0 && fdm==0)
+	{
+		return "01/01/1900";
+	}
+
+	jour += echeance;
+	while (jour >dernierJourDuMois(mois,annee))
+	{
+		jour -= dernierJourDuMois(mois,annee);
+		if (mois ==12)
+		{
+			mois = 1;
+			annee+=1;
+		}
+		else
+		{
+			mois++;
+		}	
+	}
+
+	if(fdm !=0)
+	{
+		jour = dernierJourDuMois(mois,annee);
+
+		if(le!=0)
+		{
+			if(mois==12)
+			{
+				mois =1;
+				annee+=1;
+				jour=le;
+			}
+			else
+			{
+				mois++;
+				jour = le;
+			}
+			
+		}		
+	}
+	return jour+"/"+mois+"/"+annee;
+}
+// Fin date
+
 function CleanNumber(value) {
     // Assumes string input, removes all commas, dollar signs, and spaces      
     newValue = value.replace(",", "");
@@ -328,7 +401,12 @@ $(".btn_load_client").bind("click", function() {
                           $el.parent().parent().find("input.raison_social").val(value.raison_sociale);
                           $el.parent().parent().find("input.remise").val(value.remise);
                           $el.parent().parent().find("input.mode_reglement").val(value.mode_reglement);
-                          $el.parent().parent().find("input.echeance").val(value.echeance);
+                          //$el.parent().parent().find("input.echeance").val(value.echeance);
+						  var ech = value.echeance;
+						  var fdm = value.fdm;
+						  var jour = value.jour;
+						  $el.parent().parent().find("input.echeance").val(calculDate(ech, fdm, jour));
+						  
                           $el.parent().parent().find("textarea.infos").val(value.info_comp);
                          }
                          if(key==1)
