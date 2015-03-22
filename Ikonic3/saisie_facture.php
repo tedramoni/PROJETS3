@@ -23,10 +23,10 @@
 	   window.location.href = "http://iuted.bugs3.com/projet/Ikonic3/";
       }
 	}
-	function quitter_avec_sauvegarde() {
-	  if (confirm("Quitter et sauvegarder ce bon de livraison ?")) {
-	   	  alert("en construction");
-	  }
+	function quitter_avec_sauvegarde(action) {
+	  document.getElementById('form1').action = action;
+      document.getElementById('form1').target="_blank";
+      document.getElementById('form1').submit();
 	}
 	
 </script>
@@ -510,7 +510,7 @@
                 <center>
                    <!-- <input type="submit" name="valider" /> -->
 				   <input type="button" onclick="quitter_sans_sauvegarde()" value="Annuler" />
-				   <input type="button" onclick="quitter_avec_sauvegarde()" value="Sauvegarder" />
+				   <input type="button" onclick="quitter_avec_sauvegarde(traitement_facture.php)" value="Sauvegarder" />
 				   <input type="button" onclick="submitForm('facture_pdf.php')" value="Imprimer Facture" />
                 </center>
             </form>
