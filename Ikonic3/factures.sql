@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `factures` (
   `prix_ttc` float NOT NULL,
   `prix_ht` float NOT NULL,
   `raison_sociale` varchar(100) NOT NULL,
-  PRIMARY KEY (`num_facture`),
+  PRIMARY KEY (`num_facture`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=150001 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
