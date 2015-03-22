@@ -82,7 +82,7 @@
             $data=mysqli_fetch_array($requete);
         ?>
         <div id="formu_contact">
-            <form method="post" action="" id="form1" .target="_blank">
+            <form method="post" action="" id="form1">
                 <br/>
                 <label for="numero_bl">N°BL : </label>
                 <input type="text" id="numero_bl" name="numero_bl" required="required" value="<?php echo $data[0]+1;?>" />
