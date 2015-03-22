@@ -84,7 +84,7 @@
             <form method="post" action="" id="form1" .target="_blank">
                 <br/>
                 <label for="numero_bl">N°BL : </label>
-                <input type="text" id="numero_bl" name="numero_bl" required="required" value="<?php echo $data[0]+1;?>" disabled="disabled"/>
+                <input type="text" id="numero_bl" name="numero_bl" required="required" value="<?php echo $data[0]+1;?>" />
 
                 <fieldset>
                     <br/>
@@ -154,10 +154,10 @@
                     <label for="echeance">Echeance :</label>
                     <input type="text" class="echeance" id="echeance" name="echeance" required="required" />
                     <br/>
-                    <label for="fdm">F.D.M: </label><input type="checkbox" name="fdm" /><br/>
-                    <label for="jour">le:  </label><input type="text"  name="jour" min="1" max="31" /><br/>
+                    <label for="fdm">F.D.M: </label><input type="checkbox" class="fdm" name="fdm" /><br/>
+                    <label for="jour">le:  </label><input type="number" class="jour" name="jour" min="1" max="31" /><br/>
 
-                    <label for="infos">Informations complémentaire : </label>
+                    <label for="infos">Informations complémentaires : </label>
                     <textarea class="infos" id="infos" name="infos" required="required"></textarea>
                     <br/>
                 </fieldset>
@@ -320,7 +320,7 @@
                                 </td>
                                 <!-- <td class="prix_article"><span name="prix_article[]" class="prix"></span>&euro;</td> -->
                                 <td class="prix_article">
-                                    <input type="number" step="any" min="0" style="width:80px" name="prix_article[]" class="prix"></input>&euro;</td>
+                                    <input type="number" step="any" min="0" style="width:80px" name="prix_article[]" class="prix"/>&euro;</td>
                                 <td class="remise_article">
                                     <input type="number" step="any" min="0" value="0" style="width:40px" name="rarticle[]" class="remise_article-input"/>%
                                 </td>
@@ -371,10 +371,10 @@
                 Afficher ce BL avec la mention DUPLICATA? <input type="checkbox" name="duplicata" value="Oui"/> <br/><br/>
                 <center>
                    <!-- <input type="submit" name="valider" /> -->
-				   <input type="button" onclick="submitForm('saisie_facture.php')" value="Transformer en facture" />
-				   <input type="button" onclick="quitter_sans_sauvegarde()" value="Annuler" />
-				   <input type="button" onclick="quitter_avec_sauvegarde('traitement_bl.php')" value="Sauvegarder" />
-				   <input type="button" onclick="submitForm('bl_pdf.php')" value="Imprimer BL" />
+                   <a onclick="submitForm('saisie_facture.php')" class="button grey">Transformer en facture</a>
+                   <a onclick="quitter_sans_sauvegarde()" class="button grey">Annuler</a>
+                   <a onclick="quitter_avec_sauvegarde('traitement_bl.php')" class="button grey">Sauvegarder</a>
+                   <a onclick="submitForm('bl_pdf.php')" class="button grey">Imprimer BL</a>
                 </center>
             </form>
     </section>
