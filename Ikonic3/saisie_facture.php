@@ -10,6 +10,7 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
     <script type='text/javascript' src='Inclusion/order_facture.js'></script>
+	<script type='text/javascript' src='Inclusion/calcul_date.js'></script>
 	<script type="text/javascript">
     function submitForm(action)
     {
@@ -52,6 +53,12 @@
 		if(isset($_POST))
 		{
 			$numero_bl=$_POST['numero_bl'];
+            //SI $_POST, c'est à dire que le BL a été transformé en facture.
+            //On passe donc dans la BD, le booleen transforme de 0 à 1.
+            $connexion=connexionI();
+            $sql="UPDATE bon_livraison SET transforme=1 WHERE num_bl=".$numero_bl;
+            mysqli_query($connexion,$sql);
+            
 			$date=$_POST['date'];
 			$ref_client=$_POST['ref_client'];
 			$ref_fournisseur=$_POST['ref_fournisseur'];
