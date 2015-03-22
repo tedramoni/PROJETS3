@@ -420,7 +420,8 @@ $(document).ready(function() {
 						  
 						  if(value.fdm==1)
 						  {
-							  $el.parent().parent().find("input.fdm").val("on");
+							  //$el.parent().parent().find("input.fdm").val("on");
+							  document.getElementById("fdm").checked=true;
 						  }
 						
 						  $el.parent().parent().find("input.jour").val(value.jour);
