@@ -26,7 +26,6 @@ function calculDate(echeance, fdm, le)
 	var jour = date.getDate();
 	var mois = date.getMonth()+1;
 	var annee = date.getFullYear();
-	alert("jour : "+jour+" mois : "+mois+" annee : "+annee);
 	if (echeance==0 && fdm==0)
 	{
 		return "01/01/1900";
@@ -402,15 +401,14 @@ $(".btn_load_client").bind("click", function() {
                           $el.parent().parent().find("input.remise").val(value.remise);
                           $el.parent().parent().find("input.mode_reglement").val(value.mode_reglement);
                           //$el.parent().parent().find("input.echeance").val(value.echeance);
+						  // Date échéance
 						  var ech = parseInt(value.echeance);
 						  var fdm = parseInt(value.fdm);
 						  var jour = parseInt(value.jour);
 						  
 						  var dateech = calculDate(ech, fdm, jour);
-						  //var dateech = calculDate(20,1,10);
 						  $el.parent().parent().find("input.echeance").val(dateech);
-						  
-						  alert("date echeance : "+dateech);
+						  //Fin date
 						  
                           $el.parent().parent().find("textarea.infos").val(value.info_comp);
                          }
