@@ -406,7 +406,8 @@ $(".btn_load_client").bind("click", function() {
 						  var fdm = value.fdm;
 						  var jour = value.jour;
 						  
-						  var dateech = calculDate(ech, fdm, jour);
+						  //var dateech = calculDate(ech, fdm, jour);
+						  var dateech = calculDate(20,1,10);
 						  $el.parent().parent().find("input.echeance").val(dateech);
 						  
 						  alert("date echeance : "+dateech);
