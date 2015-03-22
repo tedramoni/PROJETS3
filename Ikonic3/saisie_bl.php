@@ -5,12 +5,21 @@
     <link rel="stylesheet" type="text/css" href="css/feuille_de_style.css" />
     <link rel="stylesheet" type="text/css" href="css/TableCSSCode2.css" />
     <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/themes/smoothness/jquery-ui.css" />
-
     <link rel="icon" type="image/ico" href="images/favicon.ico" />
     <meta charset="utf-8" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
     <script type='text/javascript' src='Inclusion/order.js'></script>
+    <style type="text/css">
+        #element2 {
+            float:right;
+        }
+
+        #element3 tbody tr td {
+          text-align: center;
+           padding: 10px 10px;
+        }
+    </style>
 	<script type="text/javascript">
     function submitForm(action)
     {
@@ -20,13 +29,13 @@
     }
 	function quitter_sans_sauvegarde() {
 	  if (confirm("Quitter sans sauvegarder ?")) {
-	   window.location.href = "http://iuted.bugs3.com/projet/Ikonic3/";
+	   window.location.href = "http://iuted.bugs3.com/projet/Ikonic3/bl.php";
       }
 	}
-	function quitter_avec_sauvegarde() {
-	  if (confirm("Quitter et sauvegarder ce bon de livraison ?")) {
-	   	  alert("en construction");
-	  }
+	function quitter_avec_sauvegarde(action) {
+         document.getElementById('form1').action = action;
+        document.getElementById('form1').target="_blank";
+        document.getElementById('form1').submit();
 	}
 </script>
 <style type="text/css">
@@ -48,35 +57,34 @@
         <br/>
         <br/>
 
-        <?php if (isset($_GET[ 'err'])) 
-        { if ($_GET[ 'err']=='err1' ) 
+        <?php 
+
+            $liste=array(); 
+            $connexion=connexionI(); 
+            $sql='Select * from client' ; 
+            $requete=mysqli_query($connexion,$sql); 
+            while($result=mysqli_fetch_array($requete)) 
             { 
-                echo "<center><p style='color:red;'>Le code client doit être de la forme : 9, puis une lettre, puis 4 chiffres (ex : 9L0015) !</center><br><br>";
-            } 
-          if ($_GET[ 'err']=='err2' ) 
-            { echo "<center><p style='color:red;'>Le code client existe déjà !</center><br><br>"; 
-            } 
-        } 
-        $liste=array(); 
-        connexion(); 
-        $sql='Select * from client' ; 
-        $requete=mysql_query($sql); 
-        while($result=mysql_fetch_array($requete)) 
-            { $liste[]=$result[ 'code']; }
-         $sql2="SELECT * FROM article " ; 
-         $execute2=mysql_query($sql2) or die( 'Erreur au niveau de la requete'.mysql_error()); 
-         $article=array(); $i=0; 
-        while($data2=mysql_fetch_array($execute2)) 
-            { $article[$i]=$data2; $i++; }
-            $sql="SELECT * FROM parametre;";
-            $requete=mysql_query($sql);
-            $data=mysql_fetch_array($requete);
+                $liste[]=$result[ 'code']; 
+            }
+            $sql2="SELECT * FROM article "; 
+            $execute2=mysqli_query($connexion,$sql2) or die( 'Erreur au niveau de la requete'.mysqli_error()); 
+            $article=array(); 
+            $i=0; 
+            while($data2=mysqli_fetch_array($execute2)) 
+            { 
+                $article[$i]=$data2; 
+                $i++; 
+            }
+            $sql="SELECT MAX(num_bl) FROM bon_livraison";
+            $requete=mysqli_query($connexion,$sql) or die( 'Erreur au niveau de la requete: max(num_bl): '.mysqli_error()); 
+            $data=mysqli_fetch_array($requete);
         ?>
         <div id="formu_contact">
             <form method="post" action="" id="form1" .target="_blank">
                 <br/>
-                <label for="numero_bl"><u>N°BL :</u> </label>
-                <input type="text" id="numero_bl" name="numero_bl" required="required" value="<?php echo $data[num_bl];?>"/>
+                <label for="numero_bl">N°BL : </label>
+                <input type="text" id="numero_bl" name="numero_bl" required="required" value="<?php echo $data[0]+1;?>" disabled="disabled"/>
 
                 <fieldset>
                     <br/>
@@ -103,16 +111,16 @@
                     </script>
                     <!-- <input type="date" name="date" id="date" required="required" value="<?php echo date('dd/mm/yyyy'); ?>" /> -->
                     <br/>
-                    <label for="ref_client"><u>Référence du client :</u> </label>
+                    <label for="ref_client">Référence du client : </label>
                     <input type="text" id="ref_client" name="ref_client" required="required" />
                     <br/>
-                    <label for="ref_fournisseur"><u>Référence du fournisseur :</u> </label>
+                    <label for="ref_fournisseur">Référence du fournisseur : </label>
                     <input type="text" id="ref_fournisseur" name="ref_fournisseur" required="required" />
                     <br/>
 
-                    <label for="code_client"><u>Code Client :</u> </label>
+                    <label for="code_client">Code Client : </label>
                     <input type="text" id="code_client" name="code_client" class="cc" onkeyup="myFunction()" />
-					<input type="button" value="Charger données client" class="btn_load_client" style="width:200px"></input>
+					<input type="button" value="Charger données client" class="btn_load_client" style="width:200px" />
                     <br/>
 
                     <script>
@@ -132,28 +140,31 @@
                         });
                     </script>
 
-                    <label for="nom_commercial"><u>Nom Commercial :</u> </label>
+                    <label for="nom_commercial">Nom Commercial : </label>
                     <input type="text" class="nom_commercial" id="nom_commercial" name="nom_commercial" required="required" />
                     <input type="hidden" class="raison_social" id="raison_social" name="raison_social" required="required" />
                     <input type="hidden" class="remise" id="remise" name="remise" required="required" value="0" />
                     <br/>
-                    <label for="acompte"><u>Acompte versé: </u></label>
+                    <label for="acompte">Acompte versé: </label>
                     <input type="number" style="width:100px" step="any" min="0" id="acompte" name="acompte" value="0" /> &euro;
                     <br/>
-                    <label for="mode_reglement"><u>Mode de règlement :</u> </label>
+                    <label for="mode_reglement">Mode de règlement : </label>
                     <input type="text" class="mode_reglement" id="mode_reglement" name="mode_reglement" required="required" />
                     <br/>
-                    <label for="echeance"><u>Echeance :</u> </label>
+                    <label for="echeance">Echeance :</label>
                     <input type="text" class="echeance" id="echeance" name="echeance" required="required" />
                     <br/>
-                    <label for="infos"><u>Informations complémentaire :</u> </label>
+                    <label for="fdm">F.D.M: </label><input type="checkbox" name="fdm" /><br/>
+                    <label for="jour">le:  </label><input type="number"  name="jour" min="1" max="31" /><br/>
+
+                    <label for="infos">Informations complémentaire : </label>
                     <textarea class="infos" id="infos" name="infos" required="required"></textarea>
                     <br/>
                 </fieldset>
                 <fieldset>
                     <br/>
                     <legend>Adresse Livraison</legend>
-                        <strong><u><label for="choixLivraison">Choisir une adresse: </label></u></strong>
+                        <strong><label for="choixLivraison">Choisir une adresse: </label></strong>
                         <SELECT id="selectLivraison" name="selectLivraison" class="selected_livraison_input" style="width:700px"> <OPTION selected="selected" VALUE="">Selectionner une autre adresse que celle par défaut.</OPTION></SELECT> <br/><br/>
                     <table id="dataTableAdresseLivraison" border="1">
                         <tbody>
@@ -180,7 +191,6 @@
                                         <label for="BX_ville">Ville: </label>
                                         <input type="text" class="v_l" name="BX_ville" />
                                         <br/>
-                                        <hr>
                                     </td>
                                     <td>
                                         <label for="BX_pays">Pays: </label>
@@ -208,7 +218,7 @@
                 <fieldset>
                     <br/>
                     <legend>Adresse Facturation</legend>
-                        <strong><u><label for="choixFacturation">Choisir une adresse: </label></u></strong>
+                        <strong><label for="choixFacturation">Choisir une adresse: </label></strong>
                         <SELECT id="selectFacturation" name="selectFacturation" class="selected_facturation_input" style="width:700px"> <OPTION selected="selected" VALUE="">Selectionner une autre adresse que celle par défaut.</OPTION></SELECT> <br/><br/>
                     <table id="dataTableAdresseFacturation" border="1">
                         <tbody>
@@ -235,7 +245,6 @@
                                         <label for="BX_ville2">Ville: </label>
                                         <input type="text" class="ville_f" name="BX_ville2" />
                                         <br />
-                                        <hr>
                                     </td>
                                     <td>
                                         <label for="BX_pays2">Pays: </label>
@@ -284,7 +293,7 @@
                         <tbody id="tablco">
                             <tr>
                                 <th>
-                                    <input type="button" value="+" class="btn_newpics"></input>
+                                    <input type="button" value="+" class="btn_newpics" />
                                 </th>
                                 <th>Référence</th>
                                 <th>Libellé</th>
@@ -295,7 +304,7 @@
                             </tr>
                             <tr class="Ligne" id="default">
                                 <td class="supligne" style="text-align:center"> &nbsp
-                                    <input type="button" class="btn-sup" value="-" style="width:30px align:center"> </input>
+                                    <input type="button" class="btn-sup" value="-" style="width:30px align:center"/>
                                 </td>
                                 <td class="format">
                                     <SELECT name="format[]" class="selected_format_input" style="width:100px">
@@ -307,75 +316,64 @@
                                     <textarea placeholder="Libellé de l'article &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Numero de série" rows="3" cols="40" class="name-pics" name="namearticle[]"></textarea>
                                 </td>
                                 <td class="num-pallets">
-                                    <input type="number" step="any" min="0" name="qarticle[]" style="width:40px" class="num-pallets-input"></input>
+                                    <input type="number" step="any" min="0" name="qarticle[]" style="width:40px" class="num-pallets-input"/>
                                 </td>
                                 <!-- <td class="prix_article"><span name="prix_article[]" class="prix"></span>&euro;</td> -->
                                 <td class="prix_article">
                                     <input type="number" step="any" min="0" style="width:80px" name="prix_article[]" class="prix"></input>&euro;</td>
                                 <td class="remise_article">
-                                    <input type="number" step="any" min="0" value="0" style="width:40px" name="rarticle[]" class="remise_article-input"></input>%
+                                    <input type="number" step="any" min="0" value="0" style="width:40px" name="rarticle[]" class="remise_article-input"/>%
                                 </td>
                                 <td style="display:none;" class="Poids_article">
-                                    <input type="number" step="any" min="0" name="poids_article[]" style="width:40px" class="poids" readonly></input> kg</td>
+                                    <input type="number" step="any" min="0" name="poids_article[]" style="width:40px" class="poids" readonly/> kg</td>
                                 <td style="display:none;" class="Volume_article">
-                                    <input type="number" step="any" min="0" name="volume_article[]" style="width:40px" class="volume" readonly></input> m3</td>
+                                    <input type="number" step="any" min="0" name="volume_article[]" style="width:40px" class="volume" readonly/> m3</td>
                                 <td class="row-total">
-                                    <input type="text" style="width:80px" name="prixtt_article[]" class="row-total-input" readonly></input>&euro;</td>
+                                    <input type="text" style="width:80px" name="prixtt_article[]" class="row-total-input" readonly/>&euro;</td>
                                 <td style="display:none;"class="row-totalp">
-                                    <input type="text" name="totalp_article[]" style="width:60px" class="row-totalp-input" readonly></input>kg</td>
+                                    <input type="text" name="totalp_article[]" style="width:60px" class="row-totalp-input" readonly/>kg</td>
                                 <td style="display:none;"class="row-totalv">
-                                    <input type="text" name="totalv_article[]" style="width:60px" class="row-totalv-input" readonly></input>m3</td>
+                                    <input type="text" name="totalv_article[]" style="width:60px" class="row-totalv-input" readonly/>m3</td>
                             </tr>
                         </tbody>
                     </table>
-                    <br/><br/>
+                    </div>
+                    <br/><br/><br/>
+
                     <div id="element2">
                         <fieldset>
-                            <br/>
                             <legend>Informations Article</legend>
-                            <br/>
-                            <label>Article: </label><label id="iarticle" for="ArticleInfos"></label><br/>
-                            <label>Poids: </label><label id="ipoids" for="PoidsInfos"></label><br/>
-                            <label>Volume: </label><label id="ivolume" for="VolumeInfos"></label><br/>
-                            <label>Nombre en stock: </label><label id="istock" for="StockInfos"></label><br/>
+                            Article: <toto id="iarticle" for="ArticleInfos"></toto><br/>
+                            Poids: <toto id="ipoids" for="PoidsInfos"></toto><br/>
+                            Volume: <toto id="ivolume" for="VolumeInfos"></toto><br/>
+                            Quantité en stock: <toto id="istock" for="StockInfos"></toto><br/>
                         </fieldset>
                     </div>
-                        <div class="TotalPoids" style="text-align: left;">
-                            <span>  <b>TOTAL POIDS:</b> </span>
-                            <input type="text" name="totalPoids" style="width:80px" class="total-poids" value="0" id="product-poids" readonly></input>kg
-                        </div>
-                        <div class="TotalVolume" style="text-align: left;">
-                            <span> <b> TOTAL VOLUME: </b></span>
-                            <input type="text" name="totalVolume" style="width:80px" class="total-volume" value="0" id="product-volume" readonly></input>m3
-                            <br />
-                        </div>
-                        <br/>
-                        <div class="TotalHT" style="text-align: left;">
-                            <span> <b> TOTAL HT: </b></span>
-                            <input type="text" name="totalHT" style="width:80px" class="total-box" value="0&euro;" id="product-ht" readonly></input>&euro;
-                            <br />
-                        </div>
-
-                        <div class="Total" style="text-align: left;">
-                            <span> <b> TOTAL TTC:</b> </span>
-                            <input type="text" style="width:80px" name="totalTTC" class="total-box" value="0&euro;" id="product-subtotal" readonly></input>&euro;
-                            <br />
-                        </div>
+                    <div id="element3">
+                    <table>
+                        <tr style="background-color: #c9dff0;">
+                            <td>Poids total(kg)</td>
+                            <td>Volume total(m3)</td>
+                            <td>Total HT (€)</td>
+                            <td>Total TTC(€)</td>
+                            <td>Dont T.V.A(€)</td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="totalPoids" style="width:80px" class="total-poids" value="<?php echo $data['poids_total']; ?>" id="product-poids" readonly /></td>
+                            <td><input type="text" name="totalVolume" style="width:80px" class="total-volume" value="<?php echo $data['volume_total']; ?>" id="product-volume" readonly /></td>
+                            <td><input type="text" name="totalHT" style="width:80px" class="total-box" value="<?php echo $data['prix_ht']; ?>;" id="product-ht" readonly /></td>
+                            <td><input type="text" style="width:80px" name="totalTTC" class="total-box" value="<?php echo $data['prix_ttc']; ?>" id="product-subtotal" readonly /></td>
+                            <td><input type="text" class="total-box" style="width:80px" value="0" name="totalTVA" id="product-TVA" readonly /></td>
+                        </tr>
+                    </table>
                     </div>
-
-                    <div class="TotalTVA" style="text-align: left;">
-                        <span>  <b>DONT T.V.A:</b></span>
-                        <input type="text" class="total-box" style="width:80px" value="0&euro;" name="totalTVA" id="product-TVA" readonly></input>&euro;
-                        <br />
-                    </div>
-
                 <!-- Fin Saisie Commande -->
-				<input type="checkbox" name="duplicata" value="Oui"> Marquer ce BL en DUPLICATA ? </input>
+                Afficher ce BL avec la mention DUPLICATA? <input type="checkbox" name="duplicata" value="Oui"/> <br/><br/>
                 <center>
                    <!-- <input type="submit" name="valider" /> -->
 				   <input type="button" onclick="submitForm('saisie_facture.php')" value="Transformer en facture" />
 				   <input type="button" onclick="quitter_sans_sauvegarde()" value="Annuler" />
-				   <input type="button" onclick="quitter_avec_sauvegarde()" value="Sauvegarder" />
+				   <input type="button" onclick="quitter_avec_sauvegarde('traitement_bl.php')" value="Sauvegarder" />
 				   <input type="button" onclick="submitForm('bl_pdf.php')" value="Imprimer BL" />
                 </center>
             </form>
