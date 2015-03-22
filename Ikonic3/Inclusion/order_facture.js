@@ -405,8 +405,11 @@ $(".btn_load_client").bind("click", function() {
 						  var ech = value.echeance;
 						  var fdm = value.fdm;
 						  var jour = value.jour;
-						  $el.parent().parent().find("input.echeance").val(calculDate(ech, fdm, jour));
-						  alert("ech : "+ech+" fdm : "+fdm+" jour : "+jour);
+						  
+						  var dateech = calculDate(ech, fdm, jour);
+						  $el.parent().parent().find("input.echeance").val(dateech);
+						  
+						  alert("date echeance : "+dateech);
 						  
                           $el.parent().parent().find("textarea.infos").val(value.info_comp);
                          }
