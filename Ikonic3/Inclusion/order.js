@@ -418,7 +418,7 @@ $(document).ready(function() {
 						  $el.parent().parent().find("input.echeance").val(value.echeance);
 						  // Test fin du mois jour
 						  
-						  if(value.fdm==true)
+						  if(value.fdm==1)
 						  {
 							  $el.parent().parent().find("input.fdm").val("on");
 						  }
