@@ -23,7 +23,7 @@ function calculDate(echeance, fdm, le)
 	var date = new Date();
 
 	var jour = date.getDate();
-	var mois = date.getMois()+1;
+	var mois = date.getMonth()+1;
 	var annee = date.getFullYear();
 
 	if (echeance==0 && fdm==0)
