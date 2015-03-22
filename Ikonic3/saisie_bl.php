@@ -155,7 +155,7 @@
                     <input type="text" class="echeance" id="echeance" name="echeance" required="required" />
                     <br/>
                     <label for="fdm">F.D.M: </label><input type="checkbox" name="fdm" /><br/>
-                    <label for="jour">le:  </label><input type="number"  name="jour" min="1" max="31" /><br/>
+                    <label for="jour">le:  </label><input type="text"  name="jour" min="1" max="31" /><br/>
 
                     <label for="infos">Informations complémentaire : </label>
                     <textarea class="infos" id="infos" name="infos" required="required"></textarea>
