@@ -28,6 +28,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `factures` (
   `num_facture` int(11) NOT NULL AUTO_INCREMENT,
+  `num_bl` int(11) NOT NULL,
   `date` date NOT NULL,
   `date_echeance` date NOT NULL,
   `ref_client` varchar(100) NOT NULL,
@@ -35,9 +36,6 @@ CREATE TABLE IF NOT EXISTS `factures` (
   `code_client` varchar(20) NOT NULL,
   `nom_commercial` varchar(50) NOT NULL,
   `mode_reglement` varchar(30) NOT NULL,
-  `echeance` int(11) NOT NULL,
-  `fdm` tinyint(1) NOT NULL,
-  `jour` int(11) NOT NULL,
   `info_comp` varchar(200) NOT NULL,
   `type_expedition` varchar(100) NOT NULL,
   `nbre_colis` int(11) NOT NULL,
@@ -67,7 +65,6 @@ CREATE TABLE IF NOT EXISTS `factures` (
   `prix_ht` float NOT NULL,
   `raison_sociale` varchar(100) NOT NULL,
   PRIMARY KEY (`num_facture`),
-  UNIQUE KEY `num_bl` (`num_facture`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=150001 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
