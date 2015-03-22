@@ -379,6 +379,10 @@ $(document).ready(function() {
                           $el.parent().parent().find("input.raison_social").val("");
 						  $el.parent().parent().find("input.mode_reglement").val("");
 						  $el.parent().parent().find("input.echeance").val("");
+						  // Test echeance
+						  $el.parent().parent().find("input.fdm").val("");
+						  $el.parent().parent().find("input.jour").val("");
+						  // Fin test
 						  $el.parent().parent().find("textarea.infos").val("");
 						   
 						  $el.parent().parent().find("input.adr1_f").val("");
