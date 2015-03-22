@@ -26,9 +26,7 @@ function calculDate(echeance, fdm, le)
 	var jour = date.getDate();
 	var mois = date.getMonth()+1;
 	var annee = date.getFullYear();
-	System.out.print("TEEEST jour : "+jour);
-	System.out.print("TEEEST mois : "+mois);
-	System.out.print("TEEEST annee : "+annee);
+	alert("jour : "+jour+" mois : "+mois+" annee : "+annee);
 	if (echeance==0 && fdm==0)
 	{
 		return "01/01/1900";
