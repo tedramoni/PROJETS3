@@ -18,14 +18,9 @@ function dernierJourDuMois(mois, annee)
 		}
 	}
 
-function calculDate(echeance, fdm, le)
+function calculDate(jour, mois, annee, echeance, fdm, le)
 {
 
-	var date = new Date();
-
-	var jour = date.getDate();
-	var mois = date.getMonth()+1;
-	var annee = date.getFullYear();
 	if (echeance==0 && fdm==0)
 	{
 		return "01/01/1900";
@@ -402,11 +397,17 @@ $(".btn_load_client").bind("click", function() {
                           $el.parent().parent().find("input.mode_reglement").val(value.mode_reglement);
                           //$el.parent().parent().find("input.echeance").val(value.echeance);
 						  // Date échéance
+						  var dateChoisie = document.getElementById("date").value;
+						  var badara = dateChoisie.split("/");
+						  var jour = parseInt(badara[0]);
+						  var mois = parseInt(badara[1]);
+						  var annee = parseInt(badara[2]);
+						  
 						  var ech = parseInt(value.echeance);
 						  var fdm = parseInt(value.fdm);
-						  var jour = parseInt(value.jour);
+						  var le = parseInt(value.jour);
 						  
-						  var dateech = calculDate(ech, fdm, jour);
+						  var dateech = calculDate(jour, mois, annee, ech, fdm, le);
 						  $el.parent().parent().find("input.echeance").val(dateech);
 						  //Fin date
 						  

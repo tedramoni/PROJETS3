@@ -10,7 +10,6 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
     <script type='text/javascript' src='Inclusion/order_facture.js'></script>
-	<script type='text/javascript' src='Inclusion/calcul_date.js'></script>
 	<script type="text/javascript">
     function submitForm(action)
     {
@@ -51,7 +50,7 @@
             $data=mysql_fetch_array($requete3);
         ?>		
 		<?php
-		if(isset($_POST))
+		if(!empty($_POST))
 		{
 			$numero_bl=$_POST['numero_bl'];
             //SI $_POST, c'est à dire que le BL a été transformé en facture.
@@ -97,7 +96,7 @@
 		else
 		{
 			$numero_bl="";
-			$date=date('Y-m-d');
+			$date=date('d/m/Y');
 			$ref_client="";
 			$ref_fournisseur="";
 			$code_client="";
@@ -145,7 +144,7 @@
                     <br/>
                     <legend>Bon de livraison</legend>
                     <label for="date">Date : </label>
-                    <input class="datepicker form-control" name="date" id="date" required="required" type="text" value='<?php echo $date; ?>'/>
+                    <input class="datepicker form-control" name="date" id="date" required="required" type="text" value="<?php echo $date;?>"/>
                     <script>
                         $(function() {
                         $( ".datepicker" ).datepicker({
