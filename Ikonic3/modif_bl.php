@@ -4,11 +4,12 @@
 <head>
     <link rel="stylesheet" type="text/css" href="css/feuille_de_style.css" />
     <link rel="stylesheet" type="text/css" href="css/TableCSSCode2.css" />
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/themes/smoothness/jquery-ui.css" />
     <link rel="icon" type="image/ico" href="images/favicon.ico" />
     <meta charset="utf-8" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
-    <script type='text/javascript' src='Inclusion/order.js'></script>
+    <script type='text/javascript' src='Inclusion/order_modif.js'></script>
     <style type="text/css">
         #element2 {
             float:right;
@@ -25,9 +26,18 @@
 </head>
 
 
-<body>
+<body onload="calcProdSubTotal()">
     <section>
-        <?php include( "Inclusion/gestion.php"); include( "Inclusion/header.php"); actif(3); ?>
+        <?php include( "Inclusion/gestion.php"); include( "Inclusion/header.php"); actif(3); 
+        if(isset($_GET['supp']))
+        {
+            $connexion=connexionI();
+            $sql="DELETE FROM bon_livraison WHERE num_bl=".$_GET['supp']." AND transforme=0";
+            mysqli_query($connexion,$sql);
+            header('Location:bl.php');
+        }
+        ?>
+
         <br/>
         <br/>
         <h1 style="padding-top: 55px; text-align:center;">Modification d'un bon de livraison</h1>
@@ -57,19 +67,44 @@
             $sql="SELECT * FROM bon_livraison WHERE num_bl=".$_GET['num_bl'];
             $requete=mysqli_query($connexion,$sql);
             $data=mysqli_fetch_array($requete);
+            if ($data['transforme']==0) {
+                
+        ?>
+
+        <center><script>
+            function verif()
+            {
+                var a=confirm('Etes vous sûr de supprimer ce BL?'); 
+                if(a==true){
+                    window.location.href ="modif_bl.php?supp=<?php echo $_GET['num_bl']; ?>";
+                }
+                else
+                {
+                 alert('Votre demande n\'a pas été traitée.');
+                }
+             }
+        </script>
+        <a href="#" style="border-bottom:1px dotted red;color:red;" onclick="verif();"> Voulez-vous supprimer ce BL?</a></center><br/>
+        <?php }     
+            function change_format_date($dateAchanger)
+            {
+                $array_date=explode('-', $dateAchanger);
+                $date_modifie=$array_date[2]."/".$array_date[1]."/".$array_date[0];
+                return $date_modifie;
+            }
         ?>
 
         <div id="formu_contact">
             <form method="post" action="" id="form1" .target="_blank">
                 <br/>
-                <label for="numero_bl"><u>N°BL :</u> </label>
+                <label for="numero_bl">N°BL : </label>
                 <input type="text" id="numero_bl" name="numero_bl" required="required" value="<?php echo $data['num_bl'];?>"/>
 
                 <fieldset>
                     <br/>
                     <legend>Bon de livraison</legend>
                     <label for="date">Date : </label>
-                    <input class="datepicker form-control" name="date" id="date" required="required" type="text" value="<?php echo $data['date']; ?>"/>
+                    <input class="datepicker form-control" name="date" id="date" required="required" type="text" value="<?php echo change_format_date($data['date']); ?>"/>
                     <script>
                         $(function() {
                         $( ".datepicker" ).datepicker({
@@ -301,34 +336,41 @@
 
                             <?php
                                 echo $data['liste_articles']."<br/>";
-                                $liste_article=explode('/',$data['liste_articles']);
-                                echo $liste_article;
-                                $i=0;
-                                while($i<5)
+                                $liste_article=explode('**',$data['liste_articles']);
+                                //print_r($liste_article);
+                                $liste_champs=explode('|',$liste_article[1]);
+                                //print_r($liste_champs);
+                                for($i=0;$i<sizeof($liste_article);$i++)
                                 {
-                                    $pieces = explode("|", $liste_article[$i]);
+                                    $pieces = explode('|',$liste_article[$i]);
+                                    if($i==0){ 
+                                        echo '<tr class="Ligne" id="default">';
+                                    }
+                                    else { 
+                                    echo '<tr class="Ligne" id="suite">';
+                                    }
                             ?>
-                            <tr class="Ligne" id="default">
                                 <td class="supligne" style="text-align:center;"> &nbsp
                                     <input type="button" class="btn-sup" value="-" style="width:30px align:center"/>
                                 </td>
                                 <td class="format">
                                     <SELECT name="format[]" class="selected_format_input" style="width:100px">
-                                        <OPTION selected="selected" VALUE="0"></OPTION>
-                                        <?php for($i=0;$i<sizeof($article);$i++) { echo "<OPTION VALUE='{$article[$i]['prix_ht']}|{$article[$i]['libelle']}|{$article[$i]['volume']}|{$article[$i]['poids']}|{$article[$i]['ref']}'>{$article[$i]['ref']}</OPTION>"; } ?>
+                                        <OPTION selected="selected" VALUE="<?php echo $liste_article[$i];?>"><?php echo $pieces[0];?></OPTION>
+                                        <?php for($j=0;$j<sizeof($article);$j++) { echo "<OPTION VALUE='{$article[$j]['prix_ht']}|{$article[$j]['libelle']}|{$article[$j]['volume']}|{$article[$j]['poids']}|{$article[$j]['ref']}'>{$article[$j]['ref']}</OPTION>"; } ?>
+                                        <?php echo $article['IKE-64N6E'];?>
                                     </SELECT>
                                 </td>
                                 <td class="product-title">
-                                    <textarea placeholder="Libellé de l'article &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Numero de série" rows="3" cols="40" class="name-pics" name="namearticle[]"></textarea>
+                                    <textarea placeholder="Libellé de l'article &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Numero de série" rows="3" cols="40" class="name-pics" name="namearticle[]"><?php echo $pieces[1]?></textarea>
                                 </td>
                                 <td class="num-pallets">
-                                    <input type="number" step="any" min="0" name="qarticle[]" style="width:40px" class="num-pallets-input"/>
+                                    <input type="number" step="any" min="0" name="qarticle[]" style="width:40px" class="num-pallets-input" value="<?php echo $pieces[2];?>"/>
                                 </td>
                                 <!-- <td class="prix_article"><span name="prix_article[]" class="prix"></span>&euro;</td> -->
                                 <td class="prix_article">
-                                    <input type="number" step="any" min="0" style="width:80px" name="prix_article[]" class="prix"/>&euro;</td>
+                                    <input type="number" step="any" min="0" style="width:80px" value="<?php echo $pieces[3];?>" name="prix_article[]" class="prix"/>&euro;</td>
                                 <td class="remise_article">
-                                    <input type="number" step="any" min="0" value="0" style="width:40px" name="rarticle[]" class="remise_article-input"/>%
+                                    <input type="number" step="any" min="0" style="width:40px" value="<?php echo $pieces[4];?>" name="rarticle[]" class="remise_article-input"/>%
                                 </td>
                                 <td style="display:none;" class="Poids_article">
                                     <input type="number" step="any" min="0" name="poids_article[]" style="width:40px" class="poids" readonly/> kg</td>
@@ -342,7 +384,6 @@
                                     <input type="text" name="totalv_article[]" style="width:60px" class="row-totalv-input" readonly/>m3</td>
                             </tr>
                             <?php
-                                $i++;
                                 }
                             ?>
                         </tbody>
@@ -356,7 +397,7 @@
                             Article: <toto id="iarticle" for="ArticleInfos"></toto><br/>
                             Poids: <toto id="ipoids" for="PoidsInfos"></toto><br/>
                             Volume: <toto id="ivolume" for="VolumeInfos"></toto><br/>
-                            Quantité en stock: -<br/>
+                            Quantité en stock: <toto id="istock" for="StockInfos"></toto><br/>
                         </fieldset>
                     </div>
                     <div id="element3">
@@ -371,7 +412,7 @@
                         <tr>
                             <td><input type="text" name="totalPoids" style="width:80px" class="total-poids" value="<?php echo $data['poids_total']; ?>" id="product-poids" readonly /></td>
                             <td><input type="text" name="totalVolume" style="width:80px" class="total-volume" value="<?php echo $data['volume_total']; ?>" id="product-volume" readonly /></td>
-                            <td><input type="text" name="totalHT" style="width:80px" class="total-box" value="<?php echo $data['prix_ht']; ?>;" id="product-ht" readonly /></td>
+                            <td><input type="text" name="totalHT" style="width:80px" class="total-box" value="<?php echo $data['prix_ht']; ?>" id="product-ht" readonly /></td>
                             <td><input type="text" style="width:80px" name="totalTTC" class="total-box" value="<?php echo $data['prix_ttc']; ?>" id="product-subtotal" readonly /></td>
                             <td><input type="text" class="total-box" style="width:80px" value="0" name="totalTVA" id="product-TVA" readonly /></td>
                         </tr>
@@ -381,8 +422,10 @@
                 Afficher ce BL avec la mention DUPLICATA? <input type="checkbox" name="duplicata" value="Oui"/> <br/><br/>
                 <center>
                    <!-- <input type="submit" name="valider" /> -->
-                   <input type="button" onclick="submitForm('saisie_facture.php')" value="Transformer en facture" />
-                   <input type="button" onclick="submitForm('bl_pdf.php')" value="Imprimer BL" />
+                    <a onclick="quitter_sans_sauvegarde()" class="button grey">Annuler</a>
+                    <a onclick="submitForm('saisie_facture.php')" class="button grey">Transformer en facture</a>
+                    <a onclick="" class="button grey">Modifier</a>
+                    <a onclick="submitForm('bl_pdf.php')" class="button grey">Imprimer BL</a>
                 </center>
             </form>
     </section>
