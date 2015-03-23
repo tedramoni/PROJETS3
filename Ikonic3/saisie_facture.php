@@ -53,6 +53,12 @@
 		if(!empty($_POST))
 		{
 			$numero_bl=$_POST['numero_bl'];
+			$connex = connexionI();
+			$sqlbl="SELECT MAX(num_bl) FROM bon_livraison";
+            $requetebl=mysqli_query($connex,$sqlbl) or die( 'Erreur au niveau de la requete: max(num_bl): '.mysqli_error()); 
+            $databl=mysqli_fetch_array($requetebl);
+			$numero_bl = $databl[0];
+			
             
 			$date=$_POST['date'];
 			$ref_client=$_POST['ref_client'];
