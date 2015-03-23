@@ -11,7 +11,14 @@
 		if(isset($_POST))
 		{
 			$numero_facture  =$_POST['numero_f'];
-			$numero_bl       =$_POST['numero_bl'];
+			if ($_POST['numero_bl']!="")
+			{
+				$numero_bl = $_POST['numero_bl'];
+			}
+			else
+			{
+				$numero_bl = "NULL";
+			}
 			$date            =change_format_date($_POST['date']);
 			$ref_client      =$_POST['ref_client'];
 			$ref_fournisseur =$_POST['ref_fournisseur'];
@@ -89,6 +96,7 @@
 			'$ville_L', '$pays_L', '$tel_bureau_L', 
 			'$email_L', '$site_web_L', 
 			'$adr1_F', '$adr2_F', '$adr3_F', $cp_F, '$ville_F', '$pays_F', '$tel_bureau_F', '$email_F', '$site_web_F', '$liste_articles', '$totalTTC', '$totalHT', '$raison_sociale')";
+		echo $sql;
 		mysqli_query($connexion,$sql) or die("Erreur: ".mysqli_error($connexion));
 		
 		$sql2 = "UPDATE bon_livraison SET transforme=1 WHERE num_bl = $numero_bl";

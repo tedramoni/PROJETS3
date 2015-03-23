@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `factures` (
   `num_facture` int(11) NOT NULL AUTO_INCREMENT,
-  `num_bl` int(11) NOT NULL,
+  `num_bl` int(11),
   `date` date NOT NULL,
   `date_echeance` date NOT NULL,
   `ref_client` varchar(100) NOT NULL,

@@ -156,7 +156,7 @@
                 <input type="text" id="numero_f" name="numero_f" required="required" value="<?php echo $data[0]+1;?>"/><br/>
 				
                 <label for="numero_bl"><u>N°BL :</u> </label>
-                <input type="text" id="numero_bl" name="numero_bl" required="required" disabled="disabled" value='<?php echo $numero_bl; ?>'/>
+                <input type="text" id="numero_bl" name="numero_bl" required="required" readonly="readonly" value='<?php echo $numero_bl; ?>'/>
 
                 <fieldset>
                     <br/>
