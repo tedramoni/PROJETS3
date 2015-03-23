@@ -36,8 +36,6 @@
 		document.getElementById('form1').action = action2;
         document.getElementById('form1').target="_self";
         document.getElementById('form1').submit();
-		
-		document.
     }
 	
 	function quitter_sans_sauvegarde() {
