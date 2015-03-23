@@ -53,11 +53,6 @@
 		if(!empty($_POST))
 		{
 			$numero_bl=$_POST['numero_bl'];
-            //SI $_POST, c'est à dire que le BL a été transformé en facture.
-            //On passe donc dans la BD, le booleen transforme de 0 à 1.
-            $connexion=connexionI();
-            $sql="UPDATE bon_livraison SET transforme=1 WHERE num_bl=".$numero_bl;
-            mysqli_query($connexion,$sql);
             
 			$date=$_POST['date'];
 			$ref_client=$_POST['ref_client'];
