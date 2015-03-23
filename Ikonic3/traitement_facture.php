@@ -91,7 +91,7 @@
 			'$adr1_F', '$adr2_F', '$adr3_F', $cp_F, '$ville_F', '$pays_F', '$tel_bureau_F', '$email_F', '$site_web_F', '$liste_articles', '$totalTTC', '$totalHT', '$raison_sociale')";
 		mysqli_query($connexion,$sql) or die("Erreur: ".mysqli_error($connexion));
 		
-		$sql2 = "UPDATE bon_livraison SET tranforme=1 WHERE num_bl = $numero_bl";
+		$sql2 = "UPDATE bon_livraison SET transforme=1 WHERE num_bl = $numero_bl";
 		mysqli_query($connexion,$sql2) or die ("Erreur bl :".mysqli_error($connexion));
 		
 		
