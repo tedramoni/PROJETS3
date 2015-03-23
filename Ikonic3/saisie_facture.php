@@ -82,7 +82,7 @@
 			$le = $_POST['jour'];
 			
 			
-			$echeance=calculdate($j,$m,$a,$ech,$fdm,$le);
+			$echeance=calculDate($j,$m,$a,$ech,$fdm,$le);
 			
 			
 			$infos=$_POST['infos'];
