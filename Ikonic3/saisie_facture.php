@@ -45,7 +45,7 @@
         <br/>
 
         <?php if (isset($_GET[ 'err'])) { if ($_GET[ 'err']=='err1' ) { echo "<center><p style='color:red;'>Le code client doit être de la forme : 9, puis une lettre, puis 4 chiffres (ex : 9L0015) !</center><br><br>"; } if ($_GET[ 'err']=='err2' ) { echo "<center><p style='color:red;'>Le code client existe déjà !</center><br><br>"; } } $liste=array(); connexion(); $sql='Select * from client' ; $requete=mysql_query($sql); while($result=mysql_fetch_array($requete)) { $liste[]=$result[ 'code']; } $sql2="SELECT * FROM article " ; $execute2=mysql_query($sql2) or die( 'Erreur au niveau de la requete'.mysql_error()); $article=array(); $i=0; while($data2=mysql_fetch_array($execute2)) { $article[$i]=$data2; $i++; } 
-            $sql3="SELECT * FROM parametre;";
+            $sql3="SELECT max(num_facture) FROM factures;";
             $requete3=mysql_query($sql3);
             $data=mysql_fetch_array($requete3);
         ?>		
@@ -72,8 +72,8 @@
 			
 			$ech = $_POST['echeance'];
 			$fdmtest = $_POST['fdm'];
-			$findumois = $_POST['findumois'];
-			if($fdmtest == "on" || $findumois =="oui")
+			$findemois = $_POST['findemois'];
+			if($fdmtest == "on" || $findemois =="oui")
 			{
 				$fdm = 1;
 			}
@@ -85,8 +85,6 @@
 			echo $findumois;
 			
 			$echeance = calculEcheance($j,$m,$a,$ech,$fdm,$le);
-			echo "<h1>$echeance</h1>";
-			
 			
 			$infos=$_POST['infos'];
 			
@@ -155,10 +153,10 @@
             <form method="post" action="" id="form1">
                 <br/>
 				<label for="numero_f"><u>N°Facture :</u> </label>
-                <input type="text" id="numero_f" name="numero_f" required="required" value="<?php echo $data[num_facture];?>"/><br/>
+                <input type="text" id="numero_f" name="numero_f" required="required" value="<?php echo $data[0]+1;?>"/><br/>
 				
                 <label for="numero_bl"><u>N°BL :</u> </label>
-                <input type="text" id="numero_bl" name="numero_bl" required="required" value='<?php echo $numero_bl; ?>'/>
+                <input type="text" id="numero_bl" name="numero_bl" required="required" disabled="disabled" value='<?php echo $numero_bl; ?>'/>
 
                 <fieldset>
                     <br/>

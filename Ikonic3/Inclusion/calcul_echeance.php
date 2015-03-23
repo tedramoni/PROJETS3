@@ -26,9 +26,8 @@ function calculEcheance($jour, $mois, $annee, $echeance, $fdm, $le)
 	{
 		return "01/01/1900";
 	}
-	return "jour : $jour, mois : $mois, annee : $annee, echeance : $echeance, fdm : $fdm, le : $le";
 
-	/*$jour += $echeance;
+	$jour += $echeance;
 	while ($jour >dernierJourMois($mois,$annee))
 	{
 		$jour -= dernierJourMois($mois,$annee);
@@ -45,7 +44,7 @@ function calculEcheance($jour, $mois, $annee, $echeance, $fdm, $le)
 
 	if($fdm !=0)
 	{
-		$jour = dernierJourDuMois($mois,$annee);
+		$jour = dernierJourMois($mois,$annee);
 
 		if($le!=0)
 		{
@@ -53,16 +52,16 @@ function calculEcheance($jour, $mois, $annee, $echeance, $fdm, $le)
 			{
 				$mois =1;
 				$annee+=1;
-				$jour=le;
+				$jour=$le;
 			}
 			else
 			{
 				$mois++;
-				$jour = le;
+				$jour = $le;
 			}
 			
 		}		
 	}
-	return $jour."/".$mois."/".$annee;*/
+	return $jour."/".$mois."/".$annee;
 }
 ?>
