@@ -62,7 +62,29 @@
             $raison_social=$_POST['raison_social'];
             $acompte=$_POST['acompte'];
 			$mode_reglement=$_POST['mode_reglement'];
-			$echeance=$_POST['echeance'];
+			
+			//Echeance, again
+			$badara = explode("/", $date);
+			$j = $badara[0];
+			$m = $badara[1];
+			$a = $badara[2];
+			
+			$ech = $_POST['echeance'];
+			$fdmtest = $_POST['fdm'];
+			if($fdmtest == "on")
+			{
+				$fdm = 1;
+			}
+			else
+			{
+				$fdm = 0;
+			}
+			$le = $_POST['jour'];
+			
+			
+			$echeance=calculdate($j,$m,$a,$ech,$fdm,$le);
+			
+			
 			$infos=$_POST['infos'];
 			
 			$BX_adr1=$_POST['BX_adr1'];
