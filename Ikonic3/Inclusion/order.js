@@ -423,6 +423,12 @@ $(document).ready(function() {
 							  //$el.parent().parent().find("input.nom_commercial").val("coucou, test");
 							  //$el.parent().parent().find("input.fdm").val("on");
 							  document.getElementById("fdm").checked=true;
+							  document.getElementById("fdm").value="oui";
+						  }
+						  else
+						  {
+							  document.getElementById("fdm").checked=false;
+							  document.getElementById("fdm").value="non";
 						  }
 						
 						  $el.parent().parent().find("input.jour").val(value.jour);

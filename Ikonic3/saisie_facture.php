@@ -64,6 +64,7 @@
 			$mode_reglement=$_POST['mode_reglement'];
 			
 			//Echeance, again
+			include('Inclusion/calcul_echeance.php');
 			$badara = explode("/", $date);
 			$j = $badara[0];
 			$m = $badara[1];
@@ -71,7 +72,8 @@
 			
 			$ech = $_POST['echeance'];
 			$fdmtest = $_POST['fdm'];
-			if($fdmtest == "on")
+			$findumois = $_POST['findumois'];
+			if($fdmtest == "on" || $findumois =="oui")
 			{
 				$fdm = 1;
 			}
@@ -80,9 +82,10 @@
 				$fdm = 0;
 			}
 			$le = $_POST['jour'];
+			echo $findumois;
 			
-			
-			$echeance=calculDate($j,$m,$a,$ech,$fdm,$le);
+			$echeance = calculEcheance($j,$m,$a,$ech,$fdm,$le);
+			echo "<h1>$echeance</h1>";
 			
 			
 			$infos=$_POST['infos'];

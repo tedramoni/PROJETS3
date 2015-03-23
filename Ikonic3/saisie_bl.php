@@ -167,6 +167,7 @@
                     <input type="text" class="echeance" id="echeance" name="echeance" required="required" />
                     <br/>
                     <label for="fdm">F.D.M: </label><input type="checkbox" id="fdm" class="fdm" name="fdm" /><br/>
+					<input type="hidden" class="findemois" id="findemois" name="findemois"/>
                     <label for="jour">le:  </label><input type="number" class="jour" name="jour" min="1" max="31" /><br/>
 
                     <label for="infos">Informations complémentaires : </label>
@@ -309,7 +310,7 @@
                                 </th>
                                 <th>Référence</th>
                                 <th>Libellé</th>
-                                <th>Quantit&eacute;e</th>
+                                <th>Quantit&eacute;</th>
                                 <th>Prix</th>
                                 <th>Remise</th>
                                 <th style="text-align: right;">Total (&euro;)</th>
