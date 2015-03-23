@@ -27,6 +27,19 @@
 		document.getElementById('form1').target="_blank";
         document.getElementById('form1').submit();
     }
+	function submitForm2(action1,action2)
+    {
+        document.getElementById('form1').action = action1;
+		document.getElementById('form1').target="_blank";
+        document.getElementById('form1').submit();
+		
+		document.getElementById('form1').action = action2;
+        document.getElementById('form1').target="_self";
+        document.getElementById('form1').submit();
+		
+		document.
+    }
+	
 	function quitter_sans_sauvegarde() {
 	  if (confirm("Quitter sans sauvegarder ?")) {
 	   window.location.href = "http://iuted.bugs3.com/projet/Ikonic3/bl.php";
@@ -372,7 +385,7 @@
                 Afficher ce BL avec la mention DUPLICATA? <input type="checkbox" name="duplicata" value="Oui"/> <br/><br/>
                 <center>
                    <!-- <input type="submit" name="valider" /> -->
-                   <a onclick="submitForm('saisie_facture.php')" class="button grey">Transformer en facture</a>
+                   <a onclick="submitForm2('traitement_bl.php','saisie_facture.php')" class="button grey">Transformer en facture</a>
                    <a onclick="quitter_sans_sauvegarde()" class="button grey">Annuler</a>
                    <a onclick="quitter_avec_sauvegarde('traitement_bl.php')" class="button grey">Sauvegarder</a>
                    <a onclick="submitForm('bl_pdf.php')" class="button grey">Imprimer BL</a>
