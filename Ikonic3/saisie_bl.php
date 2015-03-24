@@ -94,7 +94,16 @@
 			
 			$requete = mysqli_query($connexion, "SHOW TABLE STATUS LIKE 'bon_livraison'");
 			$data = mysqli_fetch_array($requete);
-			$nextId = $data['Auto_increment'];  
+			$nextId = $data['Auto_increment'];
+			
+			$reqparam = mysqli_query($connexion, "SELECT num_bl from parametre");
+			$dataparam = mysqli_fetch_array($reqparam);
+			$valparam = $dataparam[0];
+			
+			if ($nextId<$valparam)
+			{
+				$nextId=$valparam;
+			}
 			
         ?>
         <div id="formu_contact">

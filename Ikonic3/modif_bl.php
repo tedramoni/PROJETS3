@@ -118,7 +118,7 @@
             <form method="post" action="" id="form1" .target="_blank">
                 <br/>
                 <label for="numero_bl">N°BL : </label>
-                <input type="text" id="numero_bl" name="numero_bl" required="required" value="<?php echo $data['num_bl'];?>"/>
+                <input type="text" id="numero_bl" name="numero_bl" required="required" readonly="readonly" value="<?php echo $data['num_bl'];?>"/>
 
                 <fieldset>
                     <br/>
@@ -433,7 +433,7 @@
                             <td><input type="text" name="totalVolume" style="width:80px" class="total-volume" value="<?php echo $data['volume_total']; ?>" id="product-volume" readonly /></td>
                             <td><input type="text" name="totalHT" style="width:80px" class="total-box" value="<?php echo $data['prix_ht']; ?>" id="product-ht" readonly /></td>
                             <td><input type="text" style="width:80px" name="totalTTC" class="total-box" value="<?php echo $data['prix_ttc']; ?>" id="product-subtotal" readonly /></td>
-                            <td><input type="text" class="total-box" style="width:80px" value="0" name="totalTVA" id="product-TVA" readonly /></td>
+                            <td><input type="text" class="total-box" style="width:80px" name="totalTVA" id="product-TVA" readonly value="<?php echo $data['tva']; ?>"/></td>
                         </tr>
                     </table>
                     </div>

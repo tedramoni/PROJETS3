@@ -74,6 +74,16 @@
         $requetefact = mysqli_query($connexion, "SHOW TABLE STATUS LIKE 'factures'");
 		$datafact = mysqli_fetch_array($requetefact);
 		$nextId = $datafact['Auto_increment'];  
+		
+		$reqparam = mysqli_query($connexion, "SELECT num_facture FROM parametre");
+		$dataparam = mysqli_fetch_array($reqparam);
+		$valparam = $dataparam[0];
+			
+		if ($nextId<$valparam)
+		{
+			$nextId=$valparam;
+		}
+		
         ?>		
 		<?php
 		if(!empty($_POST))
