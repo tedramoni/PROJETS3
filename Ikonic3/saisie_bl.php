@@ -88,15 +88,20 @@
                 $article[$i]=$data2; 
                 $i++; 
             }
-            $sql="SELECT MAX(num_bl) FROM bon_livraison";
-            $requete=mysqli_query($connexion,$sql) or die( 'Erreur au niveau de la requete: max(num_bl): '.mysqli_error()); 
-            $data=mysqli_fetch_array($requete);
+            //$sql="SELECT MAX(num_bl) FROM bon_livraison";
+            //$requete=mysqli_query($connexion,$sql) or die( 'Erreur au niveau de la requete: max(num_bl): '.mysqli_error()); 
+            //$data=mysqli_fetch_array($requete);
+			
+			$requete = mysqli_query($connexion, "SHOW TABLE STATUS LIKE 'bon_livraison'");
+			$data = mysqli_fetch_array($requete);
+			$nextId = $data['Auto_increment'];  
+			
         ?>
         <div id="formu_contact">
             <form method="post" action="" id="form1">
                 <br/>
                 <label for="numero_bl">N°BL : </label>
-                <input type="text" id="numero_bl" name="numero_bl" required="required" value="<?php echo $data[0]+1;?>" />
+                <input type="text" id="numero_bl" name="numero_bl" required="required" value="<?php echo $nextId;?>" readonly="readonly" />
 
                 <fieldset>
                     <br/>

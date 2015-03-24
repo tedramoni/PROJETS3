@@ -71,19 +71,19 @@
             $article[$i] = $data2;
             $i++;
         }
-        $sql3="SELECT max(num_facture) FROM factures;";
-        $requete3=mysqli_query($connexion,$sql3);
-        $data=mysqli_fetch_array($requete3);
+        $requetefact = mysqli_query($connexion, "SHOW TABLE STATUS LIKE 'factures'");
+		$datafact = mysqli_fetch_array($requetefact);
+		$nextId = $datafact['Auto_increment'];  
         ?>		
 		<?php
 		if(!empty($_POST))
 		{
 			$numero_bl=$_POST['numero_bl'];
-			$connex = connexionI();
+			/*$connex = connexionI();
 			$sqlbl="SELECT MAX(num_bl) FROM bon_livraison";
             $requetebl=mysqli_query($connex,$sqlbl) or die( 'Erreur au niveau de la requete: max(num_bl): '.mysqli_error($connex)); 
             $databl=mysqli_fetch_array($requetebl);
-			$numero_bl = $databl[0];
+			$numero_bl = $databl[0];*/
 			
             
 			$date=$_POST['date'];
@@ -185,7 +185,7 @@
             <form method="post" action="" id="form1">
                 <br/>
 				<label for="numero_f">N°Facture : </label>
-                <input type="text" id="numero_f" name="numero_f" required="required" value="<?php echo $data[0]+1;?>"/><br/>
+                <input type="text" id="numero_f" name="numero_f" required="required" readonly="readonly" value="<?php echo $nextId;?>"/><br/>
 				
                 <label for="numero_bl">N°BL : </label>
                 <input type="text" id="numero_bl" name="numero_bl" required="required" readonly="readonly" value='<?php echo $numero_bl; ?>'/>
