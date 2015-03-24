@@ -19,7 +19,7 @@
     }
 	function quitter_sans_sauvegarde() {
 	  if (confirm("Quitter sans sauvegarder ?")) {
-	   window.location.href = "http://iuted.bugs3.com/projet/Ikonic3/";
+	   window.location.href = "http://iuted.bugs3.com/projet/Ikonic3/factures.php";
       }
 	}
 	function quitter_avec_sauvegarde(action) {
@@ -405,7 +405,7 @@
                                 </th>
                                 <th>Référence</th>
                                 <th>Libellé</th>
-                                <th>Quantit&eacute;e</th>
+                                <th>Quantit&eacute;ee</th>
                                 <th>Prix</th>
                                 <th>Remise</th>
                                 <th style="text-align: right;">Total (&euro;)</th>
@@ -551,9 +551,9 @@
                                 <td>Dont T.V.A</td>
                             </tr>
                             <tr>
-                                <td><input type="text" name="totalHT" style="width:80px" class="total-box" value='<?php echo number_format($ht,2); ?>' id="product-ht" readonly/></td>
-                                <td><input type="text" style="width:80px" name="totalTTC" class="total-box" value='<?php echo number_format($ttc,2); ?>' id="product-subtotal" readonly/></td>
-                                <td><input type="text" class="total-box" style="width:80px" value='<?php echo number_format($tva,2); ?>' name="totalTVA" id="product-TVA" readonly/></td>
+                                <td><input type="text" name="totalHT" style="width:80px" class="total-box" value='<?php echo $ht; ?>' id="product-ht" readonly/></td>
+                                <td><input type="text" style="width:80px" name="totalTTC" class="total-box" value='<?php echo $ttc; ?>' id="product-subtotal" readonly/></td>
+                                <td><input type="text" class="total-box" style="width:80px" value='<?php echo $tva; ?>' name="totalTVA" id="product-TVA" readonly/></td>
                             </tr>
                         </table>
 				        </div>
