@@ -9,6 +9,7 @@
 if(isset($_POST))
 {
 	require('facture_template.php');
+	include( "Inclusion/gestion.php");
 
 	$pdf = new PDF_Invoice( 'P', 'mm', 'A4' );
 	$pdf->AddPage();
@@ -43,15 +44,21 @@ if(isset($_POST))
 				 "Montant HT" => "R" );
 	$pdf->addLineFormat($cols);
 
-	$y    = 109;
-	$line = array( "Référence"    => " ",
-				   "Désignation"  => "*** Bon de livraison n°".$_POST['numero_bl']." du ".$_POST['date']." ***",
-				   "Qté"     => " ",
-				   "P.U."      => " ",
-				   "Rem.%" => " ",
-				   "Montant HT" => " " );
-	$size = $pdf->addLine( $y, $line );
-	$y   += $size + 10;
+    $y = 109;
+	if($_POST['numero_bl']!=""){
+		$connexion=connexionI();
+	    $sql = 'Select date from bon_livraison WHERE num_bl='.$_POST['numero_bl'];
+	    $requete = mysqli_query($connexion,$sql);
+	    $date_bl=mysqli_fetch_array($requete);
+		$line = array( "Référence"    => " ",
+					   "Désignation"  => "*** Bon de livraison n°".$_POST['numero_bl']." du ".$date_bl[0]." ***",
+					   "Qté"     => " ",
+					   "P.U."      => " ",
+					   "Rem.%" => " ",
+					   "Montant HT" => " " );
+		$size = $pdf->addLine( $y, $line );
+		$y   += $size + 10;
+	}
 	
 		$nbCommande=sizeof($_POST['qarticle']);
 		$reference=array();
