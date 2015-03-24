@@ -43,7 +43,14 @@
 
 <body>
     <section>
-        <?php include( "Inclusion/gestion.php"); include( "Inclusion/header.php"); actif(4); ?>
+        <?php include( "Inclusion/gestion.php"); include( "Inclusion/header.php"); actif(4);
+        
+        function change_format_date($dateAchanger)
+        {
+            $array_date=explode('/', $dateAchanger);
+            $date_modifie=$array_date[2]."-".$array_date[1]."-".$array_date[0];
+            return $date_modifie;
+        }?>
         <br/>
         <br/>
         <h1 style="padding-top: 55px; text-align:center;">Modification d'une facture</h1>
@@ -383,38 +390,7 @@
                             <?php
                                 }
                             ?>
-							<!-- Li ligne pour les frais de port -->
-                            <tr class="Ligne" id="port">
-                                <td class="supligne" style="text-align:center"> &nbsp
-                                    <!-- <input type="button" class="btn-sup" value="-" style="width:30px align:center" hidden> </input> -->
-                                </td>
-                                <td class="format">
-                                    <SELECT name="format[]" class="selected_format_input" style="width:100px" readonly>
-                                        <OPTION selected="selected" VALUE="24.00.|Frais de port|0|0|IKA-PORT">IKA-PORT</OPTION>
-                                    </SELECT>
-                                </td>
-                                <td class="product-title">
-                                    <textarea placeholder="Libellé de l'article &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Numero de série" rows="3" cols="40" class="name-pics" name="namearticle[]" readonly>Frais de Port</textarea>
-                                </td>
-                                <td class="num-pallets">
-                                    <input type="number" step="any" min="1" name="qarticle[]" style="width:40px" class="num-pallets-input" value="1" readonly></input>
-                                </td>
-                                <td class="prix_article">
-                                    <input type="number" step="any" min="0" style="width:80px" name="prix_article[]" class="prix" value="24.00" ></input>&euro;</td>
-                                <td class="remise_article">
-                                    <input type="number" step="any" min="0" value="0" style="width:40px" name="rarticle[]" class="remise_article-input" value="0" readonly></input>%
-                                </td>
-                                <td style="display:none;" class="Poids_article">
-                                    <input type="number" step="any" min="0" name="poids_article[]" style="width:40px" class="poids" value="0"readonly></input> kg</td>
-                                <td style="display:none;" class="Volume_article">
-                                    <input type="number" step="any" min="0" name="volume_article[]" style="width:40px" class="volume" value="0" readonly></input> m3</td>
-                                <td class="row-total">
-                                    <input type="text" style="width:80px" name="prixtt_article[]" class="row-total-input" value="24.00" readonly></input>&euro;</td>
-                                <td style="display:none;" class="row-totalp">
-                                    <input type="text" name="totalp_article[]" style="width:60px" class="row-totalp-input" value="0" readonly></input>kg</td>
-                                <td style="display:none;" class="row-totalv">
-                                    <input type="text" name="totalv_article[]" style="width:60px" class="row-totalv-input" value="0" readonly></input>m3</td>
-                            </tr>
+
                         </tbody>
                     </table>
                         </div>
@@ -422,14 +398,14 @@
 
                     <div style="display:none;" class="TotalPoids" style="text-align: left;">
                         <span>  <b>TOTAL POIDS:</b> </span>
-                        <input type="text" name="totalPoids" style="width:80px" class="total-poids" value='<?php echo $_POST['totalPoids']; ?>' id="product-poids" readonly></input>kg
+                        <input type="text" name="totalPoids" style="width:80px" class="total-poids" value='<?php echo $data['poids_total']; ?>' id="product-poids" readonly></input>kg
                     </div>
                     <div style="display:none;" class="TotalVolume" style="text-align: left;">
                         <span> <b> TOTAL VOLUME: </b></span>
-                        <input type="text" name="totalVolume" style="width:80px" class="total-volume" value='<?php echo $_POST['totalVolume']; ?>' id="product-volume" readonly></input>m3
+                        <input type="text" name="totalVolume" style="width:80px" class="total-volume" value='<?php echo $data['volume_total']; ?>' id="product-volume" readonly></input>m3
                         <br />
                     </div>
-                        <?php $ht=($_POST['totalHT']+24.00); $ttc=($_POST['totalTTC']+28.80);  $tva=($_POST['totalTVA']+4.80); ?>
+                        <?php $ht=($data['prix_ht']); $ttc=($data['prix_ttc']);  $tva=($data['tva']); ?>
                          <div id="element3">
                         <table>
                             <tr style="background-color: #c9dff0;">
@@ -438,9 +414,9 @@
                                 <td>Dont T.V.A</td>
                             </tr>
                             <tr>
-                                <td><input type="text" name="totalHT" style="width:80px" class="total-box" value='<?php echo number_format($ht,2); ?>' id="product-ht" readonly/></td>
-                                <td><input type="text" style="width:80px" name="totalTTC" class="total-box" value='<?php echo number_format($ttc,2); ?>' id="product-subtotal" readonly/></td>
-                                <td><input type="text" class="total-box" style="width:80px" value='<?php echo number_format($tva,2); ?>' name="totalTVA" id="product-TVA" readonly/></td>
+                                <td><input type="text" name="totalHT" style="width:80px" class="total-box" value='<?php echo $ht; ?>' id="product-ht" readonly/></td>
+                                <td><input type="text" style="width:80px" name="totalTTC" class="total-box" value='<?php echo $ttc; ?>' id="product-subtotal" readonly/></td>
+                                <td><input type="text" class="total-box" style="width:80px" value='<?php echo $tva; ?>' name="totalTVA" id="product-TVA" readonly/></td>
                             </tr>
                         </table>
 				        </div>
@@ -449,7 +425,7 @@
                 <center>
                    <!-- <input type="submit" name="valider" /> -->
                     <a onclick="quitter_sans_sauvegarde()" class="button grey">Annuler</a>
-                    <a onclick="quitter_avec_sauvegarde('traitement_facture.php')" class="button grey">Sauvegarder</a>
+                    <a onclick="quitter_avec_sauvegarde('update_facture.php')" class="button grey">Modifier</a>
                     <a onclick="submitForm('facture_pdf.php')" class="button grey">Imprimer Facture</a>
                 </center>
             </form>
