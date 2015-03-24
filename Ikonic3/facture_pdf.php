@@ -10,7 +10,7 @@ if(isset($_POST))
 {
 	require('facture_template.php');
 	include( "Inclusion/gestion.php");
-
+	setlocale(LC_MONETARY, 'fr_FR');
 	$pdf = new PDF_Invoice( 'P', 'mm', 'A4' );
 	$pdf->AddPage();
 	if($_POST['duplicata'] == 'Oui'){
@@ -110,16 +110,15 @@ if(isset($_POST))
 			$line = array(	 "Référence"    => $reference[$i],
 							 "Désignation"  => utf8_decode($designation[$i]),
 							 "Qté"     => $quantité[$i],
-							 "P.U."      => number_format($pu[$i],2),
+							 "P.U."      => money_format('%!.2n', $pu[$i]),
 							 "Rem.%" => $remise[$i],
-							 "Montant HT"  => number_format($prix_ht[$i],2));
+							 "Montant HT"  => money_format('%!.2n', $prix_ht[$i]));
 			$size = $pdf->addLine( $y, $line );
 			$y   += $size + 6;					   
 		}
-
 	$pdf->addFraisPort("1500");
 	$pdf->addReglementEcheance($_POST['mode_reglement'],$_POST['echeance']);
-	$pdf->addCadrePaiement($totalPort,$_POST['totalHT'],$_POST['totalTVA'],$_POST['totalTTC'],number_format($_POST['acompte'],2),number_format($_POST['totalTTC']-$_POST['acompte'],2));
+	$pdf->addCadrePaiement(money_format('%!.2n', $totalPort),money_format('%!.2n', $_POST['totalHT']),money_format('%!.2n', $_POST['totalTVA']),money_format('%!.2n', $_POST['totalTTC']),money_format('%!.2n', $_POST['acompte']),money_format('%!.2n', $_POST['totalTTC']-$_POST['acompte']));
 	$pdf->addPiedPage("IKONIC - SARL au capital de 300 000 € inscrite au RC EVRY - N° siret 34796918000020 - APE 6201Z - Identification TVA FR 51 347 969 180");
 	$pdf->Output();
 }

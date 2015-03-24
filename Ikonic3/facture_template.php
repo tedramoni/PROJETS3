@@ -425,7 +425,7 @@ function addPiedPage($societe)
 function addCadrePaiement($pht,$tht,$tva,$ttc,$acompte,$reste)
 {
     $r1  = $this->w - 80;
-    $r2  = $r1 + 60;
+    $r2  = $r1 + 70;
     $y1  = $this->h - 55;
     $y2  = $y1+45;
     $this->Rect($r1, $y1, ($r2 - $r1), ($y2-$y1), 2.5, 'D');
