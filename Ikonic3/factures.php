@@ -106,6 +106,7 @@
             <tr class="tab_article_couleur">
                 <td>Date</td>
                 <td>N°facture</td>
+                <td>N°BL</td>
                 <td>Client</td>
                 <td>Raison sociale</td>
                 <td>Montant HT</td>
@@ -122,30 +123,50 @@
                 }
                 $connexion=connexionI();
                 $sql="SELECT * FROM factures ";
+                $sql_total_ttc="SELECT sum(prix_ttc) FROM factures ";
+                $sql_total_ht="SELECT sum(prix_ht) FROM factures ";
                 if(isset($_POST['ok']))
-                 {
+                {
                     $sql.="WHERE code_client like '%".$_POST['recherche_code']."%' AND nom_commercial like '%".$_POST['recherche_commercial']."%' AND raison_sociale like '%".$_POST['recherche_raison']."%' ";
+                    $sql_total_ttc.="WHERE code_client like '%".$_POST['recherche_code']."%' AND nom_commercial like '%".$_POST['recherche_commercial']."%' AND raison_sociale like '%".$_POST['recherche_raison']."%' ";
+                    $sql_total_ht.="WHERE code_client like '%".$_POST['recherche_code']."%' AND nom_commercial like '%".$_POST['recherche_commercial']."%' AND raison_sociale like '%".$_POST['recherche_raison']."%' ";
                     if(!empty($_POST['date_debut']) and !empty($_POST['date_fin']))
                     {
-                        $sql.="AND date between '".$_POST['date_debut']."' AND '".$_POST['date_fin']."'"; 
+                        $sql.=" AND date between '".$_POST['date_debut']."' AND '".$_POST['date_fin']."'"; 
+                         $sql_total_ttc.=" AND date between '".$_POST['date_debut']."' AND '".$_POST['date_fin']."'"; 
+                          $sql_total_ht.=" AND date between '".$_POST['date_debut']."' AND '".$_POST['date_fin']."'"; 
 
                     }
                     if(!empty($_POST['prix_min']))
                     {
                         $sql.=" AND prix_ttc>=".$_POST['prix_min'];
+                        $sql_total_ttc.=" AND prix_ttc>=".$_POST['prix_min'];
+                        $sql_total_ht.=" AND prix_ttc>=".$_POST['prix_min'];
                     }
                     if(!empty($_POST['prix_max']))
                     {
                         $sql.=" AND prix_ttc<=".$_POST['prix_max'];
-                    }
+                        $sql_total_ttc.=" AND prix_ttc<=".$_POST['prix_max'];
+                        $sql_total_ht.=" AND prix_ttc<=".$_POST['prix_max'];
 
-                 }
+                    }
+					
+				}
+				 $sql.=" ORDER BY date DESC, num_facture DESC";
 
                 $requete=mysqli_query($connexion,$sql) or die(mysqli_error($connexion));
                 while($data=mysqli_fetch_array($requete))
                 {
                     echo "<tr><td>".change_format_date($data['date'])."</td>";
                     echo "<td><a href='modif_facture.php?num_facture=".$data['num_facture']."'>".$data['num_facture']."</a></td>";
+                    if($data['num_bl']=="")
+                    {
+                        echo "<td>No BL</td>";
+                    }
+                    else
+                    {
+                        echo "<td><a href='modif_bl.php?num_bl=".$data['num_bl']."'>".$data['num_bl']."</a></td>";
+                    }
                     echo "<td>".$data['code_client']."</td>";
                     echo "<td>".$data['raison_sociale']."</td>";
                     echo "<td>".$data['prix_ht']." €</td>";
@@ -154,9 +175,17 @@
                 }
 
 
+                $requete_tcc=mysqli_fetch_array(mysqli_query($connexion,$sql_total_ttc));
+                $requete_ht=mysqli_fetch_array(mysqli_query($connexion,$sql_total_ht));
+                $ttc=$requete_tcc[0];
+                $ht=$requete_ht[0];
+
+
     ?>
     </table>
-    <br/><br/>
+    <br/><center>    <?php                 echo "<b style='color:blue;'>".number_format($ttc,2)."€ de CA TTC et ".number_format($ht,2)."€ HT</b>";
+    ?>
+</center><br/>
     <center><a href="saisie_facture.php"><button type="button" onClick="">Ajouter une facture</button></a></center>
 
     </section>
