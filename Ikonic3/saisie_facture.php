@@ -29,6 +29,12 @@
 	}
 	
 </script>
+    <style type="text/css">
+        #element3 tbody tr td {
+          text-align: center;
+           padding: 10px 10px;
+        }
+    </style>
 
     <title>Ikonic: Saisie d'une Facture</title>
 
@@ -44,10 +50,30 @@
         <br/>
         <br/>
 
-        <?php if (isset($_GET[ 'err'])) { if ($_GET[ 'err']=='err1' ) { echo "<center><p style='color:red;'>Le code client doit être de la forme : 9, puis une lettre, puis 4 chiffres (ex : 9L0015) !</center><br><br>"; } if ($_GET[ 'err']=='err2' ) { echo "<center><p style='color:red;'>Le code client existe déjà !</center><br><br>"; } } $liste=array(); connexion(); $sql='Select * from client' ; $requete=mysql_query($sql); while($result=mysql_fetch_array($requete)) { $liste[]=$result[ 'code']; } $sql2="SELECT * FROM article " ; $execute2=mysql_query($sql2) or die( 'Erreur au niveau de la requete'.mysql_error()); $article=array(); $i=0; while($data2=mysql_fetch_array($execute2)) { $article[$i]=$data2; $i++; } 
-            $sql3="SELECT max(num_facture) FROM factures;";
-            $requete3=mysql_query($sql3);
-            $data=mysql_fetch_array($requete3);
+    <?php
+        $liste = array();
+        $connexion=connexionI();
+        $sql = 'Select * from client';
+        $requete = mysqli_query($connexion,$sql);
+
+        while ($result = mysqli_fetch_array($requete))
+        {
+            $liste[] = $result['code'];
+        }
+
+        $sql2 = "SELECT * FROM article ";
+        $execute2 = mysqli_query($connexion,$sql2) or die('Erreur au niveau de la requete' . mysqli_error($connexion));
+        $article = array();
+        $i = 0;
+
+        while ($data2 = mysqli_fetch_array($execute2))
+        {
+            $article[$i] = $data2;
+            $i++;
+        }
+        $sql3="SELECT max(num_facture) FROM factures;";
+        $requete3=mysqli_query($connexion,$sql3);
+        $data=mysqli_fetch_array($requete3);
         ?>		
 		<?php
 		if(!empty($_POST))
@@ -55,7 +81,7 @@
 			$numero_bl=$_POST['numero_bl'];
 			$connex = connexionI();
 			$sqlbl="SELECT MAX(num_bl) FROM bon_livraison";
-            $requetebl=mysqli_query($connex,$sqlbl) or die( 'Erreur au niveau de la requete: max(num_bl): '.mysqli_error()); 
+            $requetebl=mysqli_query($connex,$sqlbl) or die( 'Erreur au niveau de la requete: max(num_bl): '.mysqli_error($connex)); 
             $databl=mysqli_fetch_array($requetebl);
 			$numero_bl = $databl[0];
 			
@@ -158,10 +184,10 @@
         <div id="formu_contact">
             <form method="post" action="" id="form1">
                 <br/>
-				<label for="numero_f"><u>N°Facture :</u> </label>
+				<label for="numero_f">N°Facture : </label>
                 <input type="text" id="numero_f" name="numero_f" required="required" value="<?php echo $data[0]+1;?>"/><br/>
 				
-                <label for="numero_bl"><u>N°BL :</u> </label>
+                <label for="numero_bl">N°BL : </label>
                 <input type="text" id="numero_bl" name="numero_bl" required="required" readonly="readonly" value='<?php echo $numero_bl; ?>'/>
 
                 <fieldset>
@@ -188,14 +214,14 @@
                         });
                     </script>
                     <br/>
-                    <label for="ref_client"><u>Référence du client :</u> </label>
+                    <label for="ref_client">Référence du client : </label>
                     <input type="text" id="ref_client" name="ref_client" required="required" value='<?php echo $ref_client; ?>' />
                     <br/>
-                    <label for="ref_fournisseur"><u>Référence du fournisseur :</u> </label>
+                    <label for="ref_fournisseur">Référence du fournisseur : </label>
                     <input type="text" id="ref_fournisseur" name="ref_fournisseur" required="required" value='<?php echo $ref_fournisseur; ?>' />
                     <br/>
 
-                    <label for="code_client"><u>Code Client :</u> </label>
+                    <label for="code_client">Code Client : </label>
                     <input type="text" id="code_client" name="code_client" class="cc" onkeyup="myFunction()" value='<?php echo $code_client; ?>'/>
 					<input type="button" value="Charger données client" class="btn_load_client" style="width:200px"></input>
                     <br/>
@@ -217,20 +243,20 @@
                         });
                     </script>
 
-                    <label for="nom_commercial"><u>Nom Commercial :</u> </label>
+                    <label for="nom_commercial">Nom Commercial : </label>
                     <input type="text" class="nom_commercial" id="nom_commercial" name="nom_commercial" required="required" value='<?php echo $nom_commercial; ?> '/>
                     <input type="hidden" class="raison_social" id="raison_social" name="raison_social" required="required" value='<?php echo $raison_social; ?> '/>
                      <br/>
-                    <label for="acompte"><u>Acompte versé: </u></label>
+                    <label for="acompte">Acompte versé: </label>
                     <input type="number" class="acompte" id="acompte" name="acompte" required="required" value='<?php echo $acompte; ?>'/>
                     <br/>
-                    <label for="mode_reglement"><u>Mode de règlement :</u> </label>
+                    <label for="mode_reglement">Mode de règlement : </label>
                     <input type="text" class="mode_reglement" id="mode_reglement" name="mode_reglement" required="required" value='<?php echo $mode_reglement; ?>'/>
                     <br/>
-                    <label for="echeance"><u>Echeance :</u> </label>
+                    <label for="echeance">Echeance : </label>
                     <input type="text" class="echeance" id="echeance" name="echeance" required="required" value='<?php echo $echeance; ?>' />
                     <br/>
-                    <label for="infos"><u>Informations complémentaire :</u> </label>
+                    <label for="infos">Informations complémentaire : </label>
                     <textarea class="infos" id="infos" name="infos" required="required" ><?php echo $infos; ?></textarea>
                     <br/>
                 </fieldset>
@@ -262,7 +288,7 @@
                                         <label for="BX_ville">Ville: </label>
                                         <input type="text" class="v_l" name="BX_ville" value='<?php echo $BX_ville; ?>' />
                                         <br/>
-                                        <hr>
+                                        
                                     </td>
                                     <td>
                                         <label for="BX_pays">Pays: </label>
@@ -315,7 +341,7 @@
                                         <label for="BX_ville2">Ville: </label>
                                         <input type="text" class="ville_f" name="BX_ville2" value='<?php echo $BX_ville2; ?>'/>
                                         <br />
-                                        <hr>
+                                        
                                     </td>
                                     <td>
                                         <label for="BX_pays2">Pays: </label>
@@ -494,6 +520,7 @@
                             </tr>
                         </tbody>
                     </table>
+                        </div>
                     <br/>
 
                     <div style="display:none;" class="TotalPoids" style="text-align: left;">
@@ -505,40 +532,31 @@
                         <input type="text" name="totalVolume" style="width:80px" class="total-volume" value='<?php echo $_POST['totalVolume']; ?>' id="product-volume" readonly></input>m3
                         <br />
                     </div>
-                    <br/>
-                    <div class="TotalHT" style="text-align: left;">
-                        <span> <b> TOTAL HT: </b></span>
-                        <?php $ht=($_POST['totalHT']+24.00); ?>
-                        <input type="text" name="totalHT" style="width:80px" class="total-box" value='<?php echo number_format($ht,2); ?>' id="product-ht" readonly></input>&euro;
-                        <br />
-                    </div>
-
-                    <div class="Total" style="text-align: left;">
-                        <span> <b> TOTAL TTC:</b> </span>
-                        <?php $ttc=($_POST['totalTTC']+28.80); ?>
-                        <input type="text" style="width:80px" name="totalTTC" class="total-box" value='<?php echo number_format($ttc,2); ?>' id="product-subtotal" readonly></input>&euro;
-                        <br />
-                    </div>
-                </div>
-
-                <div class="TotalTVA" style="text-align: left;">
-                    <span>  <b>DONT T.V.A:</b></span>
-                    <?php $tva=($_POST['totalTVA']+4.80); ?>
-                    <input type="text" class="total-box" style="width:80px" value='<?php echo number_format($tva,2); ?>' name="totalTVA" id="product-TVA" readonly></input>&euro;
-                    <br />
-                </div>
-				
+                        <?php $ht=($_POST['totalHT']+24.00); $ttc=($_POST['totalTTC']+28.80);  $tva=($_POST['totalTVA']+4.80); ?>
+                         <div id="element3">
+                        <table>
+                            <tr style="background-color: #c9dff0;">
+                                <td>Total HT</td>
+                                <td>Total TTC</td>
+                                <td>Dont T.V.A</td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="totalHT" style="width:80px" class="total-box" value='<?php echo number_format($ht,2); ?>' id="product-ht" readonly/></td>
+                                <td><input type="text" style="width:80px" name="totalTTC" class="total-box" value='<?php echo number_format($ttc,2); ?>' id="product-subtotal" readonly/></td>
+                                <td><input type="text" class="total-box" style="width:80px" value='<?php echo number_format($tva,2); ?>' name="totalTVA" id="product-TVA" readonly/></td>
+                            </tr>
+                        </table>
+				        </div>
                 <!-- Fin Saisie Commande -->
 				<input type="checkbox" name="duplicata" value="Oui"> Marquer cette Facture en DUPLICATA ? </input>
                 <center>
                    <!-- <input type="submit" name="valider" /> -->
-				   <input type="button" onclick="quitter_sans_sauvegarde()" value="Annuler" />
-				   <input type="button" onclick="quitter_avec_sauvegarde('traitement_facture.php')" value="Sauvegarder" />
-				   <input type="button" onclick="submitForm('facture_pdf.php')" value="Imprimer Facture" />
+                    <a onclick="quitter_sans_sauvegarde()" class="button grey">Annuler</a>
+                    <a onclick="quitter_avec_sauvegarde('traitement_facture.php')" class="button grey">Sauvegarder</a>
+                    <a onclick="submitForm('facture_pdf.php')" class="button grey">Imprimer Facture</a>
                 </center>
             </form>
     </section>
-    </div>
 
     <?php include( "Inclusion/bottom.php"); ?>
 </body>
