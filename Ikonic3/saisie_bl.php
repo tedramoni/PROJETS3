@@ -102,6 +102,7 @@
 			
 			if ($nextId<$valparam)
 			{
+				mysqli_query($connexion, "ALTER TABLE bon_livraison AUTO_INCREMENT= ".$valparam);
 				$nextId=$valparam;
 			}
 			

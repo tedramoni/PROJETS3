@@ -81,6 +81,7 @@
 			
 		if ($nextId<$valparam)
 		{
+			$reqparam2 = mysqli_query($connexion, "ALTER TABLE factures AUTO_INCREMENT= ".$valparam);
 			$nextId=$valparam;
 		}
 		
