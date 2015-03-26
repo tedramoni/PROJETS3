@@ -29,13 +29,13 @@
     }
 	function submitForm2(action1,action2)
     {
-        document.getElementById('form1').action = action1;
+		document.getElementById('form1').action = action1;
 		document.getElementById('form1').target="_blank";
         document.getElementById('form1').submit();
 		
 		document.getElementById('form1').action = action2;
         document.getElementById('form1').target="_self";
-        document.getElementById('form1').submit();
+        document.getElementById('form1').submit();		
     }
 	
 	function quitter_sans_sauvegarde() {

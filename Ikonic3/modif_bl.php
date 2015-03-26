@@ -21,10 +21,22 @@
         }
     </style>
     <script type="text/javascript">
-    function submitForm(action)
+    /*function submitForm(action)
     {
         document.getElementById('form1').action = action;
         document.getElementById('form1').target="_blank";
+        document.getElementById('form1').submit();
+    }*/
+	
+	function submitForm2(action1,action2)
+    {
+        
+		document.getElementById('form1').action = action2;
+        document.getElementById('form1').target="_blank";
+        document.getElementById('form1').submit();
+		
+		document.getElementById('form1').action = action1;
+		document.getElementById('form1').target="_self";
         document.getElementById('form1').submit();
     }
     
@@ -455,7 +467,7 @@
                         if($transforme==0)
                         {
                     ?>
-                    <a onclick="submitForm('saisie_facture.php')" class="button grey">Transformer en facture</a>
+                    <a onclick="submitForm2('update_bl.php', 'saisie_facture.php')" class="button grey">Transformer en facture</a>
                     <?php
                         }?>
                     <a onclick="submitForm('update_bl.php')" class="button grey">Modifier</a>
