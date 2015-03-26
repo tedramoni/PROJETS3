@@ -110,7 +110,8 @@
 
                     }
                  }
-                 
+                 $sql.=" ORDER BY date DESC, num_bl DESC";
+
                  $requete=mysqli_query($connexion,$sql) or die("Erreur: ".mysqli_error($connexion));
                  while($data=mysqli_fetch_array($requete))
                  {
