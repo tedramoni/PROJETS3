@@ -67,9 +67,9 @@
 			
 			$totalPds        = $_POST['totalPoids'];
 			$totalVolume     = $_POST['totalVolume'];
-			$totalHT         = $_POST['totalHT'];
-			$totalTTC        = $_POST['totalTTC'];
-			$totalTVA        = $_POST['totalTVA'];
+			$totalHT         = str_replace(",",".",str_replace(" ","",$_POST['totalHT']));
+			$totalTTC        = str_replace(",",".",str_replace(" ","",$_POST['totalTTC']));
+			$totalTVA        = str_replace(",",".",str_replace(" ","",$_POST['totalTVA']));
 
 			$liste_articles="";
 		}
@@ -100,7 +100,7 @@
 		$acompte, $totalPds, $totalVolume, '$adr1_L', '$adr2_L', '$adr3_L', $cp_L, 
 			'$ville_L', '$pays_L', '$tel_bureau_L', 
 			'$email_L', '$site_web_L', 
-			'$adr1_F', '$adr2_F', '$adr3_F', $cp_F, '$ville_F', '$pays_F', '$tel_bureau_F', '$email_F', '$site_web_F', '$liste_articles', '$totalTTC', '$totalHT', '$raison_sociale',$totalTVA)";
+			'$adr1_F', '$adr2_F', '$adr3_F', $cp_F, '$ville_F', '$pays_F', '$tel_bureau_F', '$email_F', '$site_web_F', '$liste_articles', '$totalTTC', '$totalHT', '$raison_sociale','$totalTVA')";
 		echo $sql;
 		mysqli_query($connexion,$sql) or die("Erreur: ".mysqli_error($connexion));
 		

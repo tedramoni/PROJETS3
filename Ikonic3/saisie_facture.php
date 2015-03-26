@@ -542,7 +542,10 @@
                         <input type="text" name="totalVolume" style="width:80px" class="total-volume" value='<?php echo $_POST['totalVolume']; ?>' id="product-volume" readonly></input>m3
                         <br />
                     </div>
-                        <?php $ht=($_POST['totalHT']+24.00); $ttc=($_POST['totalTTC']+28.80);  $tva=($_POST['totalTVA']+4.80); ?>
+                        <?php 
+                            setlocale(LC_MONETARY, 'fr_FR');
+                            $ht=($_POST['totalHT']+24.00); $ttc=($_POST['totalTTC']+28.80);  $tva=($_POST['totalTVA']+4.80); 
+                        ?>
                          <div id="element3">
                         <table>
                             <tr style="background-color: #c9dff0;">
@@ -551,9 +554,9 @@
                                 <td>Dont T.V.A</td>
                             </tr>
                             <tr>
-                                <td><input type="text" name="totalHT" style="width:80px" class="total-box" value='<?php echo number_format($ht,2); ?>' id="product-ht" readonly/></td>
-                                <td><input type="text" style="width:80px" name="totalTTC" class="total-box" value='<?php echo number_format($ttc,2); ?>' id="product-subtotal" readonly/></td>
-                                <td><input type="text" class="total-box" style="width:80px" value='<?php echo number_format($tva,2); ?>' name="totalTVA" id="product-TVA" readonly/></td>
+                                <td><input type="text" name="totalHT" style="width:80px" class="total-box" value='<?php echo money_format('%!.2n',$ht); ?>' id="product-ht" readonly/></td>
+                                <td><input type="text" style="width:80px" name="totalTTC" class="total-box" value='<?php echo money_format('%!.2n',$ttc); ?>' id="product-subtotal" readonly/></td>
+                                <td><input type="text" class="total-box" style="width:80px" value='<?php echo money_format('%!.2n',$tva); ?>' name="totalTVA" id="product-TVA" readonly/></td>
                             </tr>
                         </table>
 				        </div>
