@@ -58,10 +58,10 @@
         <br/>
         <?php
             $connexion=connexionI();
-            $sql="SELECT max(num_facture) FROM factures";
-            $requete=mysqli_query($connexion,$sql);
-            $data=mysqli_fetch_array($requete);
-            if ($data[0]==$_GET['num_facture']) {
+            $requetefact = mysqli_query($connexion, "SHOW TABLE STATUS LIKE 'factures'");
+            $datafact = mysqli_fetch_array($requetefact);
+            $nextId = $datafact['Auto_increment'];  
+            if (($nextId-1)==$_GET['num_facture']) {
                 
         ?>
 
@@ -78,13 +78,21 @@
                 }
              }
         </script>
+        <?php
+            $sql="SELECT * FROM factures WHERE num_facture=".$_GET['num_facture'];
+            $requete=mysqli_query($connexion,$sql);
+            $data=mysqli_fetch_array($requete);
+            if($data['annule']!=1)
+            {
+
+        ?>
         <a href="#" style="border-bottom:1px dotted red;color:red;" onclick="verif();"> Voulez-vous annuler cette facture?</a></center><br/>
-        <?php } 
+        <?php } }
         if(isset($_GET['supp']))
         {
-            $sql_supp="DELETE FROM factures WHERE num_facture=".$_GET['supp'].";";
+            $sql_supp="UPDATE factures SET annule=1 WHERE num_facture=".$_GET['supp'].";";
             mysqli_query($connexion,$sql_supp) or die(mysqli_error($connexion));
-            header('Location:factures.php');
+            header('Location:factures.php?modif_facture='.$_GET['modif_facture']);
         }
         ?>
 
@@ -112,6 +120,11 @@
          $sql="SELECT * FROM factures WHERE num_facture=".$_GET['num_facture'];
          $requete=mysqli_query($connexion,$sql);
          $data=mysqli_fetch_array($requete);
+         if($data['annule']==1)
+         {
+            echo "<center><h2>Cette facture a été annulée. </h2></center>";
+         }
+
 
 ?>
         <div id="formu_contact">
@@ -330,7 +343,7 @@
                         <tbody id="tablco">
                             <tr>
                                 <th>
-                                    <input type="button" value="+" class="btn_newpics"></input>
+                                    <input type="hidden" value="+" class="btn_newpics"></input>
                                 </th>
                                 <th>Référence</th>
                                 <th>Libellé</th>
@@ -355,7 +368,7 @@
                                     }
                             ?>
                                 <td class="supligne" style="text-align:center;"> &nbsp
-                                    <input type="button" class="btn-sup" value="-" style="width:30px align:center"/>
+                                    <input type="hidden" class="btn-sup" value="-" style="width:30px align:center"/>
                                 </td>
                                 <td class="format">
                                     <SELECT name="format[]" class="selected_format_input" style="width:100px">
@@ -368,7 +381,7 @@
                                     <textarea placeholder="Libellé de l'article &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Numero de série" rows="3" cols="40" class="name-pics" name="namearticle[]"><?php echo $champs[1]?></textarea>
                                 </td>
                                 <td class="num-pallets">
-                                    <input type="number" step="any" min="0" name="qarticle[]" style="width:40px" class="num-pallets-input" value="<?php echo $champs[2];?>"/>
+                                    <input type="number" step="any" min="0" name="qarticle[]" style="width:40px" class="num-pallets-input" value="<?php echo $champs[2];?>" readonly/>
                                 </td>
                                 <!-- <td class="prix_article"><span name="prix_article[]" class="prix"></span>&euro;</td> -->
                                 <td class="prix_article">
@@ -424,9 +437,23 @@
 				<input type="checkbox" name="duplicata" value="Oui"> Marquer cette Facture en DUPLICATA ? </input>
                 <center>
                    <!-- <input type="submit" name="valider" /> -->
+                   <?php
+                   if($data['annule']==1)
+                   {
+                    ?>
+                    <a onclick="alert('Cette facture a été annulée.')"  class="button grey">Annuler</a>
+                    <a onclick="alert('Cette facture a été annulée.')"  class="button grey">Modifier</a>
+                    <a onclick="alert('Cette facture a été annulée.')"  class="button grey">Imprimer Facture</a>
+                <?php
+                   }
+                   else
+                   {
+
+                    ?>
                     <a onclick="quitter_sans_sauvegarde()" class="button grey">Annuler</a>
                     <a onclick="quitter_avec_sauvegarde('update_facture.php')" class="button grey">Modifier</a>
                     <a onclick="submitForm('facture_pdf.php')" class="button grey">Imprimer Facture</a>
+                    <?php } ?>
                 </center>
             </form>
     </section>
