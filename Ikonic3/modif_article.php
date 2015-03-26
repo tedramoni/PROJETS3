@@ -10,8 +10,9 @@
 	<script>
 		function test()
 		{
-			document.getElementById("contentArea").innerHTML ="<label>Nombre en stock: </label> <input type='number' name='nbre_stock' required='required'  min='0' step='any' />";
+			document.getElementById("contentArea").innerHTML ="<label>Nombre en stock: </label> <input type='number' name='nbre_stock' required='required'  step='any' />";
 			document.getElementById("contentArea").innerHTML+=" au <input type='date' name='date' value='2015/01/01'/>";
+			document.getElementById("contentArea").innerHTML+="    <span data-tip='La date doit être inséré au format anglais: yyyy/mm/dd.'><img src='images/info.png' alt='?'/></span>";
 		}
 	</script>
 	<title>Ikonic: Modification d'un article</title>
@@ -53,7 +54,7 @@
 				{
 					$nbre_stock=$nbre_stock+$_POST['nbre_stock'];
 				}
-				$libelle=htmlentities($_POST['libelle']);
+				$libelle=$_POST['libelle'];
 				$famille=$_POST['famille'];
 				$prix_vente_ht=htmlentities($_POST['prix_vente_ht']);
 				$tva=htmlentities($_POST['tva']);
@@ -163,7 +164,7 @@
 							
 							foreach($tab_famille as $famille)
 							{
-								if(str_replace("é", "&eacute;", $famille)!=$data['famille'])
+								if($famille!=$data['famille'])
 								{
 									echo "<option value=\"{$famille}\">{$famille}</option>";
 								}
@@ -176,7 +177,7 @@
 					<label for="tva">TVA: </label><input type="number" name="tva"  onkeyup="calculTTC()" id="tva" onclick="calculTTC()" value="<?php echo $data['tva']; ?>" required="required"  min="0" step="any" /> %<br/>
 					<label for="ttc">Prix de vente TTC: </label><input type="number" value="<?php echo ($data['prix_ht']*$data['tva']/100)+$data['prix_ht']; ?>" name="ttc" id="ttc"disabled="disabled" required="required"  min="0" step="any" /> €<br/>
 					<label for="prix_achat">Prix d'achat: </label><input type="number" name="prix_achat" value="<?php echo $data['prix_achat']; ?>" min="0" step="any" /> €<br/>
-					<label for="nbre_stock">Stock: </label><button type="button" onclick="test()">Entrez stock </button><br/><br/>
+					<label for="nbre_stock">Stock: </label><button type="button" onclick="test()">Entrez stock (<?php echo $data['nbre_stock']; ?>)</button><br/><br/>
 					<div id="contentArea"> </div>
 					<label for="volume">Volume: </label><input type="number" name="volume" value="<?php echo $data['volume']; ?>" min="0" step="any" /> m<sup>3</sup><br/>
 					<label for="poids">Poids: </label><input type="number" name="poids" value="<?php echo $data['poids']; ?>" min="0" step="any" /> kg<br/>

@@ -1,4 +1,4 @@
-<?php
+	<?php
 		include( "Inclusion/gestion.php");
 		
 		//Fonction qui permet de changer le format de la date de "d/m/Y" en "Y-m-d" utilisé dans la BDD.
@@ -10,24 +10,26 @@
 		}
 		if(isset($_POST))
 		{
-			$numero_facture  =$_POST['numero_f'];
-			if ($_POST['numero_bl']!="")
-			{
-				$numero_bl = $_POST['numero_bl'];
-			}
-			else
-			{
-				$numero_bl = "NULL";
-			}
+			$numero_bl       =$_POST['numero_bl'];
 			$date            =change_format_date($_POST['date']);
 			$ref_client      =$_POST['ref_client'];
 			$ref_fournisseur =$_POST['ref_fournisseur'];
 			$code_client     =$_POST['code_client'];
 			$nom_commercial  =$_POST['nom_commercial'];
-			$raison_sociale  =$_POST['raison_social'];
+			$raison_social   =$_POST['raison_social'];
 			$acompte         =$_POST['acompte'];
 			$mode_reglement  =$_POST['mode_reglement'];
-			$date_echeance   =change_format_date($_POST['echeance']);
+			$echeance        =$_POST['echeance'];
+			$fdm             =$_POST['fdm'];
+			if($fdm=="on")
+			{
+				$fdm=1;
+			}
+			else
+			{
+				$fdm=0;
+			}
+			$jour            =$_POST['jour'];
 			$info_comp       =$_POST['infos'];
 			
 			$adr1_L          =$_POST['BX_adr1'];
@@ -37,7 +39,7 @@
 			$ville_L         =$_POST['BX_ville'];
 			$pays_L          =$_POST['BX_pays'];
 			$tel_bureau_L    =$_POST['BX_tel_bur'];
-			$email_L         =$_POST['B	X_email'];
+			$email_L         =$_POST['BX_email'];
 			$site_web_L      =$_POST['BX_site_web'];
 			
 			$adr1_F          =$_POST['BX_adr1_2'];
@@ -58,7 +60,7 @@
 			$arrayComment    =$_POST['namearticle'];
 			$arrayQte        =$_POST['qarticle'];
 			$arrayPrix       =$_POST['prix_article'];
-			$arrayRemise     =$_POST['rarticle'];
+			$arrayRemise      =$_POST['rarticle'];
 			$arrayPoids       =$_POST['poids_article'];
 			$arrayVolume      =$_POST['volume_article']; 
 			$arrayArticleTT   =$_POST['prixtt_article'];
@@ -90,40 +92,11 @@
 		}
 		
 		
-		//TRAITEMENT BASE DE DONNEES
+		//TRAITEMENT BASE DE DONNEE
 		$connexion=connexionI();
-		$sql= "INSERT INTO factures (num_bl, date, date_echeance, ref_client, ref_fournisseur, code_client, nom_commercial, mode_reglement, info_comp, type_expedition,
-		nbre_colis, acompte, poids_total, volume_total, adr1_L, adr2_L, adr3_L, cp_L, ville_L, pays_L, tel_bureau_L, email_L, site_web_L, adr1_F, adr2_F, adr3_F, cp_F, ville_F,
-		pays_F, tel_bureau_F, email_F, site_web_F, liste_articles, prix_ttc, prix_ht, raison_sociale,tva)
-		values($numero_bl, '$date', '$date_echeance', '$ref_client', '$ref_fournisseur', '$code_client', '$nom_commercial', '$mode_reglement',
-		'$info_comp', '$type_expedition', $nbre_colis,
-		$acompte, $totalPds, $totalVolume, '$adr1_L', '$adr2_L', '$adr3_L', $cp_L, 
-			'$ville_L', '$pays_L', '$tel_bureau_L', 
-			'$email_L', '$site_web_L', 
-			'$adr1_F', '$adr2_F', '$adr3_F', $cp_F, '$ville_F', '$pays_F', '$tel_bureau_F', '$email_F', '$site_web_F', '$liste_articles', '$totalTTC', '$totalHT', '$raison_sociale',$totalTVA)";
-		echo $sql;
+	$sql= "UPDATE bon_livraison SET date='".$date."', ref_client='".$ref_client."', ref_fournisseur='".$ref_fournisseur."', code_client='".$code_client."', nom_commercial='".$nom_commercial."', mode_reglement='".$mode_reglement."', echeance='".$echeance."', fdm=".$fdm.", jour=".$jour.", info_comp='".$info_comp."', type_expedition='".$type_expedition."', nbre_colis=".$nbre_colis.", acompte=".$acompte.", poids_total=".$totalPds.", volume_total=".$totalVolume.", adr1_L='".$adr1_L."', adr2_L='".$adr2_L."', adr3_L='".$adr3_L."', cp_L=".$cp_L.", ville_L='".$ville_L."', pays_L='".$pays_L."', tel_bureau_L='".$tel_bureau_L."', email_L='".$email_L."', site_web_L='".$site_web_L."', adr1_F='".$adr1_F."', adr2_F='".$adr2_F."', adr3_F='".$adr3_F."', cp_F=".$cp_F.", ville_F='".$ville_F."', pays_F='".$pays_F."', tel_bureau_F='".$tel_bureau_F."', email_F='".$email_F."', site_web_F='".$site_web_F."', liste_articles='".$liste_articles."', prix_ttc='".$totalTTC."',prix_ht='".$totalHT."',raison_sociale='".$raison_social."',tva=".$totalTVA."  WHERE  num_bl=".$numero_bl;
 		mysqli_query($connexion,$sql) or die("Erreur: ".mysqli_error($connexion));
 		
-		$sql2 = "UPDATE bon_livraison SET transforme=1 WHERE num_bl = $numero_bl";
-		mysqli_query($connexion,$sql2) or die ("Erreur bl :".mysqli_error($connexion));
-		
-		for ($i=0; $i <sizeof($nameArticle); $i++) {
-			if($nameArticle[$i]!="IKA-PORT")
-			{
-
-				$sql_article="SELECT nbre_stock FROM article WHERE ref='".$nameArticle[$i]."'";
-				$requete_article=mysqli_fetch_array(mysqli_query($connexion,$sql_article));
-				$nb_stock=$requete_article[0];
-				$nb_stock=$nb_stock-$arrayQte[$i];
-				$requete="INSERT INTO stock(ref,date,nbre_entree,nbre_stock) VALUES('{$nameArticle[$i]}','{$date}',-{$arrayQte[$i]},{$nb_stock})";
-				$requete2="UPDATE stock SET nbre_stock={$nb_stock} where ref='{$nameArticle[$i]}'";
-				$requete3="UPDATE article SET nbre_stock={$nb_stock} where ref='{$nameArticle[$i]}'";
-				mysqli_query($connexion,$requete);
-				mysqli_query($connexion,$requete2);
-				mysqli_query($connexion,$requete3);
-			}
-		}
-		header('Location:factures.php');
-
-
-?>
+		header('Location:bl.php');
+	?>
+	

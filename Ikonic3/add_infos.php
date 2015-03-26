@@ -56,7 +56,7 @@
 							<td><input type="text" class="small"  name="BX_site_web" /></td>	
 							</tr></table>
 							<br />
-							<center><input type="submit"  name="livraison" value="Ajouter" /></center>				
+							<center><input type="submit"  name="livraison" onclick = "setTimeout(window.parent.opener.location.reload(),3000);" value="Ajouter" /></center>				
 					</form>
 			</fieldset>
 		<?php 
@@ -104,7 +104,7 @@
 							<td><label for="BX_site_web2">Site Web: </label></td>
 							<td><input type="text" class="small"  name="BX_site_web2" /></td>							
 							</tr></table>
-							<center><input type="submit"  name="facturation" value="Ajouter" /></center>				
+							<center><input type="submit"  name="facturation" onclick = "setTimeout(window.parent.opener.location.reload(),3000);" value="Ajouter" /></center>				
 					</form>
 			</fieldset>
 		<?php 
@@ -138,7 +138,7 @@
 						<td><label for="email_contact">Email: </label></td><td><input type="text" name="email_contact" required="required" /></td>
 						</tr></table>
 						<br />
-						<center><input type="submit" name="contact" value="Ajouter" /></center>				
+						<center><input type="submit" name="contact" onclick = "setTimeout(window.parent.opener.location.reload(),3000);" value="Ajouter" /></center>				
 					</form>
 			</fieldset>
 		<?php 

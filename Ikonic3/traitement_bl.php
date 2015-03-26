@@ -94,12 +94,12 @@
 		
 		//TRAITEMENT BASE DE DONNEE
 		$connexion=connexionI();
-		$sql= "INSERT INTO bon_livraison(num_bl, date, ref_client, ref_fournisseur, code_client, nom_commercial, mode_reglement, echeance, fdm, jour, info_comp, type_expedition, nbre_colis, acompte, poids_total, volume_total, adr1_L, adr2_L, adr3_L, cp_L, ville_L, pays_L, tel_bureau_L, email_L, site_web_L, adr1_F, adr2_F, adr3_F, cp_F, ville_F, pays_F, tel_bureau_F, email_F, site_web_F, liste_articles, prix_ttc,prix_ht,raison_sociale,tva) VALUES (".$numero_bl.",'".$date."','".$ref_client."', '".$ref_fournisseur."', '".$code_client."', '".$nom_commercial."', '".$mode_reglement."', 
+		$sql= "INSERT INTO bon_livraison(date, ref_client, ref_fournisseur, code_client, nom_commercial, mode_reglement, echeance, fdm, jour, info_comp, type_expedition, nbre_colis, acompte, poids_total, volume_total, adr1_L, adr2_L, adr3_L, cp_L, ville_L, pays_L, tel_bureau_L, email_L, site_web_L, adr1_F, adr2_F, adr3_F, cp_F, ville_F, pays_F, tel_bureau_F, email_F, site_web_F, liste_articles, prix_ttc,prix_ht,raison_sociale,tva) VALUES ('".$date."','".$ref_client."', '".$ref_fournisseur."', '".$code_client."', '".$nom_commercial."', '".$mode_reglement."', 
 			'".$echeance."', ".$fdm.", ".$jour.", '".$info_comp."', '".$type_expedition."',".$nbre_colis.", ".$acompte.", ".$totalPds.",".$totalVolume.", 
 			'".$adr1_L."', '".$adr2_L."', '".$adr3_L."', ".$cp_L.", 
 			'".$ville_L."', '".$pays_L."', '".$tel_bureau_L."', 
 			'".$email_L."', '".$site_web_L."', 
-			'".$adr1_F."', '".$adr2_F."', '".$adr3_F."', ".$cp_F.", '".$ville_F."', '".$pays_F."', '".$tel_bureau_F."', '".$email_F."', '".$site_web_F."', '".$liste_articles."', '".$totalTTC."', '".$totalHT."','".$raison_social."','".$tva."')";
+			'".$adr1_F."', '".$adr2_F."', '".$adr3_F."', ".$cp_F.", '".$ville_F."', '".$pays_F."', '".$tel_bureau_F."', '".$email_F."', '".$site_web_F."', '".$liste_articles."', '".$totalTTC."', '".$totalHT."','".$raison_social."','".$totalTVA."')";
 		mysqli_query($connexion,$sql) or die("Erreur: ".mysqli_error($connexion));
 		
 		header('Location:bl.php');

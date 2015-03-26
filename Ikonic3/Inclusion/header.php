@@ -28,7 +28,7 @@
 
                     </ul></li>
 <?php
-		if($i==1){
+		if($i!=2){
 			echo '<li><a href="article.php">Article</a>';
 		}
 		if($i==2)
@@ -50,9 +50,61 @@
 
                     </ul>
                 </li>
-                <li><a href="saisie_bl.php">BL</a></li>
-                <li><a href="saisie_facture.php">Facturation</a></li>
-                <li><a href="#">Paramètres</a></li>
+<?php
+				if($i==3)
+				{
+					echo "<li class=\"active\"><a href=\"bl.php\">BL</a>";
+				}
+				else
+				{
+?>
+                <li><a href="bl.php">BL</a>
+<?php
+                }
+?>
+                    <ul class="subs">
+                        <li><a href="article.php">Bon de livraison</a>
+                            <ul>
+                                <li><a href="bl.php">Listing des BLs</a></li>
+                                <li><a href="saisie_bl.php">Ajouter un BL</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+<?php
+				
+				if($i==4)
+				{
+					echo "<li class=\"active\"><a href=\"factures.php\">Facturation</a>";
+				}
+				else
+				{
+					echo "<li><a href=\"factures.php\">Facturation</a>";
+				}
+?>
+                    <ul class="subs">
+                        <li><a href="factures.php">Factures</a>
+                            <ul>
+                                <li><a href="factures.php">Listing des factures</a></li>
+                                <li><a href="saisie_facture.php">Ajouter une facture</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+<?php
+				if($i==5)
+				{
+					echo "<li class=\"active\"><a href=\"parametres.php\">Paramètres</a></li>";
+				}
+				else
+				{
+?>
+                <li><a href="parametres.php">Paramètres</a></li>
+<?php
+				}
+?>
             </ul>
 <?php
 	}

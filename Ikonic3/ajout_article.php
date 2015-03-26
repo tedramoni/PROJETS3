@@ -119,7 +119,8 @@
 					<label for="ttc">Prix de vente TTC: </label><input type="number" name="ttc" id="ttc" min="0" step="any" disabled="disabled" /> €<br/>
 					<label for="prix_achat">Prix d'achat: </label><input type="number" name="prix_achat" min="0" step="any" /> €<br/>
 					<label for="nbre_stock">Nombre en stock: </label><input type="number" name="nbre_stock" required="required" min="0" step="any" />
-					 au <input type="date" name="dateE" required="required"/>
+					 au <input type="date" name="dateE" required="required"/> <?php espace(2);?><span data-tip="La date doit être saisi au format anglais: yyyy/mm/dd"><img src="images/info.png" alt="?"/></span>
+
 					
 					<br/>
 					<label for="volume">Volume: </label><input type="number" name="volume" min="0" step="any" /> m<sup>3</sup><br/>

@@ -23,12 +23,19 @@
         #makeWizard { background-color:#b0232a; color:#fff; padding:5px 10px; text-decoration:none; font-size:18px;}
         #makeWizard:hover { background-color:#000;}
     </style>
+	<?php
+		if(isset($_GET['form']))
+		{
+	?>
 	<script type="text/javascript" src="Inclusion/formToWizard.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             $("#form_contact2").formToWizard()
         });
     </script>
+<?php
+}
+?>
 	
 </head>
 
@@ -36,7 +43,17 @@
 <body>
 	<section>
 		<?php include("Inclusion/gestion.php");  include("Inclusion/header.php"); actif(1); ?><br/><br/>
-		<h1 style="padding-top: 55px; text-align:center;">Ajout d'un client</h1><br/><br/>	
+		<h1 style="padding-top: 55px; text-align:center;">Ajout d'un client</h1><br/><br/>
+		<?php
+			if(isset($_GET['form']))
+			{
+				echo "<center><a href='ajout_client.php'>Formulaire long</a></center><br/>";
+			}
+			else
+			{
+				echo "<center><a href='ajout_client.php?form=new'>Formulaire compact</a></center><br/>";
+			}
+		?>
 	
 	<?php
 	if (isset($_GET['err']))

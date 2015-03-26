@@ -74,6 +74,8 @@
 				$sql.="AND date BETWEEN '{$_POST['dateD']}' AND '{$_POST['dateF']}'";
 			}
 		}
+		$sql.=" ORDER BY date DESC";
+
 	?>
 	<br/>
 	<div class="CSSTableGenerator" >
@@ -86,26 +88,15 @@
 			</tr>
 			
 	<?php
-		if(isset($_GET['p']))
-		{
-			$a=$perPage*($_GET['p']-1);
-			$sql.="LIMIT $a, $perPage";
-		}
-		if(!isset($_GET['p']))
-		{
-			$sql.="LIMIT 0, {$perPage}";
-		}
+
 		$execute=mysql_query("$sql") or die('Erreur au niveau de la requete'.mysql_error());
 		while($data=mysql_fetch_array($execute))
 		{
-			echo "<tr><td>{$data['date']}</td><td>{$data['ref']}</td><td>{$data['nbre_entree']} </td><td>{$data['nbre_stock']}</td></tr>";
+			$dateAnglaise=date('d-m-Y', strtotime($data['date']));
+			echo "<tr><td>{$dateAnglaise}</td><td>{$data['ref']}</td><td>{$data['nbre_entree']} </td><td>{$data['nbre_stock']}</td></tr>";
 		}
 		echo "</table><br/>";
-		echo "Page : ";
-		for($i=1;$i<=$nbPage;$i++)
-		{
-			echo "<a href='appro.php?p=$i'> $i </a>";
-		}
+
 		
 	?>
 	<br/><br/>

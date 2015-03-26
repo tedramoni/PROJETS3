@@ -11,6 +11,12 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
 
     <title>Ikonic: Factures</title>
+    <style>
+            #element3 tbody tr td {
+          text-align: center;
+           padding: 10px 10px;
+       }
+    </style>
     <style type="text/css">
         #design_tableau td{
             padding-left:30px;
@@ -28,8 +34,7 @@
             width:50px;
         }
         #prix{
-            width:300px;
-            border:1px dotted black;
+            width:600px;
         }
     </style>
 
@@ -41,9 +46,7 @@
         <?php include( "Inclusion/gestion.php"); include( "Inclusion/header.php"); actif(4); ?>
         <br/>
         <br/>
-        <h1 style="padding-top: 55px; text-align:center;">Factures</h1>
-        
-     <br/><br/>
+        <h1 style="padding-top: 20px; text-align:center;">Factures</h1><br/>
      <?php
         //Récupération de la liste des codes clients et des noms des commerciales pour l'autocompletion.
         $liste=array();
@@ -70,9 +73,10 @@
         <input type="text" id="recherche_raison" name="recherche_raison" placeholder="Raison sociale" onkeyup="myFunction('raison_sociale')"/>
         <br/><br/>
         <div id="prix">
-        Prix min: <input type="number" min="0"name="prix_min"/>  Prix max: <input type="number" min="0" name="prix_max" />
-        </div><br/>
-        <input type="submit" name="ok" />
+        Prix min: <input type="number" min="0"name="prix_min"/>  Prix max: <input type="number" min="0" name="prix_max" /><?php espace(10);?>
+                <input type="submit" name="ok" />
+
+        </div>
         </form>
             <script>
         //AUTO-COMPLETION
@@ -123,13 +127,13 @@
                 }
                 $connexion=connexionI();
                 $sql="SELECT * FROM factures ";
-                $sql_total_ttc="SELECT sum(prix_ttc) FROM factures ";
-                $sql_total_ht="SELECT sum(prix_ht) FROM factures ";
+                $sql_total_ttc="SELECT sum(prix_ttc) FROM factures WHERE annule!=1 ";
+                $sql_total_ht="SELECT sum(prix_ht) FROM factures WHERE annule!=1 ";
                 if(isset($_POST['ok']))
                 {
                     $sql.="WHERE code_client like '%".$_POST['recherche_code']."%' AND nom_commercial like '%".$_POST['recherche_commercial']."%' AND raison_sociale like '%".$_POST['recherche_raison']."%' ";
-                    $sql_total_ttc.="WHERE code_client like '%".$_POST['recherche_code']."%' AND nom_commercial like '%".$_POST['recherche_commercial']."%' AND raison_sociale like '%".$_POST['recherche_raison']."%' ";
-                    $sql_total_ht.="WHERE code_client like '%".$_POST['recherche_code']."%' AND nom_commercial like '%".$_POST['recherche_commercial']."%' AND raison_sociale like '%".$_POST['recherche_raison']."%' ";
+                    $sql_total_ttc.="AND code_client like '%".$_POST['recherche_code']."%' AND nom_commercial like '%".$_POST['recherche_commercial']."%' AND raison_sociale like '%".$_POST['recherche_raison']."%' ";
+                    $sql_total_ht.="AND code_client like '%".$_POST['recherche_code']."%' AND nom_commercial like '%".$_POST['recherche_commercial']."%' AND raison_sociale like '%".$_POST['recherche_raison']."%' ";
                     if(!empty($_POST['date_debut']) and !empty($_POST['date_fin']))
                     {
                         $sql.=" AND date between '".$_POST['date_debut']."' AND '".$_POST['date_fin']."'"; 
@@ -157,7 +161,14 @@
                 $requete=mysqli_query($connexion,$sql) or die(mysqli_error($connexion));
                 while($data=mysqli_fetch_array($requete))
                 {
-                    echo "<tr><td>".change_format_date($data['date'])."</td>";
+                    if($data['annule']==1)
+                    {
+                        echo "<tr style='background-color: #FBABAB;'><td>".change_format_date($data['date'])."</td>";
+                    }
+                    else
+                    {
+                        echo "<tr><td>".change_format_date($data['date'])."</td>";
+                    }
                     echo "<td><a href='modif_facture.php?num_facture=".$data['num_facture']."'>".$data['num_facture']."</a></td>";
                     if($data['num_bl']=="")
                     {
@@ -174,7 +185,7 @@
                     echo "<td>".$data['nom_commercial']."</td></tr>";
                 }
 
-
+                setlocale(LC_MONETARY, 'fr_FR');
                 $requete_tcc=mysqli_fetch_array(mysqli_query($connexion,$sql_total_ttc));
                 $requete_ht=mysqli_fetch_array(mysqli_query($connexion,$sql_total_ht));
                 $ttc=$requete_tcc[0];
@@ -182,9 +193,20 @@
 
 
     ?>
-    </table>
-    <br/><center>    <?php                 echo "<b style='color:blue;'>".number_format($ttc,2)."€ de CA TTC et ".number_format($ht,2)."€ HT</b>";
-    ?>
+    </table></div>
+    <br/><center>    
+        <div id="element3">
+                    <table>
+                        <tr style="background-color: #c9dff0;">
+                            <td>Total HT(€)</td>
+                            <td>Total TTC(€)</td>
+                        </tr>
+                        <tr>
+                            <td><?php echo money_format('%!.2n', $ht); ?></td>
+                            <td><?php echo money_format('%!.2n', $ttc); ?></td>
+                        </tr>
+                    </table>
+    </div>
 </center><br/>
     <center><a href="saisie_facture.php"><button type="button" onClick="">Ajouter une facture</button></a></center>
 

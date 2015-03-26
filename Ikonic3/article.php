@@ -24,7 +24,7 @@ if(isset($_POST['valider'])) {
 	<section>
 		<?php include("Inclusion/header.php"); actif(2); include("Inclusion/gestion.php");?>
 
-		<h1 style="padding-top: 65px; text-align:center;">Gérer un article</h1><br/><br/>
+		<h1 style="padding-top: 65px; text-align:center;">Gestion des articles</h1><br/><br/>
 	
 		<?php
 			//Recupération des valeurs de référence dans un array
@@ -55,7 +55,8 @@ if(isset($_POST['valider'])) {
 					if(isset($_COOKIE['famille'])) //SI COOKIE EXISTE
 					{
 						$fam=$_COOKIE['famille'];
-						$famille=str_replace("é", "&eacute;", $fam);
+						//$famille=str_replace("é", "&eacute;", $fam);
+						$famille=$fam;
 						//$sql.="WHERE famille='{$famille}'";
 					}
 					if(isset($_POST['valider']))//SI ENVOIE DE FORMULAIRE
@@ -65,7 +66,7 @@ if(isset($_POST['valider'])) {
 						$fam=$_POST['famille'];
 						$_COOKIE['famille']=$fam;
 						$sql.="WHERE ref LIKE '{$ref}%' ";
-						$famille=str_replace("é", "&eacute;", $fam);
+						$famille=$fam;
 					}		
 					if($famille!='all')
 					{
@@ -160,6 +161,7 @@ if(isset($_POST['valider'])) {
 		
 		<br/><br/><br/>
 		<button type="button" onclick="window.location.href='ajout_article.php'">Ajouter un article</button>
+		<button type="button" onclick="window.location.href='appro.php'">Historique approvisionnements</button>
 		</center>
 		</div>
 

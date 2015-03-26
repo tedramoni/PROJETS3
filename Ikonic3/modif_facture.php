@@ -86,8 +86,8 @@
             {
 
         ?>
-        <a href="#" style="border-bottom:1px dotted red;color:red;" onclick="verif();"> Voulez-vous annuler cette facture?</a></center><br/>
-        <?php } }
+        <a href="#" style="border-bottom:1px dotted red;color:red;" onclick="verif();"> Voulez-vous annuler cette facture?</a><br/>
+        <?php }echo "</center>"; }
         if(isset($_GET['supp']))
         {
             $sql_supp="UPDATE factures SET annule=1 WHERE num_facture=".$_GET['supp'].";";
@@ -434,22 +434,20 @@
                         </table>
 				        </div>
                 <!-- Fin Saisie Commande -->
-				<input type="checkbox" name="duplicata" value="Oui"> Marquer cette Facture en DUPLICATA ? </input>
-                <center>
+				
                    <!-- <input type="submit" name="valider" /> -->
                    <?php
                    if($data['annule']==1)
                    {
                     ?>
-                    <a onclick="alert('Cette facture a été annulée.')"  class="button grey">Annuler</a>
-                    <a onclick="alert('Cette facture a été annulée.')"  class="button grey">Modifier</a>
-                    <a onclick="alert('Cette facture a été annulée.')"  class="button grey">Imprimer Facture</a>
                 <?php
                    }
                    else
                    {
 
                     ?>
+                    <input type="checkbox" name="duplicata" value="Oui"> Marquer cette Facture en DUPLICATA ? </input>
+                    <center>
                     <a onclick="quitter_sans_sauvegarde()" class="button grey">Annuler</a>
                     <a onclick="quitter_avec_sauvegarde('update_facture.php')" class="button grey">Modifier</a>
                     <a onclick="submitForm('facture_pdf.php')" class="button grey">Imprimer Facture</a>

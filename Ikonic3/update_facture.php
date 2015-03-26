@@ -1,4 +1,4 @@
-<?php
+	<?php
 		include( "Inclusion/gestion.php");
 		
 		//Fonction qui permet de changer le format de la date de "d/m/Y" en "Y-m-d" utilisé dans la BDD.
@@ -19,7 +19,7 @@
 			{
 				$numero_bl = "NULL";
 			}
-			$date            =change_format_date($_POST['date']);
+			$date            =$_POST['date'];
 			$ref_client      =$_POST['ref_client'];
 			$ref_fournisseur =$_POST['ref_fournisseur'];
 			$code_client     =$_POST['code_client'];
@@ -27,7 +27,7 @@
 			$raison_sociale  =$_POST['raison_social'];
 			$acompte         =$_POST['acompte'];
 			$mode_reglement  =$_POST['mode_reglement'];
-			$date_echeance   =change_format_date($_POST['echeance']);
+			$date_echeance   =$_POST['echeance'];
 			$info_comp       =$_POST['infos'];
 			
 			$adr1_L          =$_POST['BX_adr1'];
@@ -74,6 +74,8 @@
 			$liste_articles="";
 		}
 
+
+
 		//Test
 		$nameArticle=array();
 		$j=0;
@@ -90,40 +92,12 @@
 		}
 		
 		
-		//TRAITEMENT BASE DE DONNEES
+		//TRAITEMENT BASE DE DONNEE
 		$connexion=connexionI();
-		$sql= "INSERT INTO factures (num_bl, date, date_echeance, ref_client, ref_fournisseur, code_client, nom_commercial, mode_reglement, info_comp, type_expedition,
-		nbre_colis, acompte, poids_total, volume_total, adr1_L, adr2_L, adr3_L, cp_L, ville_L, pays_L, tel_bureau_L, email_L, site_web_L, adr1_F, adr2_F, adr3_F, cp_F, ville_F,
-		pays_F, tel_bureau_F, email_F, site_web_F, liste_articles, prix_ttc, prix_ht, raison_sociale,tva)
-		values($numero_bl, '$date', '$date_echeance', '$ref_client', '$ref_fournisseur', '$code_client', '$nom_commercial', '$mode_reglement',
-		'$info_comp', '$type_expedition', $nbre_colis,
-		$acompte, $totalPds, $totalVolume, '$adr1_L', '$adr2_L', '$adr3_L', $cp_L, 
-			'$ville_L', '$pays_L', '$tel_bureau_L', 
-			'$email_L', '$site_web_L', 
-			'$adr1_F', '$adr2_F', '$adr3_F', $cp_F, '$ville_F', '$pays_F', '$tel_bureau_F', '$email_F', '$site_web_F', '$liste_articles', '$totalTTC', '$totalHT', '$raison_sociale',$totalTVA)";
-		echo $sql;
+	$sql= "UPDATE factures SET date='".$date."',date_echeance='".$date_echeance."', ref_client='".$ref_client."', ref_fournisseur='".$ref_fournisseur."', code_client='".$code_client."', nom_commercial='".$nom_commercial."', mode_reglement='".$mode_reglement."', info_comp='".$info_comp."', type_expedition='".$type_expedition."', nbre_colis=".$nbre_colis.", acompte=".$acompte.", poids_total=".$totalPds.", volume_total=".$totalVolume.", adr1_L='".$adr1_L."', adr2_L='".$adr2_L."', adr3_L='".$adr3_L."', cp_L=".$cp_L.", ville_L='".$ville_L."', pays_L='".$pays_L."', tel_bureau_L='".$tel_bureau_L."', email_L='".$email_L."', site_web_L='".$site_web_L."', adr1_F='".$adr1_F."', adr2_F='".$adr2_F."', adr3_F='".$adr3_F."', cp_F=".$cp_F.", ville_F='".$ville_F."', pays_F='".$pays_F."', tel_bureau_F='".$tel_bureau_F."', email_F='".$email_F."', site_web_F='".$site_web_F."', liste_articles='".$liste_articles."', prix_ttc='".$totalTTC."',prix_ht='".$totalHT."',tva='".$totalTVA."' WHERE  num_facture=".$numero_facture;
+			echo $sql;
+
 		mysqli_query($connexion,$sql) or die("Erreur: ".mysqli_error($connexion));
-		
-		$sql2 = "UPDATE bon_livraison SET transforme=1 WHERE num_bl = $numero_bl";
-		mysqli_query($connexion,$sql2) or die ("Erreur bl :".mysqli_error($connexion));
-		
-		for ($i=0; $i <sizeof($nameArticle); $i++) {
-			if($nameArticle[$i]!="IKA-PORT")
-			{
-
-				$sql_article="SELECT nbre_stock FROM article WHERE ref='".$nameArticle[$i]."'";
-				$requete_article=mysqli_fetch_array(mysqli_query($connexion,$sql_article));
-				$nb_stock=$requete_article[0];
-				$nb_stock=$nb_stock-$arrayQte[$i];
-				$requete="INSERT INTO stock(ref,date,nbre_entree,nbre_stock) VALUES('{$nameArticle[$i]}','{$date}',-{$arrayQte[$i]},{$nb_stock})";
-				$requete2="UPDATE stock SET nbre_stock={$nb_stock} where ref='{$nameArticle[$i]}'";
-				$requete3="UPDATE article SET nbre_stock={$nb_stock} where ref='{$nameArticle[$i]}'";
-				mysqli_query($connexion,$requete);
-				mysqli_query($connexion,$requete2);
-				mysqli_query($connexion,$requete3);
-			}
-		}
 		header('Location:factures.php');
-
-
-?>
+	?>
+	
